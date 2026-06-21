@@ -1,0 +1,80 @@
+body{
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    background:#071A35;
+    color:#fff;
+}
+
+.navbar{
+    background:#071A35 !important;
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.hero{
+
+    min-height:90vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    background:
+    linear-gradient(
+    rgba(7,26,53,.70),
+    rgba(7,26,53,.90)
+    ),
+    url('../images/backgrounds/hero.jpg');
+
+    background-size:cover;
+
+    background-position:center;
+}
+
+.hero h1{
+
+    font-size:65px;
+
+    font-weight:700;
+}
+
+.hero p{
+
+    font-size:22px;
+
+    color:#ddd;
+}
+
+.btn-gold{
+
+    background:#D4AF37;
+
+    color:#071A35;
+
+    padding:15px 40px;
+
+    border-radius:50px;
+
+    font-weight:bold;
+
+    transition:.3s;
+}
+
+.btn-gold:hover{
+
+    transform:translateY(-3px);
+
+    background:#f0c64d;
+}
+
+.footer{
+
+    background:#04111F;
+
+    padding:60px 0;
+
+    margin-top:0;
+}

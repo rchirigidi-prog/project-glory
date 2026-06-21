@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  website:
+    image: php:8.3-apache
+    container_name: project-glory-web
+    restart: unless-stopped
+
+    ports:
+      - "8080:80"
+
+    volumes:
+      - ./public:/var/www/html
+
+    working_dir: /var/www/html
