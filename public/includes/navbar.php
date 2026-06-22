@@ -1,61 +1,96 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
-    <div class="container">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
 
-        <a class="navbar-brand d-flex align-items-center" href="index.php">
-            <img src="assets/images/logo/logo.png"
-                 alt="SingThyGlory"
-                 width="45"
-                 class="me-2">
+<div class="container">
 
-            <div>
-                <strong>SingThyGlory</strong><br>
-                <small style="font-size:12px;">Every Song, His Glory</small>
-            </div>
-        </a>
+<a class="navbar-brand" href="index.php">
 
-        <button class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#mainMenu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+<img
+src="assets/images/logo/logo.png"
+height="55"
+alt="SingThyGlory">
 
-        <div class="collapse navbar-collapse"
-             id="mainMenu">
+</a>
 
-            <ul class="navbar-nav ms-auto">
+<button
+class="navbar-toggler"
+type="button"
+data-bs-toggle="collapse"
+data-bs-target="#mainMenu">
 
-                <li class="nav-item">
-                    <a class="nav-link active" href="index.php">Home</a>
-                </li>
+<span class="navbar-toggler-icon"></span>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Listen Live</a>
-                </li>
+</button>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Bible</a>
-                </li>
+<div
+class="collapse navbar-collapse"
+id="mainMenu">
 
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Prayer</a>
-                </li>
+<ul class="navbar-nav ms-auto">
 
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Podcasts</a>
-                </li>
+<li class="nav-item">
 
-                <li class="nav-item">
-                    <a class="nav-link" href="#">YouTube</a>
-                </li>
+<a class="nav-link active" href="index.php">
 
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
-                </li>
+Home
 
-            </ul>
+</a>
 
-        </div>
+</li>
 
-    </div>
+<li class="nav-item">
+
+<a class="nav-link" href="#player">
+
+Listen Live
+
+</a>
+
+</li>
+
+<li class="nav-item">
+
+<a class="nav-link" href="#youtube">
+
+YouTube
+
+</a>
+
+</li>
+
+<li class="nav-item">
+
+<a class="nav-link" href="#bible">
+
+Bible
+
+</a>
+
+</li>
+
+<li class="nav-item">
+
+<a class="nav-link" href="#prayer">
+
+Prayer
+
+</a>
+
+</li>
+
+<li class="nav-item">
+
+<a class="nav-link" href="#footer">
+
+Contact
+
+</a>
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
 </nav>

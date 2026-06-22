@@ -3,41 +3,27 @@
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta name="description"
-          content="SingThyGlory - 24/7 Christian Worship Radio broadcasting worship songs, Bible readings, devotionals and messages of hope.">
+<title>SingThyGlory | 24/7 Christian Worship Radio</title>
 
-    <meta name="keywords"
-          content="Christian Radio, Worship Radio, Jesus Songs, Bible, Gospel Music, Christian Worship">
+<!-- Google Fonts -->
 
-    <meta name="author"
-          content="SingThyGlory">
+<link rel="preconnect" href="https://fonts.googleapis.com">
 
-    <title>SingThyGlory | 24/7 Christian Worship Radio</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <!-- Favicon -->
-    <link rel="icon"
-          type="image/png"
-          href="/assets/images/icons/favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Google Fonts -->
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
+<!-- Bootstrap -->
 
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600;700&display=swap"
-          rel="stylesheet">
+<!-- Custom CSS -->
 
-    <!-- CSS -->
-    <link rel="stylesheet"
-          href="/assets/css/style.css">
+<link rel="stylesheet" href="assets/css/style.css">
 
 </head>
 
