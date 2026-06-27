@@ -2,36 +2,63 @@
 
     <div class="hero-overlay"></div>
 
-    <div class="container hero-content">
+    <div class="container">
 
-        <h1>Jesus Is Our Hope</h1>
+        <div class="row align-items-center">
 
-        <p>
-            Experience God's love through 24/7 Christian Worship Radio,
-            Bible readings, prayer, and uplifting worship music.
-        </p>
+            <!-- Left Side -->
+            <div class="col-lg-6">
 
-        <div class="hero-buttons">
+                <span class="hero-subtitle">
+                    ✝️ 24/7 Christian Worship Radio
+                </span>
 
-            <a href="live.php" class="btn-primary">
-                ▶ Listen Live
-            </a>
+                <h1>
+                    Jesus Is Our Hope
+                </h1>
 
-            <a href="youtube.php" class="btn-secondary">
-                Watch Videos
-            </a>
+                <p>
+                    Experience God's love through 24/7 Christian Worship Radio,
+                    Bible readings, prayer, devotionals, and uplifting worship music
+                    in English, Hindi, and Telugu.
+                </p>
 
-        </div>
+                <div class="hero-buttons">
 
-        <div class="hero-features">
+                    <a href="#player" class="btn btn-warning btn-lg">
+                        ▶ Listen Live
+                    </a>
 
-            <span>📻 24/7 Worship</span>
+                    <a href="#youtube" class="btn btn-outline-light btn-lg">
+                        📺 Watch Videos
+                    </a>
 
-            <span>📖 Bible Reading</span>
+                </div>
 
-            <span>🙏 Prayer</span>
+                <div class="hero-features">
 
-            <span>📺 YouTube</span>
+                    <span>📻 Live Radio</span>
+
+                    <span>📖 Bible Reading</span>
+
+                    <span>🙏 Prayer</span>
+
+                    <span>🎵 Worship Songs</span>
+
+                </div>
+
+            </div>
+
+            <!-- Right Side -->
+
+            <div class="col-lg-6 text-center">
+
+                <img
+                    src="assets/images/hero/hero-image.png"
+                    class="img-fluid hero-image"
+                    alt="Jesus Christ">
+
+            </div>
 
         </div>
 

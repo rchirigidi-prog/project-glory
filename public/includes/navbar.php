@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top custom-navbar">
 
 <div class="container">
 
@@ -6,8 +6,8 @@
 
 <img
 src="assets/images/logo/logo.png"
-height="55"
-alt="SingThyGlory">
+alt="SingThyGlory"
+height="70">
 
 </a>
 
@@ -25,63 +25,31 @@ data-bs-target="#mainMenu">
 class="collapse navbar-collapse"
 id="mainMenu">
 
-<ul class="navbar-nav ms-auto">
+<ul class="navbar-nav ms-auto align-items-lg-center">
 
 <li class="nav-item">
-
-<a class="nav-link active" href="index.php">
-
-Home
-
-</a>
-
+<a class="nav-link active" href="#">Home</a>
 </li>
 
 <li class="nav-item">
-
-<a class="nav-link" href="#player">
-
-Listen Live
-
-</a>
-
+<a class="nav-link" href="#player">Radio</a>
 </li>
 
 <li class="nav-item">
-
-<a class="nav-link" href="#youtube">
-
-YouTube
-
-</a>
-
+<a class="nav-link" href="#mission">Mission</a>
 </li>
 
 <li class="nav-item">
-
-<a class="nav-link" href="#bible">
-
-Bible
-
-</a>
-
+<a class="nav-link" href="#features">Features</a>
 </li>
 
-<li class="nav-item">
+<li class="nav-item ms-lg-3">
 
-<a class="nav-link" href="#prayer">
+<a
+href="#player"
+class="btn btn-warning btn-live px-4 rounded-pill">
 
-Prayer
-
-</a>
-
-</li>
-
-<li class="nav-item">
-
-<a class="nav-link" href="#footer">
-
-Contact
+▶ Listen Live
 
 </a>
 
