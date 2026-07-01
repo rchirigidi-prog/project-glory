@@ -1,0 +1,586 @@
+/*==================================================
+  SINGTHYGLORY
+  Master Stylesheet v1.0
+  Project Glory
+==================================================*/
+
+
+/*==================================================
+  1. GOOGLE FONT
+==================================================*/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+
+/*==================================================
+  2. CSS RESET
+==================================================*/
+
+*,
+*::before,
+*::after{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#F8FAFC;
+    color:#1F2937;
+    line-height:1.7;
+    overflow-x:hidden;
+}
+
+img{
+    max-width:100%;
+    display:block;
+}
+
+a{
+    text-decoration:none;
+    transition:.3s;
+}
+
+ul{
+    list-style:none;
+}
+
+button{
+    border:none;
+    outline:none;
+    cursor:pointer;
+}
+
+
+/*==================================================
+  3. ROOT VARIABLES
+==================================================*/
+
+:root{
+
+    --primary:#081F4D;
+    --secondary:#D4AF37;
+
+    --white:#ffffff;
+
+    --background:#F8FAFC;
+
+    --text:#1F2937;
+
+    --gray:#6B7280;
+
+    --border:#E5E7EB;
+
+    --success:#198754;
+
+    --danger:#dc3545;
+
+    --shadow-sm:0 5px 15px rgba(0,0,0,.05);
+
+    --shadow-md:0 15px 35px rgba(0,0,0,.08);
+
+    --shadow-lg:0 25px 60px rgba(0,0,0,.15);
+
+    --radius:14px;
+
+}
+
+
+/*==================================================
+  4. TYPOGRAPHY
+==================================================*/
+
+h1,h2,h3,h4,h5,h6{
+
+    color:var(--primary);
+
+    font-weight:700;
+
+    margin-bottom:20px;
+
+}
+
+h1{
+
+    font-size:64px;
+
+}
+
+h2{
+
+    font-size:46px;
+
+}
+
+h3{
+
+    font-size:34px;
+
+}
+
+p{
+
+    color:var(--gray);
+
+    margin-bottom:20px;
+
+    font-size:18px;
+
+}
+
+.section-title{
+
+    text-align:center;
+
+    margin-bottom:60px;
+
+}
+
+.section-title span{
+
+    color:var(--secondary);
+
+}
+
+.section-subtitle{
+
+    max-width:700px;
+
+    margin:auto;
+
+}
+
+
+/*==================================================
+  5. LAYOUT
+==================================================*/
+
+section{
+
+    padding:100px 0;
+
+}
+
+.container{
+
+    max-width:1200px;
+
+}
+
+.text-center{
+
+    text-align:center;
+
+}
+
+
+/*==================================================
+  6. BUTTONS
+==================================================*/
+
+.btn-gold{
+
+    background:var(--secondary);
+
+    color:#fff;
+
+    padding:16px 36px;
+
+    border-radius:10px;
+
+    display:inline-block;
+
+    font-weight:600;
+
+    transition:.3s;
+
+    box-shadow:var(--shadow-sm);
+
+}
+
+.btn-gold:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:var(--shadow-md);
+
+    color:#fff;
+
+}
+
+.btn-outline{
+
+    border:2px solid #fff;
+
+    color:#fff;
+
+    padding:16px 36px;
+
+    border-radius:10px;
+
+    display:inline-block;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.btn-outline:hover{
+
+    background:#fff;
+
+    color:var(--primary);
+
+}
+
+
+/*==================================================
+  END OF MODULE 1
+==================================================*/
+/* =====================================
+   MISSION SECTION
+===================================== */
+
+.mission-section{
+
+    background:#071a35;
+    padding:120px 0;
+
+}
+
+.mission-logo{
+
+    max-width:380px;
+    display:block;
+    margin:auto;
+
+}
+
+.section-subtitle{
+
+    color:#f4b400;
+    font-weight:700;
+    letter-spacing:3px;
+    display:block;
+    margin-bottom:15px;
+
+}
+
+.mission-section h2{
+
+    color:white;
+    font-size:48px;
+    font-weight:700;
+    margin-bottom:25px;
+
+}
+
+.mission-section p{
+
+    color:#d6dbe5;
+    font-size:20px;
+    line-height:1.9;
+    margin-bottom:40px;
+
+}
+/* =====================================
+   FEATURES
+===================================== */
+
+.features-section{
+
+    background:#04152d;
+    padding:120px 0;
+
+}
+
+.feature-card{
+
+    background:#0d2245;
+    border-radius:18px;
+    padding:40px 30px;
+    text-align:center;
+    height:100%;
+    transition:.35s;
+    box-shadow:0 15px 40px rgba(0,0,0,.25);
+
+}
+
+.feature-card:hover{
+
+    transform:translateY(-10px);
+    box-shadow:0 20px 50px rgba(0,0,0,.4);
+
+}
+
+.feature-icon{
+
+    font-size:60px;
+    margin-bottom:20px;
+
+}
+
+.feature-card h3{
+
+    color:#fff;
+    font-size:28px;
+    margin-bottom:20px;
+
+}
+
+.feature-card p{
+
+    color:#cdd7e5;
+    line-height:1.8;
+
+}
+/* ===============================
+   Live Player
+=================================*/
+
+.player-section{
+
+padding:100px 0;
+
+background:#02142d;
+
+}
+
+.player-card{
+
+background:#08264d;
+
+border-radius:20px;
+
+padding:40px;
+
+box-shadow:0 20px 50px rgba(0,0,0,.4);
+
+}
+
+.album-cover{
+
+border-radius:15px;
+
+max-width:300px;
+
+transition:.4s;
+
+}
+
+.album-cover:hover{
+
+transform:scale(1.03);
+
+}
+
+.live-badge{
+
+display:inline-block;
+
+background:#dc3545;
+
+color:white;
+
+padding:8px 18px;
+
+border-radius:50px;
+
+font-weight:bold;
+
+margin-bottom:20px;
+
+}
+
+#song-title{
+
+color:#fff;
+
+font-size:40px;
+
+font-weight:700;
+
+margin-top:10px;
+
+}
+
+#song-artist{
+
+font-size:22px;
+
+color:#d6d6d6;
+
+margin-bottom:25px;
+
+}
+
+.listeners{
+
+color:#ffc107;
+
+font-size:18px;
+
+margin-top:15px;
+
+margin-bottom:20px;
+
+}
+
+audio{
+
+width:100%;
+
+margin-top:20px;
+
+}
+/*=========================
+YouTube
+=========================*/
+
+.youtube-section{
+
+padding:100px 0;
+
+background:#061b39;
+
+}
+
+.section-heading{
+
+margin-bottom:60px;
+
+}
+
+.section-heading h2{
+
+color:white;
+
+font-size:48px;
+
+font-weight:700;
+
+}
+
+.section-heading p{
+
+color:#d5d5d5;
+
+font-size:20px;
+
+}
+
+.video-card{
+
+background:#0b2a55;
+
+border-radius:20px;
+
+overflow:hidden;
+
+transition:.35s;
+
+height:100%;
+
+box-shadow:0 15px 35px rgba(0,0,0,.25);
+
+}
+
+.video-card:hover{
+
+transform:translateY(-10px);
+
+}
+
+.video-content{
+
+padding:25px;
+
+}
+
+.video-content h4{
+
+color:white;
+
+margin-bottom:15px;
+
+}
+
+.video-content p{
+
+color:#d6d6d6;
+
+min-height:60px;
+
+}
+/*=========================
+Latest Releases
+=========================*/
+
+.releases-section{
+
+padding:100px 0;
+
+background:#031224;
+
+}
+
+.release-card{
+
+background:#0b2a55;
+
+border-radius:20px;
+
+padding:20px;
+
+text-align:center;
+
+transition:.3s;
+
+height:100%;
+
+}
+
+.release-card:hover{
+
+transform:translateY(-10px);
+
+}
+
+.release-card img{
+
+border-radius:15px;
+
+margin-bottom:20px;
+
+}
+
+.release-card h4{
+
+color:white;
+
+font-size:22px;
+
+}
+
+.release-card p{
+
+color:#cfcfcf;
+
+}
+.release-card{
+
+display:flex;
+flex-direction:column;
+
+}
+.release-card .btn{
+
+margin-top:auto;
+
+}

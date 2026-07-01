@@ -1,5 +1,9 @@
-logs/
-storage/
-backups/
-.env
+/vendor/bin/
+/node_modules/
+/.env
+/.env.*
+/storage/logs/*
+/storage/cache/*
+/.idea/
+/.vscode/
 *.log

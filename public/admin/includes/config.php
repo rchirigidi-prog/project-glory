@@ -4,7 +4,9 @@
 // SingThyGlory CMS Configuration
 // ==========================================
 
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 date_default_timezone_set('Asia/Kolkata');
 
@@ -28,5 +30,16 @@ define('LOGIN_SESSION', 'stg_admin');
 // Development
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+
+
+
+// Database Configuration
+$config = require __DIR__ . '/../../../config/database.php';
+
+$host     = $config['host'];
+$database = $config['database'];
+$username = $config['username'];
+$password = $config['password'];
+$charset  = $config['charset'];
 
 ?>

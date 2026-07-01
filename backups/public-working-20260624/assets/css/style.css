@@ -1,0 +1,1317 @@
+/*==================================================
+  SingThyGlory Website v2.0
+==================================================*/
+
+/*==================================================
+  1. Google Font
+==================================================*/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/*==================================================
+  2. Root Variables
+==================================================*/
+
+:root{
+
+    --primary:#0b2d5d;
+    --secondary:#f4b400;
+    --dark:#031224;
+    --light:#ffffff;
+    --gray:#d9d9d9;
+    --text:#1e293b;
+
+    --radius:18px;
+
+    --shadow:0 12px 35px rgba(0,0,0,.18);
+
+    --transition:.35s;
+
+}
+
+/*==================================================
+  3. Reset
+==================================================*/
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+    background:#f8fafc;
+    color:var(--text);
+    overflow-x:hidden;
+
+}
+
+img{
+
+    max-width:100%;
+    display:block;
+
+}
+
+a{
+
+    text-decoration:none;
+
+}
+
+section{
+
+    padding:100px 0;
+
+}
+.section-heading h2{
+
+    color:#ffffff;
+
+    font-size:48px;
+    font-weight:700;
+
+}
+
+
+.container{
+
+    max-width:1200px;
+
+}
+/*==================================================
+  4. Navigation
+==================================================*/
+
+.navbar{
+
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+
+    padding:18px 0;
+
+    background:rgba(3,18,36,.85);
+    backdrop-filter:blur(12px);
+
+    transition:.35s;
+
+    z-index:9999;
+
+}
+
+.navbar-brand img{
+
+    height:60px;
+
+}
+
+.navbar-nav .nav-link{
+
+    color:#fff !important;
+
+    font-weight:500;
+
+    margin-left:18px;
+
+    transition:.3s;
+
+}
+
+.navbar-nav .nav-link:hover{
+
+    color:var(--secondary) !important;
+
+}
+
+.navbar-nav .nav-link.active{
+
+    color:var(--secondary) !important;
+
+}
+
+.navbar-toggler{
+
+    border:none;
+
+}
+
+.navbar-toggler:focus{
+
+    box-shadow:none;
+
+}
+
+/* Listen Live Button */
+
+.btn-live{
+
+    background:var(--secondary);
+
+    color:#02112d !important;
+
+    padding:12px 28px;
+
+    border-radius:40px;
+
+    font-weight:700;
+
+    transition:.35s;
+
+}
+
+.btn-live:hover{
+
+    transform:translateY(-3px);
+
+    background:#ffd64d;
+
+}
+.btn-live{
+
+    font-weight:700;
+
+    letter-spacing:.5px;
+
+    transition:.35s;
+
+    box-shadow:0 10px 25px rgba(244,180,0,.35);
+
+}
+
+.btn-live:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 18px 35px rgba(244,180,0,.45);
+
+}
+/*==================================================
+5. HERO
+==================================================*/
+/*==================================================
+3. HERO
+==================================================*/
+
+/*==================================================
+  HERO SECTION
+==================================================*/
+
+.hero{
+
+    position:relative;
+
+    min-height:900px;
+
+    display:flex;
+
+    align-items:center;
+
+    overflow:hidden;
+
+    background:url('../images/backgrounds/hero.jpg') center center/cover no-repeat;
+
+}
+
+.hero-overlay{
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:100%;
+
+    background:rgba(2,12,35,.72);
+
+}
+
+.hero .container{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+.hero-subtitle{
+
+    display:inline-block;
+
+    padding:10px 22px;
+
+    border-radius:50px;
+
+    background:rgba(255,193,7,.15);
+
+    color:#ffc107;
+
+    font-weight:600;
+
+    margin-bottom:25px;
+
+    font-size:18px;
+
+}
+
+.hero h1{
+
+    font-size:72px;
+
+    font-weight:800;
+
+    color:#ffffff;
+
+    line-height:1.1;
+
+    margin-bottom:25px;
+
+}
+
+.hero p{
+
+    font-size:22px;
+
+    color:#f2f2f2;
+
+    line-height:1.8;
+
+    margin-bottom:40px;
+
+    max-width:650px;
+
+}
+
+.hero-buttons{
+
+    display:flex;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:45px;
+
+}
+
+.hero-buttons .btn{
+
+    padding:16px 38px;
+
+    border-radius:50px;
+
+    font-size:18px;
+
+    font-weight:600;
+
+}
+
+.hero-features{
+
+    display:flex;
+
+    gap:30px;
+
+    flex-wrap:wrap;
+
+}
+
+.hero-features span{
+
+    color:#ffffff;
+
+    font-size:18px;
+
+}
+
+/*==========================================
+ HERO IMAGE
+==========================================*/
+
+.hero-image{
+    max-width:650px;
+    width:100%;
+    animation: floatImage 5s ease-in-out infinite;
+}
+
+@keyframes floatImage{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-15px);
+    }
+}
+.hero{
+
+    min-height:850px;
+
+    padding-top:120px;
+
+    padding-bottom:120px;
+
+}
+.hero-image{
+
+    width:100%;
+
+    max-width:700px;
+
+    height:auto;
+
+    border-radius:20px;
+
+    box-shadow:0 30px 60px rgba(0,0,0,.45);
+
+}
+.hero .col-lg-6:first-child{
+
+    padding-right:60px;
+
+}
+@keyframes floatImage{
+
+0%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-15px);
+
+}
+
+100%{
+
+transform:translateY(0);
+
+}
+
+}
+
+/*==========================================
+ MOBILE
+==========================================*/
+
+@media(max-width:991px){
+
+.hero{
+
+text-align:center;
+
+min-height:auto;
+
+padding:140px 0 80px;
+
+}
+
+.hero h1{
+
+font-size:52px;
+
+}
+
+.hero p{
+
+font-size:20px;
+
+margin:auto;
+
+}
+
+.hero-buttons{
+
+justify-content:center;
+
+}
+
+.hero-features{
+
+justify-content:center;
+
+margin-top:25px;
+
+}
+
+.hero-image{
+
+margin-top:60px;
+
+max-height:450px;
+
+}
+
+}
+/*===============================
+ HERO PLAYER
+===============================*/
+
+.hero-player{
+
+margin-top:80px;
+
+}
+
+.player-glass{
+
+background:rgba(8,23,52,.78);
+
+backdrop-filter:blur(12px);
+
+border-radius:25px;
+
+padding:35px;
+
+border:1px solid rgba(255,255,255,.08);
+
+box-shadow:0 20px 60px rgba(0,0,0,.35);
+
+}
+
+.live-badge{
+
+display:inline-block;
+
+padding:6px 14px;
+
+border-radius:50px;
+
+background:#ff3d3d;
+
+color:white;
+
+font-size:14px;
+
+margin-bottom:15px;
+
+}
+
+#song-title{
+
+color:white;
+
+font-size:40px;
+
+font-weight:700;
+
+}
+
+#song-artist{
+
+color:#ffc107;
+
+font-size:22px;
+
+}
+
+#listeners{
+
+color:#ddd;
+
+font-size:18px;
+
+}
+.release-card{
+
+transition:.4s;
+
+}
+
+.release-card:hover{
+
+transform:translateY(-10px);
+
+box-shadow:0 25px 50px rgba(0,0,0,.35);
+
+}
+/*==========================
+PREMIUM PLAYER
+==========================*/
+
+.player-section{
+
+background:#061b39;
+
+padding:100px 0;
+
+}
+
+.premium-player{
+
+background:#0d2d5d;
+
+border-radius:25px;
+
+padding:40px;
+
+box-shadow:0 25px 60px rgba(0,0,0,.35);
+
+}
+
+.album-cover{
+
+width:220px;
+
+border-radius:20px;
+
+box-shadow:0 15px 35px rgba(0,0,0,.35);
+
+}
+
+.live-status{
+
+display:inline-flex;
+
+align-items:center;
+
+gap:10px;
+
+color:white;
+
+font-weight:700;
+
+margin-bottom:20px;
+
+}
+
+.live-dot{
+
+width:12px;
+
+height:12px;
+
+background:#ff2d2d;
+
+border-radius:50%;
+
+animation:pulse 1s infinite;
+
+}
+
+@keyframes pulse{
+
+0%{opacity:.4;}
+
+50%{opacity:1;}
+
+100%{opacity:.4;}
+
+}
+
+#song-title{
+
+color:white;
+
+font-size:40px;
+
+font-weight:700;
+
+margin-bottom:10px;
+
+}
+
+#song-artist{
+
+color:#ffc107;
+
+font-size:22px;
+
+}
+
+#listeners{
+
+color:#ddd;
+
+}
+
+.equalizer{
+
+display:flex;
+
+gap:5px;
+
+margin-top:20px;
+
+height:40px;
+
+align-items:flex-end;
+
+}
+
+.equalizer span{
+
+width:8px;
+
+background:#ffc107;
+
+border-radius:10px;
+
+animation:equalize 1s infinite ease-in-out;
+
+}
+
+.equalizer span:nth-child(2){
+
+animation-delay:.2s;
+
+}
+
+.equalizer span:nth-child(3){
+
+animation-delay:.4s;
+
+}
+
+.equalizer span:nth-child(4){
+
+animation-delay:.6s;
+
+}
+
+.equalizer span:nth-child(5){
+
+animation-delay:.8s;
+
+}
+
+@keyframes equalize{
+
+0%{
+
+height:10px;
+
+}
+
+50%{
+
+height:40px;
+
+}
+
+100%{
+
+height:15px;
+
+}
+
+}
+/* Album Rotation */
+
+.album-cover.playing{
+
+animation:rotateAlbum 18s linear infinite;
+
+}
+
+@keyframes rotateAlbum{
+
+from{
+
+transform:rotate(0deg);
+
+}
+
+to{
+
+transform:rotate(360deg);
+
+}
+
+}
+
+/* Equalizer */
+
+.equalizer span{
+
+animation-play-state:paused;
+
+}
+
+.equalizer.playing span{
+
+animation-play-state:running;
+
+}
+
+/* Play Button */
+
+.play-btn{
+
+width:70px;
+
+height:70px;
+
+border-radius:50%;
+
+background:#ffc107;
+
+border:none;
+
+font-size:28px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.play-btn:hover{
+
+transform:scale(1.08);
+
+box-shadow:0 0 20px rgba(255,193,7,.5);
+
+}
+
+#volumeControl{
+
+width:100%;
+
+margin-top:20px;
+
+accent-color:#ffc107;
+
+}
+.youtube-section{
+
+padding:100px 0;
+
+background:#081b3c;
+
+}
+
+.youtube-card{
+
+    background:#0d2d5d;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    transition:all .35s ease;
+
+    height:100%;
+
+    box-shadow:0 20px 45px rgba(0,0,0,.30);
+
+    border:1px solid rgba(255,255,255,.05);
+
+}
+
+.youtube-card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 30px 60px rgba(255,193,7,.20);
+
+}
+
+.youtube-card img{
+
+    width:100%;
+
+    height:220px;
+
+    object-fit:cover;
+
+    transition:.4s;
+
+}
+
+.youtube-card:hover img{
+
+    transform:scale(1.05);
+
+}
+
+.youtube-content{
+
+    padding:25px;
+
+}
+
+.youtube-content h5{
+
+    color:#fff;
+
+    font-size:22px;
+
+    font-weight:600;
+
+    line-height:1.4;
+
+    min-height:65px;
+
+}
+
+.youtube-content p{
+
+    color:#bfc8d8;
+
+    margin-top:10px;
+
+}
+
+.youtube-content .btn{
+
+margin-top:15px;
+
+}
+/*=========================
+YouTube Section
+=========================*/
+
+.youtube-section{
+
+    background:#061b39;
+
+    padding:100px 0;
+    padding:120px 0;
+
+}
+
+.youtube-section .section-heading h2{
+
+    color:#ffffff;
+
+    font-size:48px;
+
+    font-weight:700;
+
+    margin-bottom:20px;
+
+}
+
+.youtube-section .section-heading p{
+
+    color:#d6d6d6;
+
+    font-size:20px;
+
+    max-width:700px;
+
+    margin:0 auto 60px;
+
+}
+.youtube-wrapper{
+
+position:relative;
+
+overflow:hidden;
+
+}
+.youtube-wrapper{
+
+    position:relative;
+
+    overflow:hidden;
+
+    padding:0 60px;
+
+}
+.youtube-slider{
+
+display:flex;
+
+gap:25px;
+
+overflow-x:auto;
+
+scroll-behavior:smooth;
+
+scrollbar-width:none;
+
+padding:10px;
+
+}
+
+.youtube-slider::-webkit-scrollbar{
+
+display:none;
+
+}
+
+.youtube-card{
+
+min-width:360px;
+max-width:320px;
+
+background:#0b2a55;
+
+border-radius:20px;
+
+overflow:hidden;
+
+transition:.35s;
+
+box-shadow:0 15px 35px rgba(0,0,0,.25);
+
+flex-shrink:0;
+
+}
+
+.youtube-card:hover{
+
+transform:translateY(-8px);
+
+}
+
+.youtube-card img{
+
+width:100%;
+
+display:block;
+
+}
+
+.youtube-content{
+
+padding:25px;
+
+}
+
+.youtube-content h5{
+
+color:#fff;
+
+font-size:22px;
+
+margin-bottom:15px;
+
+}
+
+.youtube-content p{
+
+color:#d7d7d7;
+
+min-height:70px;
+
+}
+
+.yt-arrow{
+
+position:absolute;
+
+top:45%;
+
+transform:translateY(-50%);
+
+width:55px;
+
+height:55px;
+
+border:none;
+
+border-radius:50%;
+
+background:#ffc107;
+
+color:#000;
+
+font-size:24px;
+
+z-index:5;
+
+cursor:pointer;
+
+box-shadow:0 10px 25px rgba(0,0,0,.4);
+
+}
+
+.yt-arrow.left{
+
+left:20px;
+
+}
+
+.yt-arrow.right{
+
+right:20px;
+
+}
+
+@media(max-width:768px){
+
+.youtube-card{
+
+min-width:300px;
+
+}
+
+.yt-arrow{
+
+display:none;
+
+}
+
+}
+.video-thumb{
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+.video-thumb img{
+
+transition:.5s;
+
+}
+
+.youtube-card:hover img{
+
+transform:scale(1.08);
+
+}
+
+.play-overlay{
+
+position:absolute;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+height:100%;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+background:rgba(0,0,0,.35);
+
+opacity:0;
+
+transition:.35s;
+
+}
+
+.youtube-card:hover .play-overlay{
+
+opacity:1;
+
+}
+
+.play-overlay i{
+
+width:70px;
+
+height:70px;
+
+border-radius:50%;
+
+background:#ff0000;
+
+color:#fff;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:28px;
+
+box-shadow:0 10px 30px rgba(0,0,0,.35);
+
+}
+.youtube-content h5{
+
+    color:#fff;
+    font-size:20px;
+    line-height:1.4;
+
+    display:-webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient:vertical;
+
+    overflow:hidden;
+}
+.video-thumb img{
+
+    width:100%;
+    height:220px;
+
+    object-fit:cover;
+}
+.youtube-content{
+
+    padding:25px;
+    min-height:180px;
+
+    display:flex;
+    flex-direction:column;
+}
+.youtube-content .btn{
+
+    margin-top:auto;
+}
+
+.youtube-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.35),
+        0 0 20px rgba(255,193,7,.25);
+}
+
+/*========================================
+Verse of the Day
+========================================*/
+
+.bible-section{
+
+padding:120px 0;
+
+background:linear-gradient(180deg,#081d3a,#102f57);
+
+}
+
+.bible-card{
+
+max-width:900px;
+
+margin:auto;
+
+padding:70px;
+
+text-align:center;
+
+border-radius:30px;
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(18px);
+
+border:1px solid rgba(255,255,255,.15);
+
+box-shadow:0 30px 70px rgba(0,0,0,.35);
+
+}
+
+.verse-icon{
+
+font-size:70px;
+
+margin-bottom:25px;
+
+}
+
+#verseText{
+
+color:white;
+
+font-size:38px;
+
+line-height:1.7;
+
+font-weight:700;
+
+margin-bottom:25px;
+
+}
+
+#verseReference{
+
+font-size:24px;
+
+color:#ffc107;
+
+margin-bottom:40px;
+
+font-weight:600;
+
+}
+
+.verse-buttons .btn{
+
+padding:15px 35px;
+
+margin:10px;
+
+border-radius:50px;
+
+font-weight:600;
+
+}
+
+/*========================================
+Prayer Section
+========================================*/
+.prayer-section{
+
+    padding:120px 0;
+
+    background:#081d3a;
+
+}
+
+.prayer-card{
+
+    max-width:800px;
+
+    margin:auto;
+
+    background:#18345a;
+
+    padding:50px;
+
+    border-radius:30px;
+
+    box-shadow:0 20px 50px rgba(0,0,0,.25);
+
+}
+
+.prayer-card input,
+.prayer-card textarea{
+
+    background:#27466f;
+
+    border:none;
+
+    color:white;
+
+}
+
+.prayer-card input::placeholder,
+.prayer-card textarea::placeholder{
+
+    color:#d7d7d7;
+
+}
+.prayer-card button{
+
+    display:block;
+
+    margin:20px auto 0;
+
+}
+.prayer-section .section-heading p{
+
+    color:#d7d7d7 !important;
+
+    font-size:18px;
+
+}

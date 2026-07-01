@@ -1,0 +1,324 @@
+<div class="card shadow border-0">
+
+    <div class="card-header bg-warning d-flex justify-content-between align-items-center">
+
+        <h3 class="mb-0">
+
+            🙏 Prayer Management
+
+        </h3>
+
+        <span class="badge bg-dark">
+
+            Prayer Requests
+
+        </span>
+
+    </div>
+
+    <div class="card-body">
+
+        <div class="row mb-3">
+
+            <div class="col-md-6">
+
+                <input
+                    type="text"
+                    id="prayerSearch"
+                    class="form-control"
+                    placeholder="Search prayer requests...">
+
+            </div>
+
+            <div class="col-md-3">
+
+                <select id="statusFilter" class="form-select">
+
+                    <option value="">All Status</option>
+
+                    <option value="New">New</option>
+
+                    <option value="In Prayer">In Prayer</option>
+
+                    <option value="Completed">Completed</option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+        <div class="table-responsive">
+
+            <table class="table table-hover align-middle">
+
+                <thead class="table-light">
+
+                    <tr>
+
+                        <th>Name</th>
+
+                        <th>Email</th>
+
+                        <th>Prayer Request</th>
+
+                        <th>Date</th>
+
+                        <th>Status</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                <?php
+
+                require_once __DIR__ . '/../../includes/helpers/prayer-helper.php';
+
+                $file = __DIR__ . '/../../storage/prayers.json';
+
+                $prayers = loadPrayers($file);
+
+                savePrayers($file, $prayers);
+
+                $prayers = array_reverse($prayers);
+
+                if (!empty($prayers)) { 
+
+                    $prayers = json_decode(file_get_contents($file), true);
+
+                    $prayers = array_reverse($prayers);
+
+                    foreach($prayers as $prayer){
+
+                        $status = $prayer['status'] ?? 'New';
+
+                        $badge = 'warning';
+
+                        if($status == 'In Prayer') {
+                            $badge = 'primary';
+                        }
+
+                        if($status == 'Completed') {
+                            $badge = 'success';
+                        }
+
+                        ?>
+
+                        <tr>
+
+                            <td>
+                                <?= htmlspecialchars($prayer['name'] ?? '') ?>
+                            </td>
+
+                            <td>
+                                <?= htmlspecialchars($prayer['email'] ?? '') ?>
+                            </td>
+
+                            <td>
+                                <?= htmlspecialchars($prayer['request'] ?? '') ?>
+                            </td>
+
+                            <td>
+                                <?= htmlspecialchars($prayer['date'] ?? '') ?>
+                            </td>
+
+                            <td>
+
+                                <span class="badge bg-<?= $badge ?>">
+
+                                    <?= $status ?>
+
+                                </span>
+
+                            </td>
+
+                            <td>
+
+                                <button
+                                        class="btn btn-sm btn-info viewPrayer"
+
+                                        data-name="<?= htmlspecialchars($prayer['name'] ?? '') ?>"
+
+                                        data-email="<?= htmlspecialchars($prayer['email'] ?? '') ?>"
+
+                                        data-request="<?= htmlspecialchars($prayer['request'] ?? '') ?>"
+
+                                        data-date="<?= htmlspecialchars($prayer['date'] ?? '') ?>"
+
+                                        data-status="<?= htmlspecialchars($prayer['status'] ?? 'New') ?>">
+
+                                        👁
+
+                                </button>
+
+                                <button
+                                    class="btn btn-sm btn-success editPrayer"
+                                    data-id="<?= $prayer['id'] ?>">
+
+                                     ✏
+
+                                </button>
+
+                                <button
+                                    class="btn btn-sm btn-danger deletePrayer"
+                                    data-id="<?= $prayer['id'] ?>">
+
+                                     🗑
+
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+                        <?php
+                    }
+                }
+
+                ?>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+    
+
+</div>
+
+<div class="modal fade" id="viewPrayerModal" tabindex="-1">
+
+    <div class="modal-dialog modal-lg">
+
+        <div class="modal-content">
+
+            <div class="modal-header bg-warning">
+
+                <h5 class="modal-title">
+
+                    🙏 Prayer Request
+
+                </h5>
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <table class="table">
+
+                    <tr>
+
+                        <th width="150">Name</th>
+
+                        <td id="modalName"></td>
+                    </tr>
+
+                    <tr>
+
+                        <th>Email</th>
+
+                        <td id="modalEmail"></td>
+
+                    </tr>
+
+                    <tr>
+
+                        <th>Status</th>
+
+                        <td id="modalStatus"></td>
+
+                    </tr>
+
+                    <tr>
+
+                        <th>Date</th>
+
+                        <td id="modalDate"></td>
+
+                    </tr>
+
+                    <tr>
+
+                        <th>Prayer</th>
+
+                        <td id="modalRequest"></td>
+
+                    </tr>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    const buttons = document.querySelectorAll('.viewPrayer');
+
+    console.log("Buttons Found:", buttons.length);
+
+    buttons.forEach(btn => {
+
+        btn.addEventListener('click', function () {
+
+            console.log("VIEW BUTTON CLICKED");
+
+            document.getElementById('modalName').innerText = btn.dataset.name;
+            document.getElementById('modalEmail').innerText = btn.dataset.email;
+            document.getElementById('modalStatus').innerText = btn.dataset.status;
+            document.getElementById('modalDate').innerText = btn.dataset.date;
+            document.getElementById('modalRequest').innerText = btn.dataset.request;
+
+            const modal = new bootstrap.Modal(
+                document.getElementById('viewPrayerModal')
+            );
+
+            modal.show();
+
+        });
+
+    });
+
+});
+
+</script>
+<script>
+
+document.getElementById('prayerSearch')
+.addEventListener('keyup', function() {
+
+    let value = this.value.toLowerCase();
+
+    let rows = document.querySelectorAll('tbody tr');
+
+    rows.forEach(row => {
+
+        row.style.display =
+            row.innerText.toLowerCase().includes(value)
+            ? ''
+            : 'none';
+
+    });
+
+});
+
+</script>
