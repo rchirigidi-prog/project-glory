@@ -1,17 +1,36 @@
-# CHANGELOG
+# SingThyGlory Studio
 
-## M-001
+## Version 1.0.0 - Foundation
 
-Framework
+### Date
+July 2026
 
-## M-002
+### Completed
 
-Dashboard
+- Docker Infrastructure
+- PHP 8.3
+- Apache
+- MariaDB
+- Composer
+- MVC Project Structure
+- Bootstrap Loader
+- Global Helper Functions
+- Environment Configuration (.env)
+- Asset Helper
+- URL Helper
+- Upload Helper
+- Professional Folder Structure
+- Central Configuration
 
-## M-003
+### Improvements
 
-Website Manager
+- Increased PHP Upload Limits
+- Docker Networking Fixed
+- Database Connectivity Improved
+- Configuration Centralized
 
-## M-004
+### Status
 
-Homepage Manager (In Progress)
+Stable Foundation
+
+Ready for Module Development.

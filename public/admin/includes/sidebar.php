@@ -2,6 +2,8 @@
 
     <div class="logo text-center py-4">
 
+        <?php var_dump(ASSET_URL); ?>
+        
         <img src="<?= ASSET_URL ?>/images/logo/logo.png"
              width="80"
              class="mb-3">

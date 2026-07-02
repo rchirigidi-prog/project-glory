@@ -34,11 +34,37 @@ require_once ROOT_PATH . '/vendor/autoload.php';
 
 /*
 |--------------------------------------------------------------------------
+| Load Environment Variables
+|--------------------------------------------------------------------------
+*/
+
+$dotenv = Dotenv\Dotenv::createImmutable(ROOT_PATH);
+
+$dotenv->safeLoad();
+
+/*
+|--------------------------------------------------------------------------
+| Application Configuration
+|--------------------------------------------------------------------------
+*/
+
+$app = require CONFIG_PATH . '/app.php';
+
+/*
+|--------------------------------------------------------------------------
 | Database Configuration
 |--------------------------------------------------------------------------
 */
 
-$config = require CONFIG_PATH . '/database.php';
+$db = require CONFIG_PATH . '/database.php';
+
+/*
+|--------------------------------------------------------------------------
+| Global Helpers
+|--------------------------------------------------------------------------
+*/
+
+require_once APP_PATH . '/Helpers/helpers.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -46,4 +72,4 @@ $config = require CONFIG_PATH . '/database.php';
 |--------------------------------------------------------------------------
 */
 
-date_default_timezone_set('Asia/Kolkata');
+date_default_timezone_set($app['timezone']);

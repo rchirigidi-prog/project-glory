@@ -4,7 +4,15 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-require_once __DIR__ . '/../../vendor/autoload.php';
+/*
+|--------------------------------------------------------------------------
+| Project Root
+|--------------------------------------------------------------------------
+*/
+
+define('ROOT_PATH', dirname(__DIR__, 2));
+
+require_once ROOT_PATH . '/vendor/autoload.php';
 
 use App\Middleware\AuthMiddleware;
 
