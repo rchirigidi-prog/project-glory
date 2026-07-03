@@ -1,27 +1,17 @@
 <?php
 
-require 'includes/header.php';
+require_once __DIR__ . '/bootstrap.php';
 
-?>
+/*
+|--------------------------------------------------------------------------
+| Admin Entry Point
+|--------------------------------------------------------------------------
+*/
 
-<div class="container py-5">
+if (isset($_SESSION['stg_admin'])) {
+    header('Location: dashboard.php');
+    exit;
+}
 
-<h1 class="text-warning">
-
-🎉 Welcome to SingThyGlory CMS
-
-</h1>
-
-<p>
-
-Admin Panel Version <?php echo SITE_VERSION; ?>
-
-</p>
-
-</div>
-
-<?php
-
-require 'includes/footer.php';
-
-?>
+header('Location: login.php');
+exit;

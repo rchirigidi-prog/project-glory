@@ -14,11 +14,11 @@ class MediaService
     }
 
     /**
-     * Get all media.
+     * Get all media with uploader information.
      */
     public function all(): array
     {
-        return $this->media->all();
+        return $this->media->allWithUploader();
     }
 
     /**

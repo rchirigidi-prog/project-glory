@@ -60,3 +60,16 @@ Thumbs.db
 
 public/test-*.php
 public/env-test.php
+# ===========================
+# Runtime Media Uploads
+# ===========================
+
+/public/storage/uploads/
+
+# ===========================
+# New Development Backups
+# ===========================
+
+/backups/*.php
+/backups/database/
+/backups/legacy/

@@ -4,13 +4,43 @@ namespace App\Core;
 
 class Validator
 {
-    public static function required($value)
+    private array $errors = [];
+
+    public function required(string $field, $value): self
     {
-        return trim($value)!=='';
+        if (empty($value)) {
+            $this->errors[$field] = "{$field} is required.";
+        }
+
+        return $this;
     }
 
-    public static function email($email)
+    public function email(string $field, $value): self
     {
-        return filter_var($email,FILTER_VALIDATE_EMAIL);
+        if (!filter_var($value, FILTER_VALIDATE_EMAIL)) {
+            $this->errors[$field] = "Invalid email address.";
+        }
+
+        return $this;
+    }
+
+    public function minLength(string $field, $value, int $length): self
+    {
+        if (strlen($value) < $length) {
+            $this->errors[$field] =
+                "{$field} must contain at least {$length} characters.";
+        }
+
+        return $this;
+    }
+
+    public function passes(): bool
+    {
+        return empty($this->errors);
+    }
+
+    public function errors(): array
+    {
+        return $this->errors;
     }
 }

@@ -10,10 +10,6 @@ $controller = new MediaController();
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['media_file'])) {
 
 
-echo '<pre>';
-print_r($_FILES);
-echo '</pre>';
-exit;
 
     if ($controller->upload($_FILES['media_file'])) {
         header('Location: upload.php');
