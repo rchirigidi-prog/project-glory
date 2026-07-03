@@ -54,6 +54,13 @@
             </a>
         </li>
 
+        <li class="nav-item">
+            <a href="/admin/modules/footer/index.php" class="nav-link">
+                <i class="fa-solid fa-shoe-prints"></i>
+                Footer Manager
+            </a>
+        </li>
+
         <!-- Content -->
         <li class="nav-item mt-3">
             <small class="text-uppercase text-secondary ps-3">
