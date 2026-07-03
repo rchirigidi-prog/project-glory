@@ -47,6 +47,13 @@
             </a>
         </li>
 
+        <li class="nav-item">
+            <a href="/admin/modules/seo/index.php" class="nav-link">
+                <i class="fa-solid fa-magnifying-glass-chart"></i>
+                SEO Manager
+            </a>
+        </li>
+
         <!-- Content -->
         <li class="nav-item mt-3">
             <small class="text-uppercase text-secondary ps-3">
