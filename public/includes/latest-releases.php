@@ -27,9 +27,6 @@ alt="Release">
 
 <p>Worship Album</p>
 
-<a href="#" class="btn btn-primary">
-Listen Now
-</a>
 
 </div>
 
@@ -48,9 +45,6 @@ alt="Release">
 
 <p>Bible Story Song</p>
 
-<a href="#" class="btn btn-primary">
-Listen Now
-</a>
 
 </div>
 
@@ -69,9 +63,6 @@ alt="Release">
 
 <p>English Worship</p>
 
-<a href="#" class="btn btn-primary">
-Listen Now
-</a>
 
 </div>
 
@@ -90,9 +81,6 @@ alt="Release">
 
 <p>Hindi Worship</p>
 
-<a href="#" class="btn btn-primary">
-Listen Now
-</a>
 
 </div>
 
