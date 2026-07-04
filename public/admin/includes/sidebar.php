@@ -69,7 +69,7 @@
         </li>
 
         <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="/admin/modules/bible/index.php" class="nav-link">
                 <i class="fa-solid fa-book-bible"></i>
                 Bible
             </a>
