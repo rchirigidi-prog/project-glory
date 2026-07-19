@@ -4,35 +4,35 @@ namespace App\Controllers;
 
 use App\Core\Controller;
 use App\Core\Flash;
-use App\Services\AlbumService;
+use App\Services\ArtistService;
 
-class AlbumController extends Controller
+class ArtistController extends Controller
 {
-    private AlbumService $albumService;
+    private ArtistService $artistService;
 
     public function __construct()
     {
-        $this->albumService = new AlbumService();
+        $this->artistService = new ArtistService();
     }
 
     /**
-     * Display all albums.
+     * Display all artists.
      */
     public function index(): array
     {
-        return $this->albumService->all();
+        return $this->artistService->all();
     }
 
     /**
-     * Display one album.
+     * Display one artist.
      */
     public function show(int $id): ?array
     {
-        return $this->albumService->find($id);
+        return $this->artistService->find($id);
     }
 
     /**
-     * Create an album.
+     * Create an artist.
      */
     public function store(array $data): bool
     {
@@ -41,11 +41,11 @@ class AlbumController extends Controller
         }
 
         try {
-            $saved = $this->albumService->create($data);
+            $saved = $this->artistService->create($data);
         } catch (\Throwable $e) {
             Flash::set(
                 'error',
-                'Album could not be created.'
+                'Artist could not be created.'
             );
 
             return false;
@@ -54,7 +54,7 @@ class AlbumController extends Controller
         if (!$saved) {
             Flash::set(
                 'error',
-                'Album could not be created.'
+                'Artist could not be created.'
             );
 
             return false;
@@ -62,14 +62,14 @@ class AlbumController extends Controller
 
         Flash::set(
             'success',
-            'Album created successfully.'
+            'Artist created successfully.'
         );
 
         return true;
     }
 
     /**
-     * Update an album.
+     * Update an artist.
      */
     public function update(int $id, array $data): bool
     {
@@ -77,21 +77,21 @@ class AlbumController extends Controller
             return false;
         }
 
-        if (!$this->albumService->find($id)) {
+        if (!$this->artistService->find($id)) {
             Flash::set(
                 'error',
-                'Album was not found.'
+                'Artist was not found.'
             );
 
             return false;
         }
 
         try {
-            $updated = $this->albumService->update($id, $data);
+            $updated = $this->artistService->update($id, $data);
         } catch (\Throwable $e) {
             Flash::set(
                 'error',
-                'Album could not be updated.'
+                'Artist could not be updated.'
             );
 
             return false;
@@ -100,7 +100,7 @@ class AlbumController extends Controller
         if (!$updated) {
             Flash::set(
                 'error',
-                'Album could not be updated.'
+                'Artist could not be updated.'
             );
 
             return false;
@@ -108,32 +108,32 @@ class AlbumController extends Controller
 
         Flash::set(
             'success',
-            'Album updated successfully.'
+            'Artist updated successfully.'
         );
 
         return true;
     }
 
     /**
-     * Delete an album.
+     * Delete an artist.
      */
     public function destroy(int $id): bool
     {
-        if (!$this->albumService->find($id)) {
+        if (!$this->artistService->find($id)) {
             Flash::set(
                 'error',
-                'Album was not found.'
+                'Artist was not found.'
             );
 
             return false;
         }
 
         try {
-            $deleted = $this->albumService->delete($id);
+            $deleted = $this->artistService->delete($id);
         } catch (\Throwable $e) {
             Flash::set(
                 'error',
-                'Album could not be deleted.'
+                'Artist could not be deleted.'
             );
 
             return false;
@@ -142,7 +142,7 @@ class AlbumController extends Controller
         if (!$deleted) {
             Flash::set(
                 'error',
-                'Album could not be deleted.'
+                'Artist could not be deleted.'
             );
 
             return false;
@@ -150,7 +150,7 @@ class AlbumController extends Controller
 
         Flash::set(
             'success',
-            'Album deleted successfully.'
+            'Artist deleted successfully.'
         );
 
         return true;
@@ -161,12 +161,13 @@ class AlbumController extends Controller
      */
     private function validate(array $data): bool
     {
-        $title = trim((string) ($data['title'] ?? ''));
+        $name = trim((string) ($data['name'] ?? ''));
 
-        if ($title === '') {
+        if ($name === '') {
+
             Flash::set(
                 'error',
-                'Album title is required.'
+                'Artist name is required.'
             );
 
             return false;

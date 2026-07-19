@@ -5,12 +5,12 @@ namespace App\Models;
 use App\Core\Model;
 use PDO;
 
-class Album extends Model
+class Artist extends Model
 {
-    protected string $table = 'albums';
+    protected string $table = 'artists';
 
     /**
-     * Get all albums ordered by newest first.
+     * Get all artists ordered by newest first.
      */
     public function allLatest(): array
     {

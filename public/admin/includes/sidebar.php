@@ -75,10 +75,10 @@
             </a>
         </li>
 
-        <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="fa-solid fa-hands-praying"></i>
-                Prayer
+       <li class="nav-item">
+             <a href="/admin/modules/prayer/index.php" class="nav-link">
+              <i class="fa-solid fa-hands-praying"></i>
+                 Prayer
             </a>
         </li>
 
@@ -97,25 +97,25 @@
         </li>
 
         <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="fa-solid fa-user"></i>
+            <a href="/admin/modules/artists/index.php" class="nav-link">
+                <i class="fa-solid fa-microphone"></i>
                 Artists
             </a>
         </li>
 
         <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="fa-solid fa-compact-disc"></i>
-                Albums
+            <a href="/admin/modules/albums/index.php" class="nav-link">
+             <i class="fa-solid fa-compact-disc"></i>
+             Albums
             </a>
         </li>
 
         <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="fa-solid fa-music"></i>
-                Songs
-            </a>
-        </li>
+    <a href="/admin/modules/music/index.php" class="nav-link">
+        <i class="fa-solid fa-music"></i>
+        Songs
+    </a>
+</li>
 
         <!-- Media -->
         <li class="nav-item mt-3">

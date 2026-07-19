@@ -4,35 +4,35 @@ namespace App\Controllers;
 
 use App\Core\Controller;
 use App\Core\Flash;
-use App\Services\AlbumService;
+use App\Services\PrayerService;
 
-class AlbumController extends Controller
+class PrayerController extends Controller
 {
-    private AlbumService $albumService;
+    private PrayerService $prayerService;
 
     public function __construct()
     {
-        $this->albumService = new AlbumService();
+        $this->prayerService = new PrayerService();
     }
 
     /**
-     * Display all albums.
+     * Display all prayer requests.
      */
     public function index(): array
     {
-        return $this->albumService->all();
+        return $this->prayerService->all();
     }
 
     /**
-     * Display one album.
+     * Display one prayer request.
      */
     public function show(int $id): ?array
     {
-        return $this->albumService->find($id);
+        return $this->prayerService->find($id);
     }
 
     /**
-     * Create an album.
+     * Create a prayer request.
      */
     public function store(array $data): bool
     {
@@ -41,11 +41,11 @@ class AlbumController extends Controller
         }
 
         try {
-            $saved = $this->albumService->create($data);
+            $saved = $this->prayerService->create($data);
         } catch (\Throwable $e) {
             Flash::set(
                 'error',
-                'Album could not be created.'
+                'Prayer request could not be created.'
             );
 
             return false;
@@ -54,7 +54,7 @@ class AlbumController extends Controller
         if (!$saved) {
             Flash::set(
                 'error',
-                'Album could not be created.'
+                'Prayer request could not be created.'
             );
 
             return false;
@@ -62,14 +62,14 @@ class AlbumController extends Controller
 
         Flash::set(
             'success',
-            'Album created successfully.'
+            'Prayer request created successfully.'
         );
 
         return true;
     }
 
     /**
-     * Update an album.
+     * Update a prayer request.
      */
     public function update(int $id, array $data): bool
     {
@@ -77,21 +77,21 @@ class AlbumController extends Controller
             return false;
         }
 
-        if (!$this->albumService->find($id)) {
+        if (!$this->prayerService->find($id)) {
             Flash::set(
                 'error',
-                'Album was not found.'
+                'Prayer request was not found.'
             );
 
             return false;
         }
 
         try {
-            $updated = $this->albumService->update($id, $data);
+            $updated = $this->prayerService->update($id, $data);
         } catch (\Throwable $e) {
             Flash::set(
                 'error',
-                'Album could not be updated.'
+                'Prayer request could not be updated.'
             );
 
             return false;
@@ -100,7 +100,7 @@ class AlbumController extends Controller
         if (!$updated) {
             Flash::set(
                 'error',
-                'Album could not be updated.'
+                'Prayer request could not be updated.'
             );
 
             return false;
@@ -108,32 +108,32 @@ class AlbumController extends Controller
 
         Flash::set(
             'success',
-            'Album updated successfully.'
+            'Prayer request updated successfully.'
         );
 
         return true;
     }
 
     /**
-     * Delete an album.
+     * Delete a prayer request.
      */
     public function destroy(int $id): bool
     {
-        if (!$this->albumService->find($id)) {
+        if (!$this->prayerService->find($id)) {
             Flash::set(
                 'error',
-                'Album was not found.'
+                'Prayer request was not found.'
             );
 
             return false;
         }
 
         try {
-            $deleted = $this->albumService->delete($id);
+            $deleted = $this->prayerService->delete($id);
         } catch (\Throwable $e) {
             Flash::set(
                 'error',
-                'Album could not be deleted.'
+                'Prayer request could not be deleted.'
             );
 
             return false;
@@ -142,7 +142,7 @@ class AlbumController extends Controller
         if (!$deleted) {
             Flash::set(
                 'error',
-                'Album could not be deleted.'
+                'Prayer request could not be deleted.'
             );
 
             return false;
@@ -150,7 +150,7 @@ class AlbumController extends Controller
 
         Flash::set(
             'success',
-            'Album deleted successfully.'
+            'Prayer request deleted successfully.'
         );
 
         return true;
@@ -161,12 +161,18 @@ class AlbumController extends Controller
      */
     private function validate(array $data): bool
     {
-        $title = trim((string) ($data['title'] ?? ''));
+        $name = trim((string)($data['name'] ?? ''));
+        $title = trim((string)($data['title'] ?? ''));
+        $request = trim((string)($data['request'] ?? ''));
 
-        if ($title === '') {
+        if (
+            $name === '' ||
+            $title === '' ||
+            $request === ''
+        ) {
             Flash::set(
                 'error',
-                'Album title is required.'
+                'Name, title and prayer request are required.'
             );
 
             return false;

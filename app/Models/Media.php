@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Core\Model;
+use PDO;
 
 class Media extends Model
 {
@@ -26,6 +27,48 @@ class Media extends Model
             ORDER BY m.id DESC
         ");
 
-        return $stmt->fetchAll();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * Get only audio files.
+     */
+    public function getAudioFiles(): array
+    {
+        $stmt = $this->db->prepare("
+            SELECT
+                id,
+                original_name,
+                filename,
+                mime_type
+            FROM media
+            WHERE mime_type LIKE 'audio/%'
+            ORDER BY original_name ASC
+        ");
+
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * Get only image files.
+     */
+    public function getImageFiles(): array
+    {
+        $stmt = $this->db->prepare("
+            SELECT
+                id,
+                original_name,
+                filename,
+                mime_type
+            FROM media
+            WHERE mime_type LIKE 'image/%'
+            ORDER BY original_name ASC
+        ");
+
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
