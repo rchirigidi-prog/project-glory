@@ -1,3 +1,28 @@
+<?php
+
+use App\Core\ModuleLoader;
+
+$loader = new ModuleLoader();
+
+function navLink(
+    ModuleLoader $loader,
+    string $module,
+    string $icon,
+    string $label
+): void {
+    $active = $loader->isActive($module) ? ' active' : '';
+
+    echo <<<HTML
+<li class="nav-item">
+    <a href="{$loader->url($module)}" class="nav-link{$active}">
+        <i class="{$icon}"></i>
+        {$label}
+    </a>
+</li>
+HTML;
+}
+?>
+
 <div class="sidebar">
 
     <div class="logo text-center py-4">
@@ -18,153 +43,58 @@
 
     <ul class="nav flex-column">
 
-        <!-- Dashboard -->
-        <li class="nav-item">
-            <a href="/admin/dashboard.php" class="nav-link">
-                <i class="fa-solid fa-house"></i>
-                Dashboard
-            </a>
-        </li>
+        <?php navLink($loader, 'dashboard', 'fa-solid fa-house', 'Dashboard'); ?>
 
-        <!-- Website -->
         <li class="nav-item mt-3">
-            <small class="text-uppercase text-secondary ps-3">
-                Website
-            </small>
+            <small class="text-uppercase text-secondary ps-3">Website</small>
         </li>
 
-        <li class="nav-item">
-            <a href="/admin/modules/website/index.php" class="nav-link">
-                <i class="fa-solid fa-globe"></i>
-                Website Manager
-            </a>
-        </li>
+        <?php
+        navLink($loader, 'website', 'fa-solid fa-globe', 'Website Manager');
+        navLink($loader, 'social-media', 'fa-solid fa-share-nodes', 'Social Media');
+        navLink($loader, 'seo', 'fa-solid fa-magnifying-glass-chart', 'SEO Manager');
+        navLink($loader, 'footer', 'fa-solid fa-shoe-prints', 'Footer Manager');
+        ?>
 
-        <li class="nav-item">
-            <a href="/admin/modules/social-media/index.php" class="nav-link">
-                <i class="fa-solid fa-share-nodes"></i>
-                Social Media
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a href="/admin/modules/seo/index.php" class="nav-link">
-                <i class="fa-solid fa-magnifying-glass-chart"></i>
-                SEO Manager
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a href="/admin/modules/footer/index.php" class="nav-link">
-                <i class="fa-solid fa-shoe-prints"></i>
-                Footer Manager
-            </a>
-        </li>
-
-        <!-- Content -->
         <li class="nav-item mt-3">
-            <small class="text-uppercase text-secondary ps-3">
-                Content
-            </small>
+            <small class="text-uppercase text-secondary ps-3">Content</small>
         </li>
 
-        <li class="nav-item">
-            <a href="/admin/modules/bible/index.php" class="nav-link">
-                <i class="fa-solid fa-book-bible"></i>
-                Bible
-            </a>
-        </li>
+        <?php
+        navLink($loader, 'bible', 'fa-solid fa-book-bible', 'Bible');
+        navLink($loader, 'prayer', 'fa-solid fa-hands-praying', 'Prayer');
+        navLink($loader, 'announcements', 'fa-solid fa-bullhorn', 'Announcements');
+        ?>
 
-       <li class="nav-item">
-             <a href="/admin/modules/prayer/index.php" class="nav-link">
-              <i class="fa-solid fa-hands-praying"></i>
-                 Prayer
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="fa-solid fa-bullhorn"></i>
-                Announcements
-            </a>
-        </li>
-
-        <!-- Music -->
         <li class="nav-item mt-3">
-            <small class="text-uppercase text-secondary ps-3">
-                Music
-            </small>
+            <small class="text-uppercase text-secondary ps-3">Music</small>
         </li>
 
-        <li class="nav-item">
-            <a href="/admin/modules/artists/index.php" class="nav-link">
-                <i class="fa-solid fa-microphone"></i>
-                Artists
-            </a>
-        </li>
+        <?php
+        navLink($loader, 'artists', 'fa-solid fa-microphone', 'Artists');
+        navLink($loader, 'albums', 'fa-solid fa-compact-disc', 'Albums');
+        navLink($loader, 'music', 'fa-solid fa-music', 'Songs');
+        ?>
 
-        <li class="nav-item">
-            <a href="/admin/modules/albums/index.php" class="nav-link">
-             <i class="fa-solid fa-compact-disc"></i>
-             Albums
-            </a>
-        </li>
-
-        <li class="nav-item">
-    <a href="/admin/modules/music/index.php" class="nav-link">
-        <i class="fa-solid fa-music"></i>
-        Songs
-    </a>
-</li>
-
-        <!-- Media -->
         <li class="nav-item mt-3">
-            <small class="text-uppercase text-secondary ps-3">
-                Media
-            </small>
+            <small class="text-uppercase text-secondary ps-3">Media</small>
         </li>
 
-        <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="fa-solid fa-radio"></i>
-                Radio
-            </a>
-        </li>
+        <?php
+        navLink($loader, 'media', 'fa-solid fa-photo-film', 'Media Library');
+        navLink($loader, 'radio', 'fa-solid fa-radio', 'Radio');
+        navLink($loader, 'youtube', 'fa-brands fa-youtube', 'YouTube');
+        ?>
 
-        <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="fa-brands fa-youtube"></i>
-                YouTube
-            </a>
-        </li>
-
-        <!-- Administration -->
         <li class="nav-item mt-3">
-            <small class="text-uppercase text-secondary ps-3">
-                Administration
-            </small>
+            <small class="text-uppercase text-secondary ps-3">Administration</small>
         </li>
 
-        <li class="nav-item">
-            <a href="/admin/modules/users/index.php" class="nav-link">
-                <i class="fa-solid fa-users"></i>
-                Users
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="fa-solid fa-user-shield"></i>
-                Roles
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="fa-solid fa-gear"></i>
-                Settings
-            </a>
-        </li>
+        <?php
+        navLink($loader, 'users', 'fa-solid fa-users', 'Users');
+        navLink($loader, 'roles', 'fa-solid fa-user-shield', 'Roles');
+        navLink($loader, 'settings', 'fa-solid fa-gear', 'Settings');
+        ?>
 
     </ul>
 
