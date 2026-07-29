@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/../../bootstrap.php';
 
-use App\Controllers\AlbumController;
+use App\Controllers\SupporterController;
 use App\Core\Flash;
 use App\Core\ModuleLoader;
 
@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
         'Invalid request method.'
     );
 
-    header('Location: ' . $loader->url('albums'));
+    header('Location: ' . $loader->url('supporters'));
     exit;
 }
 
@@ -29,20 +29,20 @@ if (!$id) {
 
     Flash::set(
         'error',
-        'Invalid album ID.'
+        'Invalid supporter ID.'
     );
 
-    header('Location: ' . $loader->url('albums'));
+    header('Location: ' . $loader->url('supporters'));
     exit;
 }
 
-$controller = new AlbumController();
+$controller = new SupporterController();
 
 if ($controller->destroy($id)) {
 
-    header('Location: ' . $loader->url('albums'));
+    header('Location: ' . $loader->url('supporters'));
     exit;
 }
 
-header('Location: ' . $loader->url('albums'));
+header('Location: ' . $loader->url('supporters'));
 exit;

@@ -1,14 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 require_once __DIR__ . '/bootstrap.php';
 
-/*
-|--------------------------------------------------------------------------
-| Admin Entry Point
-|--------------------------------------------------------------------------
-*/
+use App\Services\AuthService;
 
-if (isset($_SESSION['stg_admin'])) {
+$auth = new AuthService();
+
+if ($auth->check()) {
     header('Location: dashboard.php');
     exit;
 }

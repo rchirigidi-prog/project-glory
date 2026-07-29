@@ -28,4 +28,5 @@ define('ADMIN_ROOT', __DIR__);
 define('ADMIN_INCLUDES', ADMIN_ROOT . '/includes');
 define('ADMIN_MODULES', ADMIN_ROOT . '/modules');
 define('ADMIN_LAYOUTS', ADMIN_ROOT . '/layouts');
+define('ADMIN_COMPONENTS', ADMIN_ROOT . '/components');
 define('ADMIN_ASSETS', '/admin/assets');

@@ -7,11 +7,16 @@ namespace App\Core;
 final class ModuleLoader
 {
     private string $module;
+    private string $action;
 
     public function __construct()
     {
         $this->module = $this->sanitize(
             $_GET['module'] ?? 'dashboard'
+        );
+
+        $this->action = $this->sanitizeAction(
+            $_GET['action'] ?? 'index'
         );
     }
 
@@ -20,9 +25,17 @@ final class ModuleLoader
         return $this->module;
     }
 
-    public function url(string $module): string
+    public function currentAction(): string
     {
-        return '/admin/dashboard.php?module=' . urlencode($module);
+        return $this->action;
+    }
+
+    public function url(string $module, string $action = 'index'): string
+    {
+        return '/admin/dashboard.php?module='
+            . urlencode($module)
+            . '&action='
+            . urlencode($action);
     }
 
     public function isActive(string $module): bool
@@ -44,7 +57,19 @@ final class ModuleLoader
 
     private function resolve(): string
     {
-        return ADMIN_MODULES . '/'
+        $file = ADMIN_MODULES
+            . '/'
+            . $this->module
+            . '/'
+            . $this->action
+            . '.php';
+
+        if (is_file($file)) {
+            return $file;
+        }
+
+        return ADMIN_MODULES
+            . '/'
             . $this->module
             . '/index.php';
     }
@@ -58,6 +83,17 @@ final class ModuleLoader
         }
 
         return $module;
+    }
+
+    private function sanitizeAction(string $action): string
+    {
+        $action = trim($action);
+
+        if (!preg_match('/^[a-zA-Z0-9_-]+$/', $action)) {
+            return 'index';
+        }
+
+        return $action;
     }
 
     private function notFound(): void

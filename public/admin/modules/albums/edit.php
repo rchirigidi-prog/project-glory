@@ -4,8 +4,10 @@ require_once __DIR__ . '/../../bootstrap.php';
 
 use App\Controllers\AlbumController;
 use App\Core\Flash;
+use App\Core\ModuleLoader;
 
 $controller = new AlbumController();
+$loader = new ModuleLoader();
 
 $id = filter_input(
     INPUT_GET,
@@ -14,26 +16,24 @@ $id = filter_input(
 );
 
 if (!$id) {
-
     Flash::set(
         'error',
         'Invalid album ID.'
     );
 
-    header('Location: index.php');
+    header('Location: ' . $loader->url('albums'));
     exit;
 }
 
 $album = $controller->show($id);
 
 if (!$album) {
-
     Flash::set(
         'error',
         'Album was not found.'
     );
 
-    header('Location: index.php');
+    header('Location: ' . $loader->url('albums'));
     exit;
 }
 
@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($controller->update($id, $_POST)) {
 
-        header('Location: index.php');
+        header('Location: ' . $loader->url('albums'));
         exit;
     }
 
@@ -65,19 +65,15 @@ require_once ADMIN_INCLUDES . '/sidebar.php';
     <div class="d-flex justify-content-between align-items-center mb-4">
 
         <h2 class="mb-0">
-
             <i class="fa-solid fa-pen-to-square"></i>
-
             Edit Album
-
         </h2>
 
         <a
-            href="index.php"
+            href="<?= $loader->url('albums') ?>"
             class="btn btn-outline-secondary">
 
             <i class="fa-solid fa-arrow-left"></i>
-
             Back to Album Manager
 
         </a>
@@ -100,7 +96,7 @@ require_once ADMIN_INCLUDES . '/sidebar.php';
 
     <?php endif; ?>
 
-    <form method="POST">
+    <form method="POST" action="">
 
         <div class="card shadow-sm">
 
@@ -109,10 +105,8 @@ require_once ADMIN_INCLUDES . '/sidebar.php';
                 <div class="mb-4">
 
                     <label class="form-label">
-
                         Album Title
                         <span class="text-danger">*</span>
-
                     </label>
 
                     <input
@@ -127,9 +121,7 @@ require_once ADMIN_INCLUDES . '/sidebar.php';
                 <div class="mb-4">
 
                     <label class="form-label">
-
                         Description
-
                     </label>
 
                     <textarea
@@ -144,59 +136,31 @@ require_once ADMIN_INCLUDES . '/sidebar.php';
                     <div class="col-md-6 mb-4">
 
                         <label class="form-label">
-
                             Language
-
                         </label>
 
                         <?php
-                        $selectedLanguage =
-                            $album['language'] ?? 'English';
+                        $selectedLanguage = $album['language'] ?? 'English';
                         ?>
 
                         <select
                             name="language"
                             class="form-select">
 
-                            <option
-                                value="English"
-                                <?= $selectedLanguage === 'English' ? 'selected' : '' ?>>
-                                English
-                            </option>
-
-                            <option
-                                value="Hindi"
-                                <?= $selectedLanguage === 'Hindi' ? 'selected' : '' ?>>
-                                Hindi
-                            </option>
-
-                            <option
-                                value="Telugu"
-                                <?= $selectedLanguage === 'Telugu' ? 'selected' : '' ?>>
-                                Telugu
-                            </option>
-
-                            <option
-                                value="Instrumental"
-                                <?= $selectedLanguage === 'Instrumental' ? 'selected' : '' ?>>
-                                Instrumental
-                            </option>
-
-                            <option
-                                value="Multi-language"
-                                <?= $selectedLanguage === 'Multi-language' ? 'selected' : '' ?>>
-                                Multi-language
-                            </option>
+                            <option value="English" <?= $selectedLanguage === 'English' ? 'selected' : '' ?>>English</option>
+                            <option value="Hindi" <?= $selectedLanguage === 'Hindi' ? 'selected' : '' ?>>Hindi</option>
+                            <option value="Telugu" <?= $selectedLanguage === 'Telugu' ? 'selected' : '' ?>>Telugu</option>
+                            <option value="Instrumental" <?= $selectedLanguage === 'Instrumental' ? 'selected' : '' ?>>Instrumental</option>
+                            <option value="Multi-language" <?= $selectedLanguage === 'Multi-language' ? 'selected' : '' ?>>Multi-language</option>
 
                         </select>
 
                     </div>
-                     <div class="col-md-6 mb-4">
+
+                    <div class="col-md-6 mb-4">
 
                         <label class="form-label">
-
                             Release Date
-
                         </label>
 
                         <input
@@ -212,31 +176,19 @@ require_once ADMIN_INCLUDES . '/sidebar.php';
                 <div class="mb-4">
 
                     <label class="form-label">
-
                         Status
-
                     </label>
 
                     <?php
-                    $selectedStatus =
-                        $album['status'] ?? 'draft';
+                    $selectedStatus = $album['status'] ?? 'draft';
                     ?>
 
                     <select
                         name="status"
                         class="form-select">
 
-                        <option
-                            value="draft"
-                            <?= $selectedStatus === 'draft' ? 'selected' : '' ?>>
-                            Draft
-                        </option>
-
-                        <option
-                            value="published"
-                            <?= $selectedStatus === 'published' ? 'selected' : '' ?>>
-                            Published
-                        </option>
+                        <option value="draft" <?= $selectedStatus === 'draft' ? 'selected' : '' ?>>Draft</option>
+                        <option value="published" <?= $selectedStatus === 'published' ? 'selected' : '' ?>>Published</option>
 
                     </select>
 
@@ -247,7 +199,7 @@ require_once ADMIN_INCLUDES . '/sidebar.php';
                 <div class="text-end">
 
                     <a
-                        href="index.php"
+                        href="<?= $loader->url('albums') ?>"
                         class="btn btn-outline-secondary btn-lg">
 
                         Cancel
@@ -259,7 +211,6 @@ require_once ADMIN_INCLUDES . '/sidebar.php';
                         class="btn btn-primary btn-lg">
 
                         <i class="fa-solid fa-floppy-disk"></i>
-
                         Update Album
 
                     </button>
@@ -274,4 +225,4 @@ require_once ADMIN_INCLUDES . '/sidebar.php';
 
 </div>
 
-<?php require_once __DIR__ . '/../../includes/footer.php'; ?>                   
+<?php require_once __DIR__ . '/../../includes/footer.php'; ?>

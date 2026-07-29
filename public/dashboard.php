@@ -1,5 +1,7 @@
 <?php
 
+die('DASHBOARD.PHP IS EXECUTING');
+
 session_start();
 
 /*==================================================

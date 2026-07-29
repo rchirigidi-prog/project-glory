@@ -61,6 +61,7 @@ class Media extends Model
                 id,
                 original_name,
                 filename,
+                path,
                 mime_type
             FROM media
             WHERE mime_type LIKE 'image/%'

@@ -2,30 +2,30 @@
 
 require_once __DIR__ . '/../../bootstrap.php';
 
-use App\Controllers\AlbumController;
+use App\Controllers\SupporterController;
 use App\Core\Flash;
 
-$controller = new AlbumController();
+$controller = new SupporterController();
 
-$album = [];
+$supporter = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $album = $_POST;
+    $supporter = $_POST;
 
     if ($controller->store($_POST)) {
 
-        header('Location: dashboard.php?module=albums');
+        header('Location: dashboard.php?module=supporters');
         exit;
     }
 }
 
-$pageTitle = 'Create Album';
-$pageIcon = 'fa-solid fa-compact-disc';
+$pageTitle = 'Create Supporter';
+$pageIcon = 'fa-solid fa-hand-holding-heart';
 $backUrl = 'index.php';
-$backLabel = 'Back to Albums';
+$backLabel = 'Back to Supporters';
 
-$submitLabel = 'Save Album';
+$submitLabel = 'Save Supporter';
 $cancelUrl = 'index.php';
 
 require_once ADMIN_INCLUDES . '/header.php';

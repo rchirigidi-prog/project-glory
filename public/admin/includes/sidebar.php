@@ -91,6 +91,7 @@ HTML;
         </li>
 
         <?php
+        navLink($loader, 'supporters', 'fa-solid fa-hand-holding-heart', 'Supporters');
         navLink($loader, 'users', 'fa-solid fa-users', 'Users');
         navLink($loader, 'roles', 'fa-solid fa-user-shield', 'Roles');
         navLink($loader, 'settings', 'fa-solid fa-gear', 'Settings');

@@ -2,12 +2,12 @@
 
 require_once __DIR__ . '/../../bootstrap.php';
 
-use App\Controllers\AlbumController;
+use App\Controllers\SupporterController;
 use App\Core\Flash;
 
-$controller = new AlbumController();
+$controller = new SupporterController();
 
-$albums = $controller->index();
+$supporters = $controller->index();
 
 require_once ADMIN_INCLUDES . '/header.php';
 require_once ADMIN_INCLUDES . '/sidebar.php';
@@ -24,17 +24,17 @@ require_once ADMIN_INCLUDES . '/sidebar.php';
 
         <h2 class="mb-0">
 
-            <i class="fa-solid fa-compact-disc"></i>
+            <i class="fa-solid fa-hand-holding-heart"></i>
 
-            Album Manager
+            Supporter Manager
 
         </h2>
 
-        <a href="/admin/dashboard.php?module=albums&action=create" class="btn btn-primary">
+        <a href="/admin/dashboard.php?module=supporters&action=create" class="btn btn-primary">
 
             <i class="fa-solid fa-plus"></i>
 
-            Add Album
+            Add Supporter
 
         </a>
 
@@ -76,17 +76,17 @@ require_once ADMIN_INCLUDES . '/sidebar.php';
 
         <div class="card-body">
 
-            <?php if (empty($albums)): ?>
+            <?php if (empty($supporters)): ?>
 
                 <div class="text-center py-5">
 
-                    <i class="fa-solid fa-compact-disc fa-3x text-secondary mb-3"></i>
+                    <i class="fa-solid fa-hand-holding-heart fa-3x text-secondary mb-3"></i>
 
-                    <h4>No Albums Yet</h4>
+                    <h4>No Supporters Yet</h4>
 
                     <p class="text-muted">
 
-                        Create your first album for SingThyGlory.
+                        Add your first supporter for SingThyGlory.
 
                     </p>
 
@@ -102,17 +102,17 @@ require_once ADMIN_INCLUDES . '/sidebar.php';
 
                             <tr>
 
-                                <th>Cover</th>
+                                <th>Photo</th>
 
-                                <th>Album</th>
+                                <th>Name</th>
 
-                                <th>Language</th>
+                                <th>Support Type</th>
 
-                                <th>Release Date</th>
+                                <th>Country</th>
+
+                                <th>Featured</th>
 
                                 <th>Status</th>
-
-                                <th>Created</th>
 
                                 <th class="text-end">
 
@@ -126,17 +126,17 @@ require_once ADMIN_INCLUDES . '/sidebar.php';
 
                         <tbody>
 
-                        <?php foreach ($albums as $album): ?>
+                        <?php foreach ($supporters as $supporter): ?>
 
                             <tr>
 
                                 <td width="90">
 
-                                    <?php if (!empty($album['cover_media_id'])): ?>
+                                    <?php if (!empty($supporter['photo_media_id'])): ?>
 
                                         <span class="badge bg-success">
 
-                                            Cover
+                                            Photo
 
                                         </span>
 
@@ -144,7 +144,7 @@ require_once ADMIN_INCLUDES . '/sidebar.php';
 
                                         <span class="badge bg-secondary">
 
-                                            No Cover
+                                            No Photo
 
                                         </span>
 
@@ -156,32 +156,39 @@ require_once ADMIN_INCLUDES . '/sidebar.php';
 
                                     <strong>
 
-                                        <?= htmlspecialchars($album['title']) ?>
+                                        <?= htmlspecialchars($supporter['name']) ?>
 
                                     </strong>
 
+                                    <br>
+
+                                    <small class="text-muted">
+
+                                        <?= htmlspecialchars($supporter['email'] ?? '') ?>
+
+                                    </small>
+
                                 </td>
 
                                 <td>
 
-                                    <?= htmlspecialchars($album['language']) ?>
+                                    <?= htmlspecialchars($supporter['support_type']) ?>
 
                                 </td>
 
                                 <td>
 
-                                    <?= htmlspecialchars(
-                                        $album['release_date'] ?? '-'
-                                    ) ?>
-                                                                    </td>
+                                    <?= htmlspecialchars($supporter['country'] ?: '-') ?>
+
+                                </td>
 
                                 <td>
 
-                                    <?php if ($album['status'] === 'published'): ?>
+                                    <?php if (!empty($supporter['is_featured'])): ?>
 
-                                        <span class="badge bg-success">
+                                        <span class="badge bg-warning text-dark">
 
-                                            Published
+                                            Featured
 
                                         </span>
 
@@ -189,7 +196,7 @@ require_once ADMIN_INCLUDES . '/sidebar.php';
 
                                         <span class="badge bg-secondary">
 
-                                            Draft
+                                            No
 
                                         </span>
 
@@ -199,14 +206,30 @@ require_once ADMIN_INCLUDES . '/sidebar.php';
 
                                 <td>
 
-                                    <?= htmlspecialchars($album['created_at']) ?>
+                                    <?php if ($supporter['status'] === 'active'): ?>
+
+                                        <span class="badge bg-success">
+
+                                            Active
+
+                                        </span>
+
+                                    <?php else: ?>
+
+                                        <span class="badge bg-secondary">
+
+                                            Inactive
+
+                                        </span>
+
+                                    <?php endif; ?>
 
                                 </td>
 
                                 <td class="text-end">
 
                                     <a
-                                        href="/admin/dashboard.php?module=albums&action=edit&id=<?= $album['id'] ?>"
+                                        href="/admin/dashboard.php?module=supporters&action=edit&id=<?= (int)$supporter['id'] ?>"
                                         class="btn btn-sm btn-outline-primary">
 
                                         <i class="fa-solid fa-pen"></i>
@@ -217,14 +240,14 @@ require_once ADMIN_INCLUDES . '/sidebar.php';
 
                                     <form
                                         method="POST"
-                                        action="/admin/dashboard.php?module=albums&action=delete"
+                                        action="/admin/dashboard.php?module=supporters&action=delete"
                                         class="d-inline"
-                                        onsubmit="return confirm('Delete this album?');">
+                                        onsubmit="return confirm('Delete this supporter?');">
 
                                         <input
                                             type="hidden"
                                             name="id"
-                                            value="<?= (int) $album['id'] ?>">
+                                            value="<?= (int)$supporter['id'] ?>">
 
                                         <button
                                             type="submit"

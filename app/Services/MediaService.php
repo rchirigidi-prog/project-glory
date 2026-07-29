@@ -22,6 +22,14 @@ class MediaService
     }
 
     /**
+     * Get only image files.
+     */
+    public function getImageFiles(): array
+    {
+        return $this->media->getImageFiles();
+    }
+
+    /**
      * Find media by ID.
      */
     public function find(int $id): ?array
