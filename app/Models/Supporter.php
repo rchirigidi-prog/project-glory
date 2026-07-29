@@ -22,4 +22,26 @@ class Supporter extends Model
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    /**
+     * Get featured supporters for the website homepage.
+     */
+    public function featured(int $limit = 6): array
+    {
+        $stmt = $this->db->prepare(
+            "SELECT *
+             FROM {$this->table}
+             WHERE status = 'active'
+               AND is_featured = 1
+             ORDER BY display_order ASC,
+                      created_at DESC
+             LIMIT :limit"
+        );
+
+        $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

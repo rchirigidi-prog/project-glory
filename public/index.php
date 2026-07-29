@@ -14,6 +14,10 @@ include 'includes/player.php';
 
 include 'includes/mission.php';
 
+include 'includes/support-ministry.php';
+
+include 'includes/supporters.php';
+
 include 'includes/features.php';
 
 include 'includes/youtube.php';

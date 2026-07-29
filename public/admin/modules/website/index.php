@@ -14,7 +14,7 @@ ob_start();
 
     <!-- General Settings -->
 
-    <div class="col-lg-4">
+    <div class="col-lg-3">
 
         <a href="general.php" class="text-decoration-none">
 
@@ -40,7 +40,7 @@ ob_start();
 
     <!-- Homepage -->
 
-    <div class="col-lg-4">
+    <div class="col-lg-3">
 
         <a href="homepage.php" class="text-decoration-none">
 
@@ -66,23 +66,53 @@ ob_start();
 
     <!-- Social Media -->
 
-    <div class="col-lg-4">
+    <div class="col-lg-3">
 
-        <div class="card shadow h-100">
+        <a href="../social/index.php" class="text-decoration-none">
 
-            <div class="card-body text-center">
+            <div class="card shadow h-100">
 
-                <i class="fa-solid fa-share-nodes fa-3x text-danger mb-3"></i>
+                <div class="card-body text-center">
 
-                <h4>Social Media</h4>
+                    <i class="fa-solid fa-share-nodes fa-3x text-danger mb-3"></i>
 
-                <p class="text-muted">
-                    YouTube, Facebook, Instagram
-                </p>
+                    <h4>Social Media</h4>
+
+                    <p class="text-muted">
+                        YouTube, Facebook, Instagram
+                    </p>
+
+                </div>
 
             </div>
 
-        </div>
+        </a>
+
+    </div>
+
+    <!-- Support Ministry -->
+
+    <div class="col-lg-3">
+
+        <a href="../support/index.php" class="text-decoration-none">
+
+            <div class="card shadow h-100">
+
+                <div class="card-body text-center">
+
+                    <i class="fa-solid fa-hand-holding-heart fa-3x text-warning mb-3"></i>
+
+                    <h4>Support Ministry</h4>
+
+                    <p class="text-muted">
+                        Prayer, Donate, Volunteer & Sponsor
+                    </p>
+
+                </div>
+
+            </div>
+
+        </a>
 
     </div>
 

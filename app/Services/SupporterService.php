@@ -3,14 +3,17 @@
 namespace App\Services;
 
 use App\Models\Supporter;
+use App\Models\Media;
 
 class SupporterService
 {
     private Supporter $supporter;
+    private Media $media;
 
     public function __construct()
     {
         $this->supporter = new Supporter();
+        $this->media = new Media();
     }
 
     /**
@@ -19,6 +22,27 @@ class SupporterService
     public function all(): array
     {
         return $this->supporter->allLatest();
+    }
+
+    /**
+     * Get featured supporters for the website.
+     */
+    public function featured(int $limit = 6): array
+    {
+        $supporters = $this->supporter->featured($limit);
+
+        foreach ($supporters as &$supporter) {
+
+            $supporter['photo'] = null;
+
+            if (!empty($supporter['photo_media_id'])) {
+                $supporter['photo'] = $this->media->findById(
+                    (int) $supporter['photo_media_id']
+                );
+            }
+        }
+
+        return $supporters;
     }
 
     /**
@@ -40,19 +64,13 @@ class SupporterService
             'phone'          => trim((string) ($data['phone'] ?? '')),
             'country'        => trim((string) ($data['country'] ?? '')),
             'city'           => trim((string) ($data['city'] ?? '')),
-            'photo_media_id' => !empty($data['photo_media_id'])
-                ? (int) $data['photo_media_id']
-                : null,
+            'photo_media_id' => !empty($data['photo_media_id']) ? (int) $data['photo_media_id'] : null,
             'message'        => trim((string) ($data['message'] ?? '')),
             'support_type'   => $this->normalizeSupportType(
                 (string) ($data['support_type'] ?? 'Prayer')
             ),
-            'amount'         => !empty($data['amount'])
-                ? (float) $data['amount']
-                : null,
-            'currency'       => strtoupper(
-                trim((string) ($data['currency'] ?? 'INR'))
-            ),
+            'amount'         => !empty($data['amount']) ? (float) $data['amount'] : null,
+            'currency'       => strtoupper(trim((string) ($data['currency'] ?? 'INR'))),
             'is_featured'    => !empty($data['is_featured']) ? 1 : 0,
             'status'         => $this->normalizeStatus(
                 (string) ($data['status'] ?? 'active')
@@ -72,19 +90,13 @@ class SupporterService
             'phone'          => trim((string) ($data['phone'] ?? '')),
             'country'        => trim((string) ($data['country'] ?? '')),
             'city'           => trim((string) ($data['city'] ?? '')),
-            'photo_media_id' => !empty($data['photo_media_id'])
-                ? (int) $data['photo_media_id']
-                : null,
+            'photo_media_id' => !empty($data['photo_media_id']) ? (int) $data['photo_media_id'] : null,
             'message'        => trim((string) ($data['message'] ?? '')),
             'support_type'   => $this->normalizeSupportType(
                 (string) ($data['support_type'] ?? 'Prayer')
             ),
-            'amount'         => !empty($data['amount'])
-                ? (float) $data['amount']
-                : null,
-            'currency'       => strtoupper(
-                trim((string) ($data['currency'] ?? 'INR'))
-            ),
+            'amount'         => !empty($data['amount']) ? (float) $data['amount'] : null,
+            'currency'       => strtoupper(trim((string) ($data['currency'] ?? 'INR'))),
             'is_featured'    => !empty($data['is_featured']) ? 1 : 0,
             'status'         => $this->normalizeStatus(
                 (string) ($data['status'] ?? 'active')
@@ -101,23 +113,17 @@ class SupporterService
         return $this->supporter->delete($id);
     }
 
-    /**
-     * Allow only supported support types.
-     */
     private function normalizeSupportType(string $type): string
     {
         return match ($type) {
-            'Volunteer'        => 'Volunteer',
-            'One Time Donation'=> 'One Time Donation',
-            'Monthly Partner'  => 'Monthly Partner',
-            'Sponsor'          => 'Sponsor',
-            default            => 'Prayer',
+            'Volunteer'         => 'Volunteer',
+            'One Time Donation' => 'One Time Donation',
+            'Monthly Partner'   => 'Monthly Partner',
+            'Sponsor'           => 'Sponsor',
+            default             => 'Prayer',
         };
     }
 
-    /**
-     * Allow only valid status values.
-     */
     private function normalizeStatus(string $status): string
     {
         return match ($status) {

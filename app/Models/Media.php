@@ -72,4 +72,25 @@ class Media extends Model
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    /**
+     * Get one media file by ID.
+     */
+    public function findById(int $id): ?array
+    {
+        $stmt = $this->db->prepare("
+            SELECT *
+            FROM media
+            WHERE id = :id
+            LIMIT 1
+        ");
+
+        $stmt->execute([
+            'id' => $id
+        ]);
+
+        $media = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $media ?: null;
+    }
 }
