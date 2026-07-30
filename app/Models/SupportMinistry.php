@@ -10,12 +10,12 @@ class SupportMinistry
     private PDO $db;
 
     public function __construct()
-{
-    $this->db = Database::getInstance()->getConnection();
-}
+    {
+        $this->db = Database::getInstance()->getConnection();
+    }
 
     /**
-     * Get the single Support Ministry configuration.
+     * Get Support Ministry settings.
      */
     public function get(): array
     {
@@ -25,141 +25,78 @@ class SupportMinistry
 
         $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if (!$data) {
-            $this->createDefault();
-
-            $stmt = $this->db->query(
-                "SELECT * FROM support_ministry LIMIT 1"
-            );
-
-            $data = $stmt->fetch(PDO::FETCH_ASSOC);
-        }
-
         return $data ?: [];
     }
 
     /**
-     * Create the initial configuration row.
-     */
-    private function createDefault(): void
-    {
-        $sql = "
-            INSERT INTO support_ministry (
-                prayer_title,
-                prayer_description,
-                prayer_button_text,
-                prayer_button_link,
-
-                donate_title,
-                donate_description,
-                donate_button_text,
-                donate_button_link,
-
-                volunteer_title,
-                volunteer_description,
-                volunteer_button_text,
-                volunteer_button_link,
-
-                sponsor_title,
-                sponsor_description,
-                sponsor_button_text,
-                sponsor_button_link,
-
-                section_title,
-                section_subtitle,
-                is_enabled
-            )
-            VALUES (
-                'Prayer Partner',
-                '',
-                'Request Prayer',
-                '#',
-
-                'Donate',
-                '',
-                'Donate Now',
-                '#',
-
-                'Volunteer',
-                '',
-                'Join Us',
-                '#',
-
-                'Sponsor a Project',
-                '',
-                'Learn More',
-                '#',
-
-                'Support Our Ministry',
-                '',
-                1
-            )
-        ";
-
-        $this->db->exec($sql);
-    }
-
-    /**
-     * Update Support Ministry configuration.
+     * Update Support Ministry settings.
      */
     public function update(array $data): bool
     {
         $sql = "
             UPDATE support_ministry SET
 
-            prayer_title = :prayer_title,
-            prayer_description = :prayer_description,
-            prayer_button_text = :prayer_button_text,
-            prayer_button_link = :prayer_button_link,
+                section_title = :section_title,
+                section_subtitle = :section_subtitle,
+                section_description = :section_description,
 
-            donate_title = :donate_title,
-            donate_description = :donate_description,
-            donate_button_text = :donate_button_text,
-            donate_button_link = :donate_button_link,
+                prayer_enabled = :prayer_enabled,
+                prayer_title = :prayer_title,
+                prayer_description = :prayer_description,
+                prayer_button_text = :prayer_button_text,
+                prayer_button_url = :prayer_button_url,
 
-            volunteer_title = :volunteer_title,
-            volunteer_description = :volunteer_description,
-            volunteer_button_text = :volunteer_button_text,
-            volunteer_button_link = :volunteer_button_link,
+                donate_enabled = :donate_enabled,
+                donate_title = :donate_title,
+                donate_description = :donate_description,
+                donate_button_text = :donate_button_text,
+                donate_button_url = :donate_button_url,
 
-            sponsor_title = :sponsor_title,
-            sponsor_description = :sponsor_description,
-            sponsor_button_text = :sponsor_button_text,
-            sponsor_button_link = :sponsor_button_link,
+                volunteer_enabled = :volunteer_enabled,
+                volunteer_title = :volunteer_title,
+                volunteer_description = :volunteer_description,
+                volunteer_button_text = :volunteer_button_text,
+                volunteer_button_url = :volunteer_button_url,
 
-            section_title = :section_title,
-            section_subtitle = :section_subtitle,
-            is_enabled = :is_enabled
-
-            WHERE id = 1
+                sponsor_enabled = :sponsor_enabled,
+                sponsor_title = :sponsor_title,
+                sponsor_description = :sponsor_description,
+                sponsor_button_text = :sponsor_button_text,
+                sponsor_button_url = :sponsor_button_url
         ";
 
         $stmt = $this->db->prepare($sql);
 
         return $stmt->execute([
-            ':prayer_title' => $data['prayer_title'] ?? '',
-            ':prayer_description' => $data['prayer_description'] ?? '',
-            ':prayer_button_text' => $data['prayer_button_text'] ?? '',
-            ':prayer_button_link' => !empty($data['prayer_button_link']) ? $data['prayer_button_link'] : '#',
 
-            ':donate_title' => $data['donate_title'] ?? '',
-            ':donate_description' => $data['donate_description'] ?? '',
-            ':donate_button_text' => $data['donate_button_text'] ?? '',
-            ':donate_button_link' => !empty($data['donate_button_link']) ? $data['donate_button_link'] : '#',
+            ':section_title' => trim($data['section_title'] ?? ''),
+            ':section_subtitle' => trim($data['section_subtitle'] ?? ''),
+            ':section_description' => trim($data['section_description'] ?? ''),
 
-            ':volunteer_title' => $data['volunteer_title'] ?? '',
-            ':volunteer_description' => $data['volunteer_description'] ?? '',
-            ':volunteer_button_text' => $data['volunteer_button_text'] ?? '',
-            ':volunteer_button_link' => !empty($data['volunteer_button_link']) ? $data['volunteer_button_link'] : '#',
+            ':prayer_enabled' => isset($data['prayer_enabled']) ? 1 : 0,
+            ':prayer_title' => trim($data['prayer_title'] ?? ''),
+            ':prayer_description' => trim($data['prayer_description'] ?? ''),
+            ':prayer_button_text' => trim($data['prayer_button_text'] ?? ''),
+            ':prayer_button_url' => trim($data['prayer_button_url'] ?? '#'),
 
-            ':sponsor_title' => $data['sponsor_title'] ?? '',
-            ':sponsor_description' => $data['sponsor_description'] ?? '',
-            ':sponsor_button_text' => $data['sponsor_button_text'] ?? '',
-            ':sponsor_button_link' => !empty($data['sponsor_button_link']) ? $data['sponsor_button_link'] : '#',
+            ':donate_enabled' => isset($data['donate_enabled']) ? 1 : 0,
+            ':donate_title' => trim($data['donate_title'] ?? ''),
+            ':donate_description' => trim($data['donate_description'] ?? ''),
+            ':donate_button_text' => trim($data['donate_button_text'] ?? ''),
+            ':donate_button_url' => trim($data['donate_button_url'] ?? '#'),
 
-            ':section_title' => $data['section_title'] ?? '',
-            ':section_subtitle' => $data['section_subtitle'] ?? '',
-            ':is_enabled' => isset($data['is_enabled']) ? 1 : 0,
+            ':volunteer_enabled' => isset($data['volunteer_enabled']) ? 1 : 0,
+            ':volunteer_title' => trim($data['volunteer_title'] ?? ''),
+            ':volunteer_description' => trim($data['volunteer_description'] ?? ''),
+            ':volunteer_button_text' => trim($data['volunteer_button_text'] ?? ''),
+            ':volunteer_button_url' => trim($data['volunteer_button_url'] ?? '#'),
+
+            ':sponsor_enabled' => isset($data['sponsor_enabled']) ? 1 : 0,
+            ':sponsor_title' => trim($data['sponsor_title'] ?? ''),
+            ':sponsor_description' => trim($data['sponsor_description'] ?? ''),
+            ':sponsor_button_text' => trim($data['sponsor_button_text'] ?? ''),
+            ':sponsor_button_url' => trim($data['sponsor_button_url'] ?? '#'),
+
         ]);
     }
 }

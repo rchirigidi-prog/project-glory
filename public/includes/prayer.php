@@ -2,38 +2,56 @@
 
     <div class="container">
 
-        <div class="section-heading text-center">
+        <div class="text-center mb-5">
 
-            <h2>🙏 Prayer Request</h2>
+            <span class="section-subtitle">
 
-            <p>
-                Share your prayer needs with us. We would be honored to pray for you.
+                WE ARE HERE TO PRAY
+
+            </span>
+
+            <h2>
+
+                Prayer Request
+
+            </h2>
+
+            <p class="section-description">
+
+                Whatever you are facing today, you are not alone.
+                Share your prayer request with us, and our ministry
+                team will stand with you in prayer.
+
             </p>
 
         </div>
 
-        <div class="prayer-card">
+        <div class="prayer-card card-custom">
 
             <form id="prayerForm">
 
-                <div class="mb-4">
+                <div class="row">
 
-                    <input
-                        type="text"
-                        id="name"
-                        class="form-control"
-                        placeholder="Your Name"
-                        required>
+                    <div class="col-md-6 mb-4">
 
-                </div>
+                        <input
+                            type="text"
+                            id="name"
+                            class="form-control"
+                            placeholder="Your Name"
+                            required>
 
-                <div class="mb-4">
+                    </div>
 
-                    <input
-                        type="email"
-                        id="email"
-                        class="form-control"
-                        placeholder="Your Email">
+                    <div class="col-md-6 mb-4">
+
+                        <input
+                            type="email"
+                            id="email"
+                            class="form-control"
+                            placeholder="Your Email (Optional)">
+
+                    </div>
 
                 </div>
 
@@ -48,13 +66,19 @@
 
                 </div>
 
-                <button
-                    type="submit"
-                    class="btn btn-warning btn-lg rounded-pill">
+                <div class="text-center">
 
-                    🙏 Submit Prayer Request
+                    <button
+                        type="submit"
+                        class="btn btn-warning btn-lg rounded-pill px-5">
 
-                </button>
+                        <i class="fa-solid fa-hands-praying me-2"></i>
+
+                        Submit Prayer Request
+
+                    </button>
+
+                </div>
 
             </form>
 

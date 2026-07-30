@@ -2,41 +2,75 @@
 
     <div class="container">
 
-        <div class="row align-items-center">
+        <div class="row align-items-center gy-5">
 
-            <div class="col-lg-6">
+            <!-- Mission Image -->
+            <div class="col-lg-6 text-center">
 
                 <img
                     src="assets/images/logo/logo.png"
                     class="img-fluid mission-logo"
-                    alt="SingThyGlory">
+                    alt="SingThyGlory Logo"
+                    loading="lazy">
 
             </div>
 
+            <!-- Mission Content -->
             <div class="col-lg-6">
 
                 <span class="section-subtitle">
-                    OUR MISSION
+
+                    ✝️ OUR MISSION
+
                 </span>
 
                 <h2>
-                    Glorifying Jesus Through Every Song
+
+                    Glorifying Jesus Christ Through Every Song
+
                 </h2>
 
                 <p>
 
                     SingThyGlory exists to proclaim the Gospel of Jesus Christ
-                    through worship music, Bible reading, prayer, and messages
-                    of hope. Our desire is to encourage believers and reach
-                    those searching for God's love around the world.
+                    through worship music, Bible reading, prayer, Christian
+                    teaching, and messages of hope. Our mission is to strengthen
+                    believers, encourage families, and reach people around the
+                    world with the life-changing love of Christ.
 
                 </p>
 
-                <a href="#player" class="btn-primary">
+                <div class="mission-highlights">
 
-                    🎵 Listen Live
+                    <div class="mission-item">
+                        📻 <span>24/7 Christian Radio</span>
+                    </div>
 
-                </a>
+                    <div class="mission-item">
+                        📖 <span>Daily Bible Reading</span>
+                    </div>
+
+                    <div class="mission-item">
+                        🙏 <span>Prayer & Encouragement</span>
+                    </div>
+
+                    <div class="mission-item">
+                        🎵 <span>Worship Music</span>
+                    </div>
+
+                </div>
+
+                <div class="mt-4">
+
+                    <a
+                        href="#player"
+                        class="btn btn-warning btn-lg">
+
+                        ▶ Listen Live
+
+                    </a>
+
+                </div>
 
             </div>
 

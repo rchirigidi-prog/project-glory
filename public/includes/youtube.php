@@ -2,42 +2,67 @@
 
     <div class="container">
 
-        <div class="section-heading text-center">
+        <div class="text-center mb-5">
+
+            <span class="section-subtitle">
+
+                WATCH & WORSHIP
+
+            </span>
 
             <h2>
-                <i class="fab fa-youtube text-danger me-2"></i>
+
                 Latest Videos
+
             </h2>
 
-            <p>
-                Watch our newest worship songs, Bible stories, devotionals and Christian music videos.
+            <p class="section-description">
+
+                Watch our newest worship songs, Bible stories,
+                devotionals, Christian music videos, and inspiring
+                messages that glorify Jesus Christ.
+
             </p>
 
         </div>
 
         <div class="youtube-wrapper">
 
-            <button id="ytPrev" class="yt-arrow left">
-                ❮
+            <button
+                id="ytPrev"
+                class="yt-arrow left"
+                aria-label="Previous Videos">
+
+                <i class="fa-solid fa-chevron-left"></i>
+
             </button>
 
-            <div id="youtubeVideos" class="youtube-slider">
+            <div
+                id="youtubeVideos"
+                class="youtube-slider">
 
                 <!-- JavaScript loads videos here -->
 
             </div>
 
-            <button id="ytNext" class="yt-arrow right">
-                ❯
+            <button
+                id="ytNext"
+                class="yt-arrow right"
+                aria-label="Next Videos">
+
+                <i class="fa-solid fa-chevron-right"></i>
+
             </button>
 
         </div>
 
         <div class="text-center mt-5">
 
-            <a href="https://www.youtube.com/channel/UCaMGzh4aj3R60VRG3ZE5vXQ"
-               target="_blank"
-               class="btn btn-danger btn-lg rounded-pill">
+            <a
+                href="https://www.youtube.com/channel/UCaMGzh4aj3R60VRG3ZE5vXQ"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-danger btn-lg rounded-pill">
 
                 <i class="fab fa-youtube me-2"></i>
 

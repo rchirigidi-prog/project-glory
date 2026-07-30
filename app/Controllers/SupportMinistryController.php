@@ -14,18 +14,18 @@ class SupportMinistryController
     }
 
     /**
-     * Display and update the Support Ministry settings.
+     * Display and update Support Ministry settings.
      */
     public function index(): array
-{
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-        if ($this->service->update($_POST)) {
+            if ($this->service->update($_POST)) {
 
-            $_SESSION['success'] = 'Support Ministry updated successfully.';
+                $_SESSION['success'] = 'Support Ministry updated successfully.';
+            }
         }
-    }
 
-    return $this->service->index();
-}
+        return $this->service->index();
+    }
 }

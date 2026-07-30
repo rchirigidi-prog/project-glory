@@ -10,22 +10,35 @@ if (empty($supporters)) {
 }
 ?>
 
-<section id="supporters" class="py-5 bg-light">
+<section id="supporters" class="supporters-section">
 
     <div class="container">
 
-        <div class="section-heading text-center mb-5">
+        <div class="text-center mb-5">
 
-            <h2>🤝 Ministry Partners</h2>
+            <span class="section-subtitle">
 
-            <p>
+                OUR SUPPORTERS
+
+            </span>
+
+            <h2>
+
+                Ministry Partners
+
+            </h2>
+
+            <p class="section-description">
+
                 We thank God for every prayer partner, volunteer and supporter
-                helping spread the Gospel through SingThyGlory Ministry.
+                helping spread the Gospel through SingThyGlory Ministry around
+                the world.
+
             </p>
 
         </div>
 
-        <div class="row">
+        <div class="row g-4">
 
             <?php foreach ($supporters as $supporter): ?>
 
@@ -37,56 +50,65 @@ if (empty($supporters)) {
                 }
                 ?>
 
-                <div class="col-lg-4 col-md-6 mb-4">
+                <div class="col-lg-4 col-md-6">
 
-                    <div class="card h-100 shadow-sm border-0">
+                    <div class="supporter-card card-custom h-100">
 
-                        <div class="card-body text-center">
+                        <?php if ($image): ?>
 
-                            <?php if ($image): ?>
+                            <img
+                                src="<?= htmlspecialchars($image) ?>"
+                                alt="<?= htmlspecialchars($supporter['name']) ?>"
+                                class="supporter-photo"
+                                loading="lazy">
 
-                                <img
-                                    src="<?= htmlspecialchars($image) ?>"
-                                    alt="<?= htmlspecialchars($supporter['name']) ?>"
-                                    class="rounded-circle mb-3"
-                                    style="width:120px;height:120px;object-fit:cover;">
+                        <?php else: ?>
 
-                            <?php else: ?>
+                            <div class="supporter-placeholder">
 
-                                <div class="mb-3">
-                                    <i class="fa-solid fa-user-circle fa-5x text-secondary"></i>
-                                </div>
+                                <i class="fa-solid fa-user"></i>
 
-                            <?php endif; ?>
+                            </div>
 
-                            <h5><?= htmlspecialchars($supporter['name']) ?></h5>
+                        <?php endif; ?>
 
-                            <?php if (!empty($supporter['country'])): ?>
+                        <h4>
 
-                                <div class="text-muted mb-2">
-                                    <i class="fa-solid fa-location-dot"></i>
-                                    <?= htmlspecialchars($supporter['country']) ?>
-                                </div>
+                            <?= htmlspecialchars($supporter['name']) ?>
 
-                            <?php endif; ?>
+                        </h4>
 
-                            <?php if (!empty($supporter['support_type'])): ?>
+                        <?php if (!empty($supporter['country'])): ?>
 
-                                <span class="badge bg-primary mb-3">
-                                    <?= htmlspecialchars($supporter['support_type']) ?>
-                                </span>
+                            <div class="supporter-country">
 
-                            <?php endif; ?>
+                                <i class="fa-solid fa-location-dot"></i>
 
-                            <?php if (!empty($supporter['message'])): ?>
+                                <?= htmlspecialchars($supporter['country']) ?>
 
-                                <p class="mb-0">
-                                    <?= nl2br(htmlspecialchars($supporter['message'])) ?>
-                                </p>
+                            </div>
 
-                            <?php endif; ?>
+                        <?php endif; ?>
 
-                        </div>
+                        <?php if (!empty($supporter['support_type'])): ?>
+
+                            <span class="badge bg-primary mb-3">
+
+                                <?= htmlspecialchars($supporter['support_type']) ?>
+
+                            </span>
+
+                        <?php endif; ?>
+
+                        <?php if (!empty($supporter['message'])): ?>
+
+                            <p>
+
+                                <?= nl2br(htmlspecialchars($supporter['message'])) ?>
+
+                            </p>
+
+                        <?php endif; ?>
 
                     </div>
 

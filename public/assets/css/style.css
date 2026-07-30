@@ -1,149 +1,402 @@
-/*==================================================
-  SingThyGlory Website v2.0
-==================================================*/
+/*!
+ * ==========================================================
+ * SingThyGlory Studio
+ * Frontend Stylesheet v2.0
+ * Homepage UI Transformation
+ * Bootstrap 5.3 Compatible
+ * ==========================================================
+ */
 
-/*==================================================
-  1. Google Font
-==================================================*/
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
-
-/*==================================================
-  2. Root Variables
-==================================================*/
+/* ==========================================================
+   01. DESIGN SYSTEM
+   ========================================================== */
 
 :root{
 
-    --primary:#0b2d5d;
-    --secondary:#f4b400;
-    --dark:#031224;
-    --light:#ffffff;
-    --gray:#d9d9d9;
-    --text:#1e293b;
+    /* Brand Colors */
+    --primary:#0B2D5D;
+    --primary-dark:#081B3C;
+    --accent:#F4B400;
 
+    /* Neutral Colors */
+    --white:#FFFFFF;
+    --background:#F8FAFC;
+    --surface:#FFFFFF;
+
+    /* Text */
+    --text:#1F2937;
+    --text-light:#6B7280;
+
+    /* Borders */
+    --border:#E5E7EB;
+
+    /* Border Radius */
+    --radius-sm:12px;
     --radius:18px;
+    --radius-lg:24px;
+    --radius-pill:999px;
 
-    --shadow:0 12px 35px rgba(0,0,0,.18);
+    /* Shadows */
+    --shadow-sm:0 6px 18px rgba(0,0,0,.06);
+    --shadow:0 10px 30px rgba(0,0,0,.08);
+    --shadow-lg:0 20px 50px rgba(0,0,0,.15);
 
-    --transition:.35s;
+    /* Transition */
+    --transition:.35s ease;
+
+    /* Container */
+    --container-width:1200px;
+
+    /* Section Padding */
+    --section-padding:90px;
 
 }
 
-/*==================================================
-  3. Reset
-==================================================*/
+/* ==========================================================
+   02. RESET
+   ========================================================== */
 
-*{
-
-    margin:0;
-    padding:0;
+*,
+*::before,
+*::after{
     box-sizing:border-box;
-
 }
 
 html{
-
     scroll-behavior:smooth;
-
 }
 
 body{
 
-    font-family:'Poppins',sans-serif;
-    background:#f8fafc;
+    margin:0;
+    padding:0;
+
+    font-family:
+        system-ui,
+        -apple-system,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+    font-size:16px;
+    line-height:1.7;
+
     color:var(--text);
+    background:var(--background);
+
     overflow-x:hidden;
 
 }
 
 img{
 
-    max-width:100%;
     display:block;
+    max-width:100%;
+    height:auto;
 
 }
 
 a{
 
     text-decoration:none;
+    transition:var(--transition);
 
+}
+
+ul{
+    margin:0;
+    padding:0;
+    list-style:none;
 }
 
 section{
 
-    padding:100px 0;
+    position:relative;
+    padding:var(--section-padding) 0;
 
 }
-.section-heading h2{
-
-    color:#ffffff;
-
-    font-size:48px;
-    font-weight:700;
-
-}
-
 
 .container{
 
-    max-width:1200px;
+    max-width:var(--container-width);
 
 }
-/*==================================================
-  4. Navigation
-==================================================*/
 
-.navbar{
+/* ==========================================================
+   03. TYPOGRAPHY
+   ========================================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+
+    margin:0 0 20px;
+
+    color:var(--primary);
+
+    font-weight:700;
+
+    line-height:1.2;
+
+}
+
+h1{
+
+    font-size:clamp(2.8rem,5vw,4.5rem);
+
+}
+
+h2{
+
+    font-size:clamp(2rem,4vw,3rem);
+
+}
+
+h3{
+
+    font-size:1.75rem;
+
+}
+
+p{
+
+    margin-bottom:20px;
+
+    color:var(--text-light);
+
+}
+
+/* ==========================================================
+   04. UTILITIES
+   ========================================================== */
+
+.text-primary{
+    color:var(--primary)!important;
+}
+
+.text-gold{
+    color:var(--accent)!important;
+}
+
+.bg-primary-custom{
+    background:var(--primary);
+}
+
+.bg-light-custom{
+    background:var(--background);
+}
+
+.shadow-custom{
+    box-shadow:var(--shadow);
+}
+
+.rounded-custom{
+    border-radius:var(--radius);
+}
+
+/* ==========================================================
+   05. BUTTONS
+   ========================================================== */
+
+.btn{
+
+    transition:var(--transition);
+
+    border-radius:var(--radius-pill);
+
+    font-weight:600;
+
+    padding:14px 28px;
+
+}
+
+.btn:hover{
+
+    transform:translateY(-3px);
+
+}
+
+.btn-warning{
+
+    background:var(--accent);
+
+    border:none;
+
+    color:#222;
+
+    box-shadow:var(--shadow);
+
+}
+
+.btn-warning:hover{
+
+    background:#e1a600;
+
+    color:#222;
+
+}
+
+.btn-outline-light{
+
+    border:2px solid #fff;
+
+}
+
+.btn-outline-light:hover{
+
+    background:#fff;
+
+    color:var(--primary);
+
+}
+
+/* ==========================================================
+   06. CARDS
+   ========================================================== */
+
+.card-custom{
+
+    background:var(--surface);
+
+    border:none;
+
+    border-radius:var(--radius);
+
+    box-shadow:var(--shadow);
+
+    transition:var(--transition);
+
+}
+
+.card-custom:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:var(--shadow-lg);
+
+}
+/* ==========================================================
+   07. NAVIGATION
+   ========================================================== */
+
+.custom-navbar{
 
     position:fixed;
     top:0;
     left:0;
     width:100%;
 
-    padding:18px 0;
+    z-index:1050;
 
-    background:rgba(3,18,36,.85);
-    backdrop-filter:blur(12px);
+    background:transparent;
 
-    transition:.35s;
+    transition:all .35s ease;
 
-    z-index:9999;
+    padding:20px 0;
+
+}
+
+.custom-navbar.scrolled{
+
+    background:#ffffff;
+
+    box-shadow:var(--shadow);
+
+    padding:12px 0;
 
 }
 
 .navbar-brand img{
 
+    height:70px;
+
+    transition:var(--transition);
+
+}
+
+.custom-navbar.scrolled .navbar-brand img{
+
     height:60px;
+
+}
+
+.navbar-nav{
+
+    gap:10px;
 
 }
 
 .navbar-nav .nav-link{
 
-    color:#fff !important;
+    color:#ffffff;
 
-    font-weight:500;
+    font-weight:600;
 
-    margin-left:18px;
+    position:relative;
 
-    transition:.3s;
+    padding:10px 18px;
+
+    transition:var(--transition);
+
+}
+
+.custom-navbar.scrolled .nav-link{
+
+    color:var(--primary);
 
 }
 
 .navbar-nav .nav-link:hover{
 
-    color:var(--secondary) !important;
+    color:var(--accent);
 
 }
 
-.navbar-nav .nav-link.active{
+.navbar-nav .nav-link::after{
 
-    color:var(--secondary) !important;
+    content:"";
+
+    position:absolute;
+
+    left:18px;
+
+    bottom:4px;
+
+    width:0;
+
+    height:2px;
+
+    background:var(--accent);
+
+    transition:.3s;
+
+}
+
+.navbar-nav .nav-link:hover::after{
+
+    width:calc(100% - 36px);
+
+}
+
+.btn-live{
+
+    font-weight:700;
+
+    border-radius:999px;
+
+    box-shadow:var(--shadow);
 
 }
 
 .navbar-toggler{
 
     border:none;
+
+    box-shadow:none !important;
 
 }
 
@@ -153,66 +406,15 @@ section{
 
 }
 
-/* Listen Live Button */
-
-.btn-live{
-
-    background:var(--secondary);
-
-    color:#02112d !important;
-
-    padding:12px 28px;
-
-    border-radius:40px;
-
-    font-weight:700;
-
-    transition:.35s;
-
-}
-
-.btn-live:hover{
-
-    transform:translateY(-3px);
-
-    background:#ffd64d;
-
-}
-.btn-live{
-
-    font-weight:700;
-
-    letter-spacing:.5px;
-
-    transition:.35s;
-
-    box-shadow:0 10px 25px rgba(244,180,0,.35);
-
-}
-
-.btn-live:hover{
-
-    transform:translateY(-3px);
-
-    box-shadow:0 18px 35px rgba(244,180,0,.45);
-
-}
-/*==================================================
-5. HERO
-==================================================*/
-/*==================================================
-3. HERO
-==================================================*/
-
-/*==================================================
-  HERO SECTION
-==================================================*/
+/* ==========================================================
+   08. HERO
+   ========================================================== */
 
 .hero{
 
     position:relative;
 
-    min-height:900px;
+    min-height:100vh;
 
     display:flex;
 
@@ -220,7 +422,18 @@ section{
 
     overflow:hidden;
 
-    background:url('../images/backgrounds/hero.jpg') center center/cover no-repeat;
+    background:
+    linear-gradient(
+        rgba(8,27,60,.82),
+        rgba(11,45,93,.82)
+    ),
+    url("../images/hero/hero-bg.jpg");
+
+    background-position:center;
+
+    background-size:cover;
+
+    background-repeat:no-repeat;
 
 }
 
@@ -228,15 +441,12 @@ section{
 
     position:absolute;
 
-    top:0;
+    inset:0;
 
-    left:0;
-
-    width:100%;
-
-    height:100%;
-
-    background:rgba(2,12,35,.72);
+    background:linear-gradient(
+        rgba(11,45,93,.15),
+        rgba(8,27,60,.45)
+    );
 
 }
 
@@ -250,31 +460,33 @@ section{
 
 .hero-subtitle{
 
-    display:inline-block;
+    display:inline-flex;
 
-    padding:10px 22px;
+    align-items:center;
 
-    border-radius:50px;
+    gap:8px;
 
-    background:rgba(255,193,7,.15);
+    padding:10px 18px;
 
-    color:#ffc107;
+    border-radius:999px;
+
+    background:rgba(255,255,255,.12);
+
+    color:#ffffff;
 
     font-weight:600;
 
-    margin-bottom:25px;
+    margin-bottom:20px;
 
-    font-size:18px;
+    backdrop-filter:blur(10px);
 
 }
 
 .hero h1{
 
-    font-size:72px;
-
-    font-weight:800;
-
     color:#ffffff;
+
+    font-size:clamp(3rem,5vw,4.8rem);
 
     line-height:1.1;
 
@@ -284,15 +496,11 @@ section{
 
 .hero p{
 
-    font-size:22px;
+    color:rgba(255,255,255,.88);
 
-    color:#f2f2f2;
+    font-size:1.15rem;
 
-    line-height:1.8;
-
-    margin-bottom:40px;
-
-    max-width:650px;
+    max-width:620px;
 
 }
 
@@ -300,23 +508,11 @@ section{
 
     display:flex;
 
-    gap:20px;
-
     flex-wrap:wrap;
 
-    margin-bottom:45px;
+    gap:16px;
 
-}
-
-.hero-buttons .btn{
-
-    padding:16px 38px;
-
-    border-radius:50px;
-
-    font-size:18px;
-
-    font-weight:600;
+    margin-top:35px;
 
 }
 
@@ -324,232 +520,884 @@ section{
 
     display:flex;
 
-    gap:30px;
-
     flex-wrap:wrap;
+
+    gap:12px;
+
+    margin-top:45px;
 
 }
 
 .hero-features span{
 
+    padding:10px 18px;
+
+    border-radius:999px;
+
+    background:rgba(255,255,255,.12);
+
     color:#ffffff;
 
-    font-size:18px;
+    backdrop-filter:blur(8px);
 
 }
-
-/*==========================================
- HERO IMAGE
-==========================================*/
 
 .hero-image{
-    max-width:650px;
-    width:100%;
-    animation: floatImage 5s ease-in-out infinite;
+
+    max-width:500px;
+
+    margin:auto;
+
+    animation:heroFloat 6s ease-in-out infinite;
+
+    filter:drop-shadow(0 25px 45px rgba(0,0,0,.35));
+
 }
 
-@keyframes floatImage{
-    0%,100%{
+/* ==========================================================
+   09. ANIMATIONS
+   ========================================================== */
+
+@keyframes heroFloat{
+
+    0%{
+
         transform:translateY(0);
+
     }
+
     50%{
-        transform:translateY(-15px);
+
+        transform:translateY(-12px);
+
     }
-}
-.hero{
 
-    min-height:850px;
+    100%{
 
-    padding-top:120px;
+        transform:translateY(0);
 
-    padding-bottom:120px;
+    }
 
 }
-.hero-image{
 
-    width:100%;
+.fade-up{
 
-    max-width:700px;
+    animation:fadeUp .8s ease forwards;
 
-    height:auto;
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(40px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ==========================================================
+   20. RESPONSIVE
+   ========================================================== */
+
+@media (max-width:992px){
+
+    .hero{
+
+        min-height:auto;
+
+        padding:150px 0 80px;
+
+        text-align:center;
+
+    }
+
+    .hero-buttons{
+
+        justify-content:center;
+
+    }
+
+    .hero-features{
+
+        justify-content:center;
+
+    }
+
+    .hero-image{
+
+        margin-top:60px;
+
+        max-width:380px;
+
+    }
+
+}
+
+@media (max-width:576px){
+
+    section{
+
+        padding:70px 0;
+
+    }
+
+    .hero h1{
+
+        font-size:2.5rem;
+
+    }
+
+    .hero p{
+
+        font-size:1rem;
+
+    }
+
+    .hero-buttons{
+
+        flex-direction:column;
+
+    }
+
+    .hero-buttons .btn{
+
+        width:100%;
+
+    }
+
+}
+/* ==========================================================
+   09. LIVE PLAYER
+   ========================================================== */
+
+.player-section{
+
+    background:var(--background);
+
+}
+
+.player-card{
+
+    padding:45px;
+
+    border-radius:var(--radius-lg);
+
+    background:var(--surface);
+
+    box-shadow:var(--shadow);
+
+    overflow:hidden;
+
+}
+
+.player-art{
+
+    width:220px;
+
+    height:220px;
+
+    object-fit:cover;
+
+    margin:auto;
 
     border-radius:20px;
 
-    box-shadow:0 30px 60px rgba(0,0,0,.45);
-
-}
-.hero .col-lg-6:first-child{
-
-    padding-right:60px;
-
-}
-@keyframes floatImage{
-
-0%{
-
-transform:translateY(0);
+    box-shadow:var(--shadow-lg);
 
 }
 
-50%{
+.player-live{
 
-transform:translateY(-15px);
+    display:inline-block;
 
-}
+    background:#dc3545;
 
-100%{
+    color:#fff;
 
-transform:translateY(0);
+    padding:8px 18px;
 
-}
+    border-radius:999px;
 
-}
+    font-size:.9rem;
 
-/*==========================================
- MOBILE
-==========================================*/
+    font-weight:700;
 
-@media(max-width:991px){
+    margin-bottom:18px;
 
-.hero{
-
-text-align:center;
-
-min-height:auto;
-
-padding:140px 0 80px;
+    letter-spacing:.5px;
 
 }
 
-.hero h1{
+.player-title{
 
-font-size:52px;
-
-}
-
-.hero p{
-
-font-size:20px;
-
-margin:auto;
+    margin-bottom:15px;
 
 }
 
-.hero-buttons{
+.player-description{
 
-justify-content:center;
+    font-size:1.05rem;
 
-}
-
-.hero-features{
-
-justify-content:center;
-
-margin-top:25px;
+    margin-bottom:25px;
 
 }
 
-.hero-image{
+.player-buttons{
 
-margin-top:60px;
-
-max-height:450px;
+    margin-top:25px;
 
 }
 
-}
-/*===============================
- HERO PLAYER
-===============================*/
+.player-status{
 
-.hero-player{
+    background:var(--background);
 
-margin-top:80px;
+    padding:30px;
 
-}
+    border-radius:var(--radius);
 
-.player-glass{
-
-background:rgba(8,23,52,.78);
-
-backdrop-filter:blur(12px);
-
-border-radius:25px;
-
-padding:35px;
-
-border:1px solid rgba(255,255,255,.08);
-
-box-shadow:0 20px 60px rgba(0,0,0,.35);
+    text-align:center;
 
 }
 
-.live-badge{
+.status-circle{
 
-display:inline-block;
+    width:16px;
 
-padding:6px 14px;
+    height:16px;
 
-border-radius:50px;
+    border-radius:50%;
 
-background:#ff3d3d;
+    background:#28a745;
 
-color:white;
+    margin:0 auto 18px;
 
-font-size:14px;
-
-margin-bottom:15px;
+    animation:pulse 2s infinite;
 
 }
 
-#song-title{
+@keyframes pulse{
 
-color:white;
+    0%{
 
-font-size:40px;
+        transform:scale(1);
 
-font-weight:700;
+        opacity:1;
+
+    }
+
+    50%{
+
+        transform:scale(1.35);
+
+        opacity:.55;
+
+    }
+
+    100%{
+
+        transform:scale(1);
+
+        opacity:1;
+
+    }
 
 }
 
-#song-artist{
+/* ==========================================================
+   PLAYER RESPONSIVE
+   ========================================================== */
 
-color:#ffc107;
+@media (max-width:992px){
 
-font-size:22px;
+    .player-card{
+
+        padding:30px;
+
+        text-align:center;
+
+    }
+
+    .player-art{
+
+        width:180px;
+
+        height:180px;
+
+        margin-bottom:25px;
+
+    }
+
+    .player-status{
+
+        margin-top:30px;
+
+    }
 
 }
 
-#listeners{
+@media (max-width:576px){
 
-color:#ddd;
+    .player-card{
 
-font-size:18px;
+        padding:22px;
+
+    }
+
+    .player-art{
+
+        width:150px;
+
+        height:150px;
+
+    }
 
 }
-/* ===========================
-   LATEST RELEASES
-=========================== */
+/* ==========================================================
+   10. MISSION
+   ========================================================== */
 
-.release-card{
+.mission-section{
 
-    background:#17345d;
-    border-radius:18px;
-    padding:18px;
-    transition:.4s;
+    background:#ffffff;
+
+}
+
+.mission-logo{
+
+    max-width:340px;
+
+    margin:auto;
+
+    transition:var(--transition);
+
+}
+
+.mission-logo:hover{
+
+    transform:scale(1.04);
+
+}
+
+.mission-section h2{
+
+    margin:18px 0 25px;
+
+}
+
+.mission-highlights{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:15px;
+
+    margin-top:30px;
+
+}
+
+.mission-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:16px 18px;
+
+    background:var(--background);
+
+    border-radius:var(--radius);
+
+    box-shadow:var(--shadow-sm);
+
+    font-weight:600;
+
+    transition:var(--transition);
+
+}
+
+.mission-item:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:var(--shadow);
+
+}
+
+@media (max-width:768px){
+
+    .mission-highlights{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+/* ==========================================================
+   11. SUPPORT MINISTRY
+   ========================================================== */
+
+.support-ministry-section{
+
+    background:var(--background);
+
+}
+
+.section-subtitle-text{
+
+    max-width:700px;
+
+    margin:15px auto;
+
+    color:var(--text-light);
+
+}
+
+.section-description{
+
+    max-width:760px;
+
+    margin:25px auto 0;
+
+    color:var(--text-light);
+
+}
+
+.support-card{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    text-align:center;
+
+    padding:35px 30px;
 
     height:100%;
 
+}
+
+.support-icon{
+
+    width:90px;
+
+    height:90px;
+
+    border-radius:50%;
+
+    background:rgba(11,45,93,.08);
+
     display:flex;
-    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    margin-bottom:25px;
 
 }
 
-.release-card:hover{
+.support-icon i{
 
-    transform:translateY(-10px);
+    font-size:2.5rem;
 
-    box-shadow:0 25px 50px rgba(0,0,0,.35);
+    color:var(--primary);
+
+}
+
+.support-card h4{
+
+    margin-bottom:18px;
+
+}
+
+.support-card p{
+
+    flex-grow:1;
+
+    margin-bottom:30px;
+
+}
+
+.support-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+@media (max-width:768px){
+
+    .support-card{
+
+        padding:30px 20px;
+
+    }
+
+}
+/* ==========================================================
+   12. SUPPORTERS
+   ========================================================== */
+
+.supporters-section{
+
+    background:#ffffff;
+
+}
+
+.supporter-card{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    text-align:center;
+
+    padding:35px 30px;
+
+    height:100%;
+
+}
+
+.supporter-photo{
+
+    width:130px;
+
+    height:130px;
+
+    object-fit:cover;
+
+    border-radius:50%;
+
+    margin-bottom:25px;
+
+    border:5px solid rgba(11,45,93,.08);
+
+    transition:var(--transition);
+
+}
+
+.supporter-card:hover .supporter-photo{
+
+    transform:scale(1.05);
+
+}
+
+.supporter-placeholder{
+
+    width:130px;
+
+    height:130px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:var(--background);
+
+    margin-bottom:25px;
+
+}
+
+.supporter-placeholder i{
+
+    font-size:3.5rem;
+
+    color:var(--primary);
+
+}
+
+.supporter-country{
+
+    color:var(--text-light);
+
+    margin:10px 0 18px;
+
+}
+
+.supporter-country i{
+
+    margin-right:6px;
+
+    color:var(--accent);
+
+}
+
+.supporter-card p{
+
+    margin-top:10px;
+
+    margin-bottom:0;
+
+}
+
+@media (max-width:768px){
+
+    .supporter-card{
+
+        padding:30px 22px;
+
+    }
+
+}
+/* ==========================================================
+   13. FEATURES
+   ========================================================== */
+
+.features-section{
+
+    background:var(--background);
+
+}
+
+.feature-card{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    text-align:center;
+
+    padding:40px 30px;
+
+    height:100%;
+
+}
+
+.feature-icon{
+
+    width:90px;
+
+    height:90px;
+
+    border-radius:50%;
+
+    background:rgba(11,45,93,.08);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:2.5rem;
+
+    margin-bottom:25px;
+
+    transition:var(--transition);
+
+}
+
+.feature-card:hover .feature-icon{
+
+    transform:rotate(8deg) scale(1.08);
+
+    background:rgba(244,180,0,.15);
+
+}
+
+.feature-card h3{
+
+    margin-bottom:18px;
+
+    font-size:1.4rem;
+
+}
+
+.feature-card p{
+
+    margin-bottom:0;
+
+    color:var(--text-light);
+
+}
+
+@media (max-width:768px){
+
+    .feature-card{
+
+        padding:30px 22px;
+
+    }
+
+}
+/* ==========================================================
+   14. YOUTUBE
+   ========================================================== */
+
+.youtube-section{
+
+    background:#ffffff;
+
+}
+
+.youtube-wrapper{
+
+    position:relative;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+.youtube-slider{
+
+    display:flex;
+
+    gap:30px;
+
+    overflow-x:auto;
+
+    scroll-behavior:smooth;
+
+    scrollbar-width:none;
+
+    padding:10px 55px;
+
+}
+
+.youtube-slider::-webkit-scrollbar{
+
+    display:none;
+
+}
+
+.youtube-slider .card{
+
+    min-width:340px;
+
+    border:none;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    box-shadow:var(--shadow);
+
+    transition:var(--transition);
+
+}
+
+.youtube-slider .card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.yt-arrow{
+
+    position:absolute;
+
+    width:52px;
+
+    height:52px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:var(--primary);
+
+    color:#fff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    z-index:10;
+
+    transition:var(--transition);
+
+}
+
+.yt-arrow:hover{
+
+    background:var(--accent);
+
+    color:#111;
+
+}
+
+.yt-arrow.left{
+
+    left:0;
+
+}
+
+.yt-arrow.right{
+
+    right:0;
+
+}
+
+@media (max-width:768px){
+
+    .youtube-slider{
+
+        padding:10px;
+
+        gap:20px;
+
+    }
+
+    .youtube-slider .card{
+
+        min-width:280px;
+
+    }
+
+    .yt-arrow{
+
+        display:none;
+
+    }
+
+}
+/* ==========================================================
+   15. LATEST RELEASES
+   ========================================================== */
+
+.releases-section{
+
+    background:var(--background);
+
+}
+
+.release-card{
+
+    overflow:hidden;
+
+    padding:0;
+
+    transition:var(--transition);
 
 }
 
@@ -561,1056 +1409,339 @@ font-size:18px;
 
     object-fit:cover;
 
-    border-radius:14px;
-
-    margin-bottom:18px;
+    transition:var(--transition);
 
 }
 
-.release-card h4{
-    color:#ffffff !important;
-}
+.release-card:hover img{
 
-.release-card p{
-
-    color:#d7e3f0;
-
-    line-height:1.6;
-
-    margin-bottom:20px;
+    transform:scale(1.08);
 
 }
 
-.release-card .btn{
+.release-content{
 
-    margin-top:auto;
+    padding:24px;
 
-    border-radius:30px;
+    text-align:center;
+
+}
+
+.release-content h4{
+
+    margin-bottom:14px;
+
+    font-size:1.25rem;
+
+}
+
+.release-badge{
+
+    display:inline-block;
+
+    padding:8px 18px;
+
+    border-radius:999px;
+
+    background:rgba(11,45,93,.08);
+
+    color:var(--primary);
 
     font-weight:600;
 
-}
-/*==========================
-PREMIUM PLAYER
-==========================*/
-
-.player-section{
-
-background:#061b39;
-
-padding:100px 0;
-
-}
-
-.premium-player{
-
-background:#0d2d5d;
-
-border-radius:25px;
-
-padding:40px;
-
-box-shadow:0 25px 60px rgba(0,0,0,.35);
-
-}
-
-.album-cover{
-
-width:220px;
-
-border-radius:20px;
-
-box-shadow:0 15px 35px rgba(0,0,0,.35);
-
-}
-
-.live-status{
-
-display:inline-flex;
-
-align-items:center;
-
-gap:10px;
-
-color:white;
-
-font-weight:700;
-
-margin-bottom:20px;
-
-}
-
-.live-dot{
-
-width:12px;
-
-height:12px;
-
-background:#ff2d2d;
-
-border-radius:50%;
-
-animation:pulse 1s infinite;
-
-}
-
-@keyframes pulse{
-
-0%{opacity:.4;}
-
-50%{opacity:1;}
-
-100%{opacity:.4;}
-
-}
-
-#song-title{
-
-color:white;
-
-font-size:40px;
-
-font-weight:700;
-
-margin-bottom:10px;
-
-}
-
-#song-artist{
-
-color:#ffc107;
-
-font-size:22px;
-
-}
-
-#listeners{
-
-color:#ddd;
-
-}
-
-.equalizer{
-
-display:flex;
-
-gap:5px;
-
-margin-top:20px;
-
-height:40px;
-
-align-items:flex-end;
-
-}
-
-.equalizer span{
-
-width:8px;
-
-background:#ffc107;
-
-border-radius:10px;
-
-animation:equalize 1s infinite ease-in-out;
-
-}
-
-.equalizer span:nth-child(2){
-
-animation-delay:.2s;
-
-}
-
-.equalizer span:nth-child(3){
-
-animation-delay:.4s;
-
-}
-
-.equalizer span:nth-child(4){
-
-animation-delay:.6s;
-
-}
-
-.equalizer span:nth-child(5){
-
-animation-delay:.8s;
-
-}
-
-@keyframes equalize{
-
-0%{
-
-height:10px;
-
-}
-
-50%{
-
-height:40px;
-
-}
-
-100%{
-
-height:15px;
-
-}
-
-}
-/* Album Rotation */
-
-.album-cover.playing{
-
-animation:rotateAlbum 18s linear infinite;
-
-}
-
-@keyframes rotateAlbum{
-
-from{
-
-transform:rotate(0deg);
-
-}
-
-to{
-
-transform:rotate(360deg);
-
-}
-
-}
-
-/* Equalizer */
-
-.equalizer span{
-
-animation-play-state:paused;
-
-}
-
-.equalizer.playing span{
-
-animation-play-state:running;
-
-}
-
-/* Play Button */
-
-.play-btn{
-
-width:70px;
-
-height:70px;
-
-border-radius:50%;
-
-background:#ffc107;
-
-border:none;
-
-font-size:28px;
-
-cursor:pointer;
-
-transition:.3s;
-
-}
-
-.play-btn:hover{
-
-transform:scale(1.08);
-
-box-shadow:0 0 20px rgba(255,193,7,.5);
-
-}
-
-#volumeControl{
-
-width:100%;
-
-margin-top:20px;
-
-accent-color:#ffc107;
-
-}
-.youtube-section{
-
-padding:100px 0;
-
-background:#081b3c;
-
-}
-
-.youtube-card{
-
-    background:#0d2d5d;
-
-    border-radius:20px;
-
-    overflow:hidden;
-
-    transition:all .35s ease;
-
-    height:100%;
-
-    box-shadow:0 20px 45px rgba(0,0,0,.30);
-
-    border:1px solid rgba(255,255,255,.05);
-
-}
-
-.youtube-card:hover{
-
-    transform:translateY(-10px);
-
-    box-shadow:0 30px 60px rgba(255,193,7,.20);
-
-}
-
-.youtube-card img{
-
-    width:100%;
-
-    height:220px;
-
-    object-fit:cover;
-
-    transition:.4s;
-
-}
-
-.youtube-card:hover img{
-
-    transform:scale(1.05);
-
-}
-
-.youtube-content{
-
-    padding:25px;
-
-}
-
-.youtube-content h5{
-
-    color:#fff;
-
-    font-size:22px;
-
-    font-weight:600;
-
-    line-height:1.4;
-
-    min-height:65px;
-
-}
-
-.youtube-content p{
-
-    color:#bfc8d8;
-
-    margin-top:10px;
-
-}
-
-.youtube-content .btn{
-
-margin-top:15px;
-
-}
-/*=========================
-YouTube Section
-=========================*/
-
-.youtube-section{
-
-    background:#061b39;
-
-    padding:100px 0;
-    padding:120px 0;
-
-}
-
-.youtube-section .section-heading h2{
-
-    color:#ffffff;
-
-    font-size:48px;
-
-    font-weight:700;
-
-    margin-bottom:20px;
-
-}
-
-.youtube-section .section-heading p{
-
-    color:#d6d6d6;
-
-    font-size:20px;
-
-    max-width:700px;
-
-    margin:0 auto 60px;
-
-}
-.youtube-wrapper{
-
-position:relative;
-
-overflow:hidden;
-
-}
-.youtube-wrapper{
-
-    position:relative;
-
-    overflow:hidden;
-
-    padding:0 60px;
-
-}
-.youtube-slider{
-
-display:flex;
-
-gap:25px;
-
-overflow-x:auto;
-
-scroll-behavior:smooth;
-
-scrollbar-width:none;
-
-padding:10px;
-
-}
-
-.youtube-slider::-webkit-scrollbar{
-
-display:none;
-
-}
-
-.youtube-card{
-
-min-width:360px;
-max-width:320px;
-
-background:#0b2a55;
-
-border-radius:20px;
-
-overflow:hidden;
-
-transition:.35s;
-
-box-shadow:0 15px 35px rgba(0,0,0,.25);
-
-flex-shrink:0;
-
-}
-
-.youtube-card:hover{
-
-transform:translateY(-8px);
-
-}
-
-.youtube-card img{
-
-width:100%;
-
-display:block;
-
-}
-
-.youtube-content{
-
-padding:25px;
-
-}
-
-.youtube-content h5{
-
-color:#fff;
-
-font-size:22px;
-
-margin-bottom:15px;
-
-}
-
-.youtube-content p{
-
-color:#d7d7d7;
-
-min-height:70px;
-
-}
-
-.yt-arrow{
-
-position:absolute;
-
-top:45%;
-
-transform:translateY(-50%);
-
-width:55px;
-
-height:55px;
-
-border:none;
-
-border-radius:50%;
-
-background:#ffc107;
-
-color:#000;
-
-font-size:24px;
-
-z-index:5;
-
-cursor:pointer;
-
-box-shadow:0 10px 25px rgba(0,0,0,.4);
-
-}
-
-.yt-arrow.left{
-
-left:20px;
-
-}
-
-.yt-arrow.right{
-
-right:20px;
-
-}
-
-@media(max-width:768px){
-
-.youtube-card{
-
-min-width:300px;
-
-}
-
-.yt-arrow{
-
-display:none;
-
-}
-
-}
-.video-thumb{
-
-position:relative;
-
-overflow:hidden;
-
-}
-
-.video-thumb img{
-
-transition:.5s;
-
-}
-
-.youtube-card:hover img{
-
-transform:scale(1.08);
-
-}
-
-.play-overlay{
-
-position:absolute;
-
-top:0;
-
-left:0;
-
-width:100%;
-
-height:100%;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-background:rgba(0,0,0,.35);
-
-opacity:0;
-
-transition:.35s;
-
-}
-
-.youtube-card:hover .play-overlay{
-
-opacity:1;
-
-}
-
-.play-overlay i{
-
-width:70px;
-
-height:70px;
-
-border-radius:50%;
-
-background:#ff0000;
-
-color:#fff;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-font-size:28px;
-
-box-shadow:0 10px 30px rgba(0,0,0,.35);
-
-}
-.youtube-content h5{
-
-    color:#fff;
-    font-size:20px;
-    line-height:1.4;
-
-    display:-webkit-box;
-    -webkit-line-clamp:2;
-    -webkit-box-orient:vertical;
-
-    overflow:hidden;
-}
-.video-thumb img{
-
-    width:100%;
-    height:220px;
-
-    object-fit:cover;
-}
-.youtube-content{
-
-    padding:25px;
-    min-height:180px;
-
-    display:flex;
-    flex-direction:column;
-}
-.youtube-content .btn{
+    font-size:.9rem;
 
-    margin-top:auto;
 }
 
-.youtube-card:hover{
+.release-card:hover{
 
     transform:translateY(-8px);
 
-    box-shadow:
-        0 20px 50px rgba(0,0,0,.35),
-        0 0 20px rgba(255,193,7,.25);
 }
 
-/*========================================
-Verse of the Day
-========================================*/
+@media (max-width:768px){
+
+    .release-content{
+
+        padding:20px;
+
+    }
+
+}
+/* ==========================================================
+   16. BIBLE
+   ========================================================== */
 
 .bible-section{
 
-padding:120px 0;
-
-background:linear-gradient(180deg,#081d3a,#102f57);
+    background:#ffffff;
 
 }
 
 .bible-card{
 
-max-width:900px;
+    max-width:900px;
 
-margin:auto;
+    margin:auto;
 
-padding:70px;
+    text-align:center;
 
-text-align:center;
-
-border-radius:30px;
-
-background:rgba(255,255,255,.08);
-
-backdrop-filter:blur(18px);
-
-border:1px solid rgba(255,255,255,.15);
-
-box-shadow:0 30px 70px rgba(0,0,0,.35);
+    padding:60px 40px;
 
 }
 
 .verse-icon{
 
-font-size:70px;
+    width:90px;
 
-margin-bottom:25px;
+    height:90px;
 
-}
+    margin:0 auto 30px;
 
-#verseText{
+    border-radius:50%;
 
-color:white;
+    background:rgba(11,45,93,.08);
 
-font-size:38px;
+    display:flex;
 
-line-height:1.7;
+    align-items:center;
 
-font-weight:700;
-
-margin-bottom:25px;
+    justify-content:center;
 
 }
 
-#verseReference{
+.verse-icon i{
 
-font-size:24px;
+    font-size:2.5rem;
 
-color:#ffc107;
-
-margin-bottom:40px;
-
-font-weight:600;
+    color:var(--primary);
 
 }
 
-.verse-buttons .btn{
+.verse-text{
 
-padding:15px 35px;
+    font-size:1.7rem;
 
-margin:10px;
+    line-height:1.8;
 
-border-radius:50px;
+    font-style:italic;
 
-font-weight:600;
+    color:var(--primary);
+
+    margin-bottom:25px;
 
 }
 
-/*========================================
-Prayer Section
-========================================*/
+.verse-reference{
+
+    font-size:1.1rem;
+
+    font-weight:700;
+
+    color:var(--accent);
+
+    margin-bottom:35px;
+
+}
+
+.verse-buttons{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+}
+
+@media (max-width:768px){
+
+    .bible-card{
+
+        padding:35px 25px;
+
+    }
+
+    .verse-text{
+
+        font-size:1.3rem;
+
+    }
+
+}
+/* ==========================================================
+   17. PRAYER
+   ========================================================== */
+
 .prayer-section{
 
-    padding:120px 0;
-
-    background:#081d3a;
+    background:var(--background);
 
 }
 
 .prayer-card{
 
-    max-width:800px;
+    max-width:900px;
 
     margin:auto;
 
-    background:#18345a;
-
-    padding:50px;
-
-    border-radius:30px;
-
-    box-shadow:0 20px 50px rgba(0,0,0,.25);
+    padding:45px;
 
 }
 
-.prayer-card input,
+.prayer-card .form-control{
+
+    border-radius:14px;
+
+    padding:15px 18px;
+
+    border:1px solid #d9dee7;
+
+    transition:var(--transition);
+
+}
+
+.prayer-card .form-control:focus{
+
+    border-color:var(--primary);
+
+    box-shadow:0 0 0 .2rem rgba(11,45,93,.12);
+
+}
+
 .prayer-card textarea{
 
-    background:#27466f;
+    resize:vertical;
 
-    border:none;
-
-    color:white;
+    min-height:180px;
 
 }
 
-.prayer-card input::placeholder,
-.prayer-card textarea::placeholder{
+#prayerMessage{
 
-    color:#d7d7d7;
-
-}
-.prayer-card button{
-
-    display:block;
-
-    margin:20px auto 0;
-
-}
-.prayer-section .section-heading p{
-
-    color:#d7d7d7 !important;
-
-    font-size:18px;
-
-}
-/* ===========================
-   FEATURES SECTION FIX
-=========================== */
-
-.features-section .section-heading h2{
-    color:#ffffff !important;
-}
-
-.features-section .section-heading p{
-    color:#d6e2f0 !important;
-}
-
-.features-section .feature-card h3{
-    color:#ffc107 !important;
-}
-
-.features-section .feature-card p{
-    color:#ffffff !important;
-    opacity:0.9;
-}
-/* ======================================
-   FEATURES SECTION
-====================================== */
-
-.about-section{
-    padding:70px 0;
-}
-
-.features-section{
-    padding:60px 0;
-}
-
-.features-section .section-title{
-    text-align:center;
-    margin-bottom:60px;
-}
-
-.features-section .section-title h2{
-    color:#ffffff;
-    font-size:42px;
-    font-weight:700;
-    margin-bottom:15px;
-}
-
-.features-section .section-title p{
-    color:#d7e3f0;
-    font-size:18px;
-}
-
-.feature-card{
-    height:100%;
-}
-
-.feature-card h3{
-    color:#ffc107;
-    font-weight:700;
-    margin:15px 0 10px;
-}
-
-.feature-card p{
-    color:#ffffff;
-    opacity:.9;
-    line-height:1.7;
-}
-
-.feature-icon{
-    font-size:34px;
-    margin-bottom:10px;
-}
-/* ======================================
-   ABOUT SECTION
-====================================== */
-
-.about-section small,
-.about-section .subtitle,
-.about-section .eyebrow{
-    color:#ffc107 !important;
-}
-
-.about-section h2{
-    color:#ffffff !important;
-    font-weight:700;
-}
-
-.about-section p{
-    color:#d7e3f0 !important;
-    line-height:1.8;
-}
-
-.about-section a{
-    color:#0d6efd;
-}
-
-.about-section a:hover{
-    color:#ffc107;
-}
-/* =====================================
-   MISSION SECTION
-===================================== */
-
-.mission-section .section-subtitle{
-    color:#ffc107 !important;
-    font-weight:700;
-    text-transform:uppercase;
-    letter-spacing:2px;
-}
-
-.mission-section h2{
-    color:#ffffff !important;
-    font-size:48px;
-    font-weight:700;
-}
-
-.mission-section p{
-    color:#d7e3f0 !important;
-    line-height:1.8;
-    font-size:18px;
-}
-
-.mission-section .btn-primary{
-    background:#ffc107;
-    color:#000;
-    border:none;
-    padding:14px 28px;
-    border-radius:40px;
     font-weight:600;
-    text-decoration:none;
-    display:inline-block;
+
 }
 
-.mission-section .btn-primary:hover{
-    background:#ffca2c;
-    color:#000;
+@media (max-width:768px){
+
+    .prayer-card{
+
+        padding:30px 22px;
+
+    }
+
 }
-/* ======================================
-   FOOTER
-====================================== */
+/* ==========================================================
+   18. FOOTER
+   ========================================================== */
 
 .footer{
 
-    background:#0a1f3f;
-    padding:60px 0 30px;
-    text-align:center;
-
-}
-
-.footer img{
-
-    width:120px;
-    margin-bottom:20px;
-
-}
-
-.footer h2,
-.footer h3{
+    background:var(--primary);
 
     color:#ffffff;
-    font-weight:700;
-    margin-bottom:10px;
+
+    padding:80px 0 40px;
 
 }
 
-.footer p{
+.footer-logo{
 
-    color:#d7e3f0;
-    font-size:16px;
-    margin-bottom:10px;
+    width:90px;
+
+    margin-bottom:25px;
 
 }
 
-.footer hr{
+.footer-title{
+
+    color:#ffffff;
+
+    margin-bottom:15px;
+
+}
+
+.footer-tagline{
+
+    color:rgba(255,255,255,.85);
+
+    max-width:650px;
+
+    margin:0 auto 35px;
+
+}
+
+.footer-social-links{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:18px;
+
+    margin-bottom:35px;
+
+}
+
+.footer-social-links a{
+
+    width:52px;
+
+    height:52px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:rgba(255,255,255,.12);
+
+    color:#ffffff;
+
+    font-size:1.4rem;
+
+    transition:var(--transition);
+
+}
+
+.footer-social-links a:hover{
+
+    background:var(--accent);
+
+    color:#111111;
+
+    transform:translateY(-5px);
+
+}
+
+.footer-divider{
 
     border-color:rgba(255,255,255,.15);
 
-}
-
-.footer small{
-
-    color:#9fb3c8;
+    margin:35px auto;
 
 }
 
-.footer a{
+.footer-copyright{
 
-    color:#ffc107;
-    text-decoration:none;
+    color:rgba(255,255,255,.75);
 
-}
-
-.footer a:hover{
-
-    color:#ffffff;
-
-}
-/*==================================================
-SingThyGlory CMS Sidebar
-==================================================*/
-
-.stg-sidebar{
-
-    position:fixed;
-
-    top:0;
-
-    left:0;
-
-    width:260px;
-
-    height:100vh;
-
-    background:#0b2345;
-
-    overflow-y:auto;
-
-    z-index:999;
-
-    box-shadow:4px 0 20px rgba(0,0,0,.15);
+    font-size:.95rem;
 
 }
 
-.stg-sidebar .nav-link{
+@media (max-width:768px){
 
-    padding:14px 22px;
+    .footer{
 
-    border-radius:10px;
+        padding:60px 0 30px;
 
-    margin:6px 15px;
-
-    transition:.3s;
-
-    font-weight:500;
-
-}
-
-.stg-sidebar .nav-link:hover{
-
-    background:#ffc107;
-
-    color:#000 !important;
-
-}
-
-.cms-content{
-
-    margin-left:260px;
-
-    padding:30px;
+    }
 
 }

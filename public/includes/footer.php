@@ -23,83 +23,95 @@ $instagramUrl = setting('instagram_url');
 
 <footer class="footer">
 
-    <div class="container text-center">
+    <div class="container">
 
-        <img
-            src="/assets/images/logo/logo.png"
-            width="70"
-            alt="<?= htmlspecialchars($footerSiteName, ENT_QUOTES, 'UTF-8') ?>">
+        <div class="row justify-content-center text-center">
 
-        <h3 class="mt-3">
-            <?= htmlspecialchars($footerSiteName, ENT_QUOTES, 'UTF-8') ?>
-        </h3>
+            <div class="col-lg-8">
 
-        <p>
-            <?= htmlspecialchars($footerTagline, ENT_QUOTES, 'UTF-8') ?>
-        </p>
+                <img
+                    src="/assets/images/logo/logo.png"
+                    class="footer-logo"
+                    alt="<?= htmlspecialchars($footerSiteName, ENT_QUOTES, 'UTF-8') ?>"
+                    loading="lazy">
 
-        <?php if (
-            $youtubeUrl !== '' ||
-            $facebookUrl !== '' ||
-            $instagramUrl !== ''
-        ): ?>
+                <h3 class="footer-title">
 
-            <div class="footer-social-links my-4">
+                    <?= htmlspecialchars($footerSiteName, ENT_QUOTES, 'UTF-8') ?>
 
-                <?php if ($youtubeUrl !== ''): ?>
+                </h3>
 
-                    <a
-                        href="<?= htmlspecialchars($youtubeUrl, ENT_QUOTES, 'UTF-8') ?>"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="mx-2"
-                        aria-label="YouTube">
+                <p class="footer-tagline">
 
-                        <i class="bi bi-youtube fs-3"></i>
+                    <?= htmlspecialchars($footerTagline, ENT_QUOTES, 'UTF-8') ?>
 
-                    </a>
+                </p>
+
+                <?php if (
+                    $youtubeUrl !== '' ||
+                    $facebookUrl !== '' ||
+                    $instagramUrl !== ''
+                ): ?>
+
+                    <div class="footer-social-links">
+
+                        <?php if ($youtubeUrl !== ''): ?>
+
+                            <a
+                                href="<?= htmlspecialchars($youtubeUrl, ENT_QUOTES, 'UTF-8') ?>"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="YouTube">
+
+                                <i class="bi bi-youtube"></i>
+
+                            </a>
+
+                        <?php endif; ?>
+
+                        <?php if ($facebookUrl !== ''): ?>
+
+                            <a
+                                href="<?= htmlspecialchars($facebookUrl, ENT_QUOTES, 'UTF-8') ?>"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="Facebook">
+
+                                <i class="bi bi-facebook"></i>
+
+                            </a>
+
+                        <?php endif; ?>
+
+                        <?php if ($instagramUrl !== ''): ?>
+
+                            <a
+                                href="<?= htmlspecialchars($instagramUrl, ENT_QUOTES, 'UTF-8') ?>"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="Instagram">
+
+                                <i class="bi bi-instagram"></i>
+
+                            </a>
+
+                        <?php endif; ?>
+
+                    </div>
 
                 <?php endif; ?>
 
-                <?php if ($facebookUrl !== ''): ?>
+                <hr class="footer-divider">
 
-                    <a
-                        href="<?= htmlspecialchars($facebookUrl, ENT_QUOTES, 'UTF-8') ?>"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="mx-2"
-                        aria-label="Facebook">
+                <div class="footer-copyright">
 
-                        <i class="bi bi-facebook fs-3"></i>
+                    <?= htmlspecialchars($footerText, ENT_QUOTES, 'UTF-8') ?>
 
-                    </a>
-
-                <?php endif; ?>
-
-                <?php if ($instagramUrl !== ''): ?>
-
-                    <a
-                        href="<?= htmlspecialchars($instagramUrl, ENT_QUOTES, 'UTF-8') ?>"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="mx-2"
-                        aria-label="Instagram">
-
-                        <i class="bi bi-instagram fs-3"></i>
-
-                    </a>
-
-                <?php endif; ?>
+                </div>
 
             </div>
 
-        <?php endif; ?>
-
-        <hr>
-
-        <small>
-            <?= htmlspecialchars($footerText, ENT_QUOTES, 'UTF-8') ?>
-        </small>
+        </div>
 
     </div>
 

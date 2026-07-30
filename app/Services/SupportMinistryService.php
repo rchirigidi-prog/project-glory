@@ -14,15 +14,15 @@ class SupportMinistryService
     }
 
     /**
-     * Return Support Ministry data.
+     * Get Support Ministry configuration.
      */
     public function index(): array
-{
-    return $this->model->get();
-}
+    {
+        return $this->model->get();
+    }
 
     /**
-     * Update Support Ministry configuration.
+     * Save Support Ministry configuration.
      */
     public function update(array $data): bool
     {

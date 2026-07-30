@@ -1,100 +1,470 @@
 <?php
+/**
+ * ------------------------------------------------------------
+ * SingThyGlory Studio
+ * Module : M-008 Support Ministry
+ * File   : public/admin/modules/support/index.php
+ * ------------------------------------------------------------
+ */
 
-require_once __DIR__ . '/../../bootstrap.php';
+$data = $data ?? [];
 
-use App\Controllers\SupportMinistryController;
-
-$controller = new SupportMinistryController();
-
-$data = $controller->index();
-
-require_once ADMIN_INCLUDES . '/header.php';
-require_once ADMIN_INCLUDES . '/sidebar.php';
-
+/**
+ * Escape helper
+ */
+if (!function_exists('e')) {
+    function e($value): string
+    {
+        return htmlspecialchars((string)$value, ENT_QUOTES, 'UTF-8');
+    }
+}
 ?>
 
-<div class="main-wrapper">
+<div class="container-fluid">
 
-<?php require_once __DIR__ . '/../../includes/navbar.php'; ?>
-
-<div class="dashboard">
-
-    <h2 class="mb-4">
-        <i class="fa-solid fa-hand-holding-heart"></i>
-        Support Ministry
-    </h2>
-
-    <?php if (!empty($_SESSION['success'])): ?>
-
-    <div class="alert alert-success alert-dismissible fade show">
-
-        <?= $_SESSION['success']; ?>
-
-        <?php unset($_SESSION['success']); ?>
-
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="mb-1">Support Ministry</h2>
+            <p class="text-muted mb-0">
+                Configure the Support Ministry section displayed on the website.
+            </p>
+        </div>
     </div>
 
-    <?php endif; ?>
+    <form method="POST" action="index.php?module=support&action=save">
 
-    <form method="POST">
+        <div class="accordion" id="supportAccordion">
 
-        <!-- Section Settings -->
+            <!-- ===================================================== -->
+            <!-- Section -->
+            <!-- ===================================================== -->
 
-        <div class="card shadow-sm mb-4">
+            <div class="accordion-item">
 
-            <div class="card-body">
+                <h2 class="accordion-header">
+                    <button class="accordion-button"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#sectionCollapse">
+                        Website Section
+                    </button>
+                </h2>
 
-                <h4 class="mb-4">
-                    Section Settings
-                </h4>
+                <div id="sectionCollapse"
+                     class="accordion-collapse collapse show"
+                     data-bs-parent="#supportAccordion">
 
-                <div class="row">
+                    <div class="accordion-body">
 
-                    <div class="col-md-6 mb-3">
+                        <div class="mb-3">
+                            <label class="form-label">
+                                Section Title
+                            </label>
 
-                        <label class="form-label">
-                            Section Title
-                        </label>
+                            <input
+                                type="text"
+                                name="section_title"
+                                class="form-control"
+                                value="<?= e($data['section_title'] ?? '') ?>">
+                        </div>
 
-                        <input
-                            type="text"
-                            name="section_title"
-                            class="form-control"
-                            value="<?= htmlspecialchars($data['section_title'] ?? '') ?>">
+                        <div class="mb-3">
+                            <label class="form-label">
+                                Section Subtitle
+                            </label>
+
+                            <input
+                                type="text"
+                                name="section_subtitle"
+                                class="form-control"
+                                value="<?= e($data['section_subtitle'] ?? '') ?>">
+                        </div>
+
+                        <div class="mb-0">
+                            <label class="form-label">
+                                Section Description
+                            </label>
+
+                            <textarea
+                                name="section_description"
+                                rows="4"
+                                class="form-control"><?= e($data['section_description'] ?? '') ?></textarea>
+                        </div>
 
                     </div>
 
-                    <div class="col-md-6 mb-3">
+                </div>
 
-                        <label class="form-label">
-                            Section Subtitle
-                        </label>
+            </div>
 
-                        <input
-                            type="text"
-                            name="section_subtitle"
-                            class="form-control"
-                            value="<?= htmlspecialchars($data['section_subtitle'] ?? '') ?>">
+            <!-- ===================================================== -->
+            <!-- Prayer -->
+            <!-- ===================================================== -->
 
-                    </div>
+            <div class="accordion-item">
 
-                    <div class="col-md-12">
+                <h2 class="accordion-header">
 
-                        <div class="form-check form-switch">
+                    <button
+                        class="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#prayerCollapse">
+
+                        Prayer Request
+
+                    </button>
+
+                </h2>
+
+                <div id="prayerCollapse"
+                     class="accordion-collapse collapse"
+                     data-bs-parent="#supportAccordion">
+
+                    <div class="accordion-body">
+
+                        <div class="form-check form-switch mb-4">
 
                             <input
                                 class="form-check-input"
                                 type="checkbox"
-                                name="is_enabled"
+                                name="prayer_enabled"
                                 value="1"
-                                <?= !empty($data['is_enabled']) ? 'checked' : '' ?>>
+                                <?= !empty($data['prayer_enabled']) ? 'checked' : '' ?>>
 
                             <label class="form-check-label">
-                                Enable Support Ministry Section
+                                Enable Prayer Section
                             </label>
 
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">
+                                Title
+                            </label>
+
+                            <input
+                                type="text"
+                                name="prayer_title"
+                                class="form-control"
+                                value="<?= e($data['prayer_title'] ?? '') ?>">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">
+                                Description
+                            </label>
+
+                            <textarea
+                                class="form-control"
+                                rows="4"
+                                name="prayer_description"><?= e($data['prayer_description'] ?? '') ?></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">
+                                Button Text
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="prayer_button_text"
+                                value="<?= e($data['prayer_button_text'] ?? '') ?>">
+                        </div>
+
+                        <div class="mb-0">
+                            <label class="form-label">
+                                Button URL
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="prayer_button_url"
+                                value="<?= e($data['prayer_button_url'] ?? '') ?>">
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ===================================================== -->
+            <!-- Donate -->
+            <!-- ===================================================== -->
+
+            <div class="accordion-item">
+
+                <h2 class="accordion-header">
+
+                    <button
+                        class="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#donateCollapse">
+
+                        Donate
+
+                    </button>
+
+                </h2>
+
+                <div id="donateCollapse"
+                     class="accordion-collapse collapse"
+                     data-bs-parent="#supportAccordion">
+
+                    <div class="accordion-body">
+
+                        <div class="form-check form-switch mb-4">
+
+                            <input
+                                class="form-check-input"
+                                type="checkbox"
+                                name="donate_enabled"
+                                value="1"
+                                <?= !empty($data['donate_enabled']) ? 'checked' : '' ?>>
+
+                            <label class="form-check-label">
+                                Enable Donation Section
+                            </label>
+
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">
+                                Title
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="donate_title"
+                                value="<?= e($data['donate_title'] ?? '') ?>">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">
+                                Description
+                            </label>
+
+                            <textarea
+                                class="form-control"
+                                rows="4"
+                                name="donate_description"><?= e($data['donate_description'] ?? '') ?></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">
+                                Button Text
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="donate_button_text"
+                                value="<?= e($data['donate_button_text'] ?? '') ?>">
+                        </div>
+
+                        <div>
+                            <label class="form-label">
+                                Button URL
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="donate_button_url"
+                                value="<?= e($data['donate_button_url'] ?? '') ?>">
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ===================================================== -->
+            <!-- Volunteer -->
+            <!-- ===================================================== -->
+
+            <div class="accordion-item">
+
+                <h2 class="accordion-header">
+
+                    <button
+                        class="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#volunteerCollapse">
+
+                        Volunteer
+
+                    </button>
+
+                </h2>
+
+                <div id="volunteerCollapse"
+                     class="accordion-collapse collapse"
+                     data-bs-parent="#supportAccordion">
+
+                    <div class="accordion-body">
+
+                        <div class="form-check form-switch mb-4">
+
+                            <input
+                                class="form-check-input"
+                                type="checkbox"
+                                name="volunteer_enabled"
+                                value="1"
+                                <?= !empty($data['volunteer_enabled']) ? 'checked' : '' ?>>
+
+                            <label class="form-check-label">
+                                Enable Volunteer Section
+                            </label>
+
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">
+                                Title
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="volunteer_title"
+                                value="<?= e($data['volunteer_title'] ?? '') ?>">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">
+                                Description
+                            </label>
+
+                            <textarea
+                                class="form-control"
+                                rows="4"
+                                name="volunteer_description"><?= e($data['volunteer_description'] ?? '') ?></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">
+                                Button Text
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="volunteer_button_text"
+                                value="<?= e($data['volunteer_button_text'] ?? '') ?>">
+                        </div>
+
+                        <div>
+                            <label class="form-label">
+                                Button URL
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="volunteer_button_url"
+                                value="<?= e($data['volunteer_button_url'] ?? '') ?>">
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ===================================================== -->
+            <!-- Sponsor -->
+            <!-- ===================================================== -->
+
+            <div class="accordion-item">
+
+                <h2 class="accordion-header">
+
+                    <button
+                        class="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#sponsorCollapse">
+
+                        Sponsor
+
+                    </button>
+
+                </h2>
+
+                <div id="sponsorCollapse"
+                     class="accordion-collapse collapse"
+                     data-bs-parent="#supportAccordion">
+
+                    <div class="accordion-body">
+
+                        <div class="form-check form-switch mb-4">
+
+                            <input
+                                class="form-check-input"
+                                type="checkbox"
+                                name="sponsor_enabled"
+                                value="1"
+                                <?= !empty($data['sponsor_enabled']) ? 'checked' : '' ?>>
+
+                            <label class="form-check-label">
+                                Enable Sponsor Section
+                            </label>
+
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">
+                                Title
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="sponsor_title"
+                                value="<?= e($data['sponsor_title'] ?? '') ?>">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">
+                                Description
+                            </label>
+
+                            <textarea
+                                class="form-control"
+                                rows="4"
+                                name="sponsor_description"><?= e($data['sponsor_description'] ?? '') ?></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">
+                                Button Text
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="sponsor_button_text"
+                                value="<?= e($data['sponsor_button_text'] ?? '') ?>">
+                        </div>
+
+                        <div>
+                            <label class="form-label">
+                                Button URL
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="sponsor_button_url"
+                                value="<?= e($data['sponsor_button_url'] ?? '') ?>">
                         </div>
 
                     </div>
@@ -105,305 +475,14 @@ require_once ADMIN_INCLUDES . '/sidebar.php';
 
         </div>
 
-        <!-- Prayer Partner -->
-
-        <div class="card shadow-sm mb-4">
-
-            <div class="card-body">
-
-                <h4 class="mb-4">
-                    Prayer Partner
-                </h4>
-
-                <div class="row">
-
-                    <div class="col-md-6 mb-3">
-
-                        <label class="form-label">
-                            Title
-                        </label>
-
-                        <input
-                            type="text"
-                            name="prayer_title"
-                            class="form-control"
-                            value="<?= htmlspecialchars($data['prayer_title'] ?? '') ?>">
-
-                    </div>
-
-                    <div class="col-md-6 mb-3">
-
-                        <label class="form-label">
-                            Button Text
-                        </label>
-
-                        <input
-                            type="text"
-                            name="prayer_button_text"
-                            class="form-control"
-                            value="<?= htmlspecialchars($data['prayer_button_text'] ?? '') ?>">
-
-                    </div>
-
-                    <div class="col-md-12 mb-3">
-
-                        <label class="form-label">
-                            Description
-                        </label>
-
-                        <textarea
-                            class="form-control"
-                            rows="4"
-                            name="prayer_description"><?= htmlspecialchars($data['prayer_description'] ?? '') ?></textarea>
-
-                    </div>
-
-                    <div class="col-md-12">
-
-                        <label class="form-label">
-                            Button Link
-                        </label>
-
-                        <input
-                            type="text"
-                            name="prayer_button_link"
-                            class="form-control"
-                            value="<?= htmlspecialchars($data['prayer_button_link'] ?? '') ?>">
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <!-- Donate -->
-
-        <div class="card shadow-sm mb-4">
-
-            <div class="card-body">
-
-                <h4 class="mb-4">
-                    Donate
-                </h4>
-
-                <div class="row">
-
-                    <div class="col-md-6 mb-3">
-
-                        <label class="form-label">
-                            Title
-                        </label>
-
-                        <input
-                            type="text"
-                            name="donate_title"
-                            class="form-control"
-                            value="<?= htmlspecialchars($data['donate_title'] ?? '') ?>">
-
-                    </div>
-
-                    <div class="col-md-6 mb-3">
-
-                        <label class="form-label">
-                            Button Text
-                        </label>
-
-                        <input
-                            type="text"
-                            name="donate_button_text"
-                            class="form-control"
-                            value="<?= htmlspecialchars($data['donate_button_text'] ?? '') ?>">
-
-                    </div>
-
-                    <div class="col-md-12 mb-3">
-
-                        <label class="form-label">
-                            Description
-                        </label>
-
-                        <textarea
-                            class="form-control"
-                            rows="4"
-                            name="donate_description"><?= htmlspecialchars($data['donate_description'] ?? '') ?></textarea>
-
-                    </div>
-
-                    <div class="col-md-12">
-
-                        <label class="form-label">
-                            Button Link
-                        </label>
-
-                        <input
-                            type="text"
-                            name="donate_button_link"
-                            class="form-control"
-                            value="<?= htmlspecialchars($data['donate_button_link'] ?? '') ?>">
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-         <!-- Volunteer -->
-
-        <div class="card shadow-sm mb-4">
-
-            <div class="card-body">
-
-                <h4 class="mb-4">
-                    Volunteer
-                </h4>
-
-                <div class="row">
-
-                    <div class="col-md-6 mb-3">
-
-                        <label class="form-label">
-                            Title
-                        </label>
-
-                        <input
-                            type="text"
-                            name="volunteer_title"
-                            class="form-control"
-                            value="<?= htmlspecialchars($data['volunteer_title'] ?? '') ?>">
-
-                    </div>
-
-                    <div class="col-md-6 mb-3">
-
-                        <label class="form-label">
-                            Button Text
-                        </label>
-
-                        <input
-                            type="text"
-                            name="volunteer_button_text"
-                            class="form-control"
-                            value="<?= htmlspecialchars($data['volunteer_button_text'] ?? '') ?>">
-
-                    </div>
-
-                    <div class="col-md-12 mb-3">
-
-                        <label class="form-label">
-                            Description
-                        </label>
-
-                        <textarea
-                            class="form-control"
-                            rows="4"
-                            name="volunteer_description"><?= htmlspecialchars($data['volunteer_description'] ?? '') ?></textarea>
-
-                    </div>
-
-                    <div class="col-md-12">
-
-                        <label class="form-label">
-                            Button Link
-                        </label>
-
-                        <input
-                            type="text"
-                            name="volunteer_button_link"
-                            class="form-control"
-                            value="<?= htmlspecialchars($data['volunteer_button_link'] ?? '') ?>">
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <!-- Sponsor a Project -->
-
-        <div class="card shadow-sm mb-4">
-
-            <div class="card-body">
-
-                <h4 class="mb-4">
-                    Sponsor a Project
-                </h4>
-
-                <div class="row">
-
-                    <div class="col-md-6 mb-3">
-
-                        <label class="form-label">
-                            Title
-                        </label>
-
-                        <input
-                            type="text"
-                            name="sponsor_title"
-                            class="form-control"
-                            value="<?= htmlspecialchars($data['sponsor_title'] ?? '') ?>">
-
-                    </div>
-
-                    <div class="col-md-6 mb-3">
-
-                        <label class="form-label">
-                            Button Text
-                        </label>
-
-                        <input
-                            type="text"
-                            name="sponsor_button_text"
-                            class="form-control"
-                            value="<?= htmlspecialchars($data['sponsor_button_text'] ?? '') ?>">
-
-                    </div>
-
-                    <div class="col-md-12 mb-3">
-
-                        <label class="form-label">
-                            Description
-                        </label>
-
-                        <textarea
-                            class="form-control"
-                            rows="4"
-                            name="sponsor_description"><?= htmlspecialchars($data['sponsor_description'] ?? '') ?></textarea>
-
-                    </div>
-
-                    <div class="col-md-12">
-
-                        <label class="form-label">
-                            Button Link
-                        </label>
-
-                        <input
-                            type="text"
-                            name="sponsor_button_link"
-                            class="form-control"
-                            value="<?= htmlspecialchars($data['sponsor_button_link'] ?? '') ?>">
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="text-end mb-5">
+        <div class="mt-4 text-end">
 
             <button
                 type="submit"
                 class="btn btn-primary btn-lg">
 
-                <i class="fa-solid fa-floppy-disk"></i>
-
-                Save Support Ministry
+                <i class="fa-solid fa-floppy-disk me-2"></i>
+                Save Changes
 
             </button>
 
@@ -412,6 +491,3 @@ require_once ADMIN_INCLUDES . '/sidebar.php';
     </form>
 
 </div>
-
-<?php require_once __DIR__ . '/../../includes/footer.php'; ?>
-       

@@ -1,55 +1,80 @@
 <section id="bible" class="bible-section">
 
-<div class="container">
+    <div class="container">
 
-<div class="section-heading text-center">
+        <div class="text-center mb-5">
 
-<h2>
-📖 Verse of the Day
-</h2>
+            <span class="section-subtitle">
 
-<p>
-Start your day with God's living Word.
-</p>
+                GOD'S WORD
 
-</div>
+            </span>
 
-<div class="bible-card">
+            <h2>
 
-<div class="verse-icon">
-✝️
-</div>
+                Verse of the Day
 
-<h2 id="verseText">
-Loading today's verse...
-</h2>
+            </h2>
 
-<p id="verseReference">
-Please wait...
-</p>
+            <p class="section-description">
 
-<div class="verse-buttons">
+                Begin each day with the living Word of God and be
+                strengthened through His promises and truth.
 
-<button
-id="copyVerse"
-class="btn btn-warning rounded-pill">
+            </p>
 
-📋 Copy Verse
+        </div>
 
-</button>
+        <div class="bible-card card-custom">
 
-<button
-id="shareVerse"
-class="btn btn-outline-light rounded-pill">
+            <div class="verse-icon">
 
-📤 Share Verse
+                <i class="fa-solid fa-book-bible"></i>
 
-</button>
+            </div>
 
-</div>
+            <blockquote
+                id="verseText"
+                class="verse-text">
 
-</div>
+                Loading today's verse...
 
-</div>
+            </blockquote>
+
+            <p
+                id="verseReference"
+                class="verse-reference">
+
+                Please wait...
+
+            </p>
+
+            <div class="verse-buttons">
+
+                <button
+                    id="copyVerse"
+                    class="btn btn-warning rounded-pill">
+
+                    <i class="fa-regular fa-copy me-2"></i>
+
+                    Copy Verse
+
+                </button>
+
+                <button
+                    id="shareVerse"
+                    class="btn btn-outline-primary rounded-pill">
+
+                    <i class="fa-solid fa-share-nodes me-2"></i>
+
+                    Share Verse
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </section>
