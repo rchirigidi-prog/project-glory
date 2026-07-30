@@ -79,13 +79,15 @@ SingThyGlory
 </div>
 
 <div class="equalizer">
-
-<span></span>
-<span></span>
-<span></span>
-<span></span>
-<span></span>
-
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
 </div>
 
 </div>

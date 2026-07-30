@@ -63,11 +63,11 @@ async function loadYoutubeVideos() {
                     <a
                         href="${video.url}"
                         target="_blank"
-                        class="btn btn-danger rounded-pill">
+                        class="watch-btn">
 
-                        <i class="fab fa-youtube me-2"></i>
+                        <i class="fab fa-youtube"></i>
 
-                        Watch Now
+                        <span>Watch on YouTube</span>
 
                     </a>
 

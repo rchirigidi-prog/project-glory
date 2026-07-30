@@ -865,6 +865,166 @@ p{
 
 }
 /* ==========================================================
+   09A. PREMIUM LIVE PLAYER
+   ========================================================== */
+
+.premium-player{
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:24px;
+    padding:40px;
+    box-shadow:0 20px 50px rgba(0,0,0,.15);
+    overflow:hidden;
+}
+
+.album-cover{
+    width:220px;
+    height:220px;
+    object-fit:cover;
+    border-radius:50%;
+    border:6px solid rgba(255,255,255,.2);
+    box-shadow:
+        0 0 25px rgba(255,193,7,.35),
+        0 12px 35px rgba(0,0,0,.25);
+    transition:.4s ease;
+}
+.album-cover.playing{
+    animation:spinAlbum 18s linear infinite;
+}
+
+@keyframes spinAlbum{
+    from{
+        transform:rotate(0deg);
+    }
+    to{
+        transform:rotate(360deg);
+    }
+}
+.live-status{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:8px 18px;
+    border-radius:999px;
+    background:#d90429;
+    color:#fff;
+    font-weight:700;
+    margin-bottom:20px;
+}
+
+.live-dot{
+    width:10px;
+    height:10px;
+    background:#fff;
+    border-radius:50%;
+    animation:livePulse 1.5s infinite;
+}
+
+@keyframes livePulse{
+    0%{transform:scale(1);opacity:1;}
+    50%{transform:scale(1.8);opacity:.4;}
+    100%{transform:scale(1);opacity:1;}
+}
+
+#song-title{
+    font-size:2rem;
+    font-weight:700;
+    margin-bottom:10px;
+}
+
+#song-artist{
+    font-size:1.1rem;
+    color:#666;
+    margin-bottom:12px;
+}
+
+#listeners{
+    font-weight:600;
+    color:var(--primary);
+}
+
+.custom-player{
+    margin-top:20px;
+}
+
+.play-btn{
+    width:60px;
+    height:60px;
+    border:none;
+    border-radius:50%;
+    background:var(--primary);
+    color:#fff;
+    font-size:24px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.play-btn:hover{
+    transform:scale(1.08);
+}
+
+#volumeControl{
+    width:100%;
+    margin-top:18px;
+}
+.equalizer{
+    display:flex;
+    justify-content:center;
+    align-items:flex-end;
+    gap:8px;          /* Space between bars */
+    width:180px;      /* Increase width (try 180–220px) */
+    height:45px;
+    margin:25px auto 0;
+}
+
+.equalizer span{
+    width:8px;        /* Thicker bars */
+    height:12px;
+    background:var(--primary);
+    border-radius:8px 8px 0 0;
+    transform-origin:bottom;
+    animation:equalizer 1s ease-in-out infinite;
+}
+
+.equalizer span:nth-child(1){animation-delay:0s;}
+.equalizer span:nth-child(2){animation-delay:.1s;}
+.equalizer span:nth-child(3){animation-delay:.2s;}
+.equalizer span:nth-child(4){animation-delay:.3s;}
+.equalizer span:nth-child(5){animation-delay:.4s;}
+.equalizer span:nth-child(6){animation-delay:.5s;}
+.equalizer span:nth-child(7){animation-delay:.6s;}
+.equalizer span:nth-child(8){animation-delay:.7s;}
+.equalizer span:nth-child(9){animation-delay:.8s;}
+
+@keyframes equalizer{
+    0%   {height:10px;}
+    20%  {height:22px;}
+    40%  {height:36px;}
+    60%  {height:44px;}
+    80%  {height:28px;}
+    100% {height:10px;}
+}
+
+@media(max-width:768px){
+    .premium-player{
+        padding:24px;
+        text-align:center;
+    }
+
+    .album-cover{
+        width:170px;
+        height:170px;
+        margin-bottom:25px;
+    }
+
+    #song-title{
+        font-size:1.6rem;
+    }
+}
+
+/* ==========================================================
    10. MISSION
    ========================================================== */
 
@@ -1382,6 +1542,61 @@ p{
 
 }
 /* ==========================================================
+   14.1 LATEST VIDEOS
+   ========================================================== */
+
+.video-date{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:8px 14px;
+    background:#f8fafc;
+    border:1px solid #e5e7eb;
+    border-radius:999px;
+    font-weight:600;
+    color:#475569;
+    margin-bottom:16px;
+}
+.watch-btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+
+    width:100%;
+    height:56px;
+
+    margin-top:18px;
+
+    background:linear-gradient(135deg,#ff0033,#d90429);
+    color:#fff;
+    text-decoration:none;
+
+    border-radius:16px;
+
+    font-size:1rem;
+    font-weight:700;
+
+    box-shadow:0 12px 30px rgba(217,4,41,.35);
+
+    transition:all .35s ease;
+}
+
+.watch-btn:hover{
+    transform:translateY(-4px);
+    color:#fff;
+    text-decoration:none;
+    box-shadow:0 18px 40px rgba(217,4,41,.45);
+}
+
+.watch-btn i{
+    font-size:22px;
+}
+
+.watch-btn span{
+    letter-spacing:.3px;
+}
+/* ==========================================================
    15. LATEST RELEASES
    ========================================================== */
 
@@ -1741,6 +1956,152 @@ p{
     .footer{
 
         padding:60px 0 30px;
+
+    }
+
+}
+/*==================================================
+  18. MISSION LOGO
+==================================================*/
+
+.mission-logo{
+    position:relative;
+    display:inline-flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+/* Rotating golden halo */
+
+.mission-logo::before{
+    content:"";
+    position:absolute;
+
+    width:108%;
+    height:108%;
+
+    border-radius:50%;
+
+    border:3px solid rgba(255,193,7,.35);
+
+    border-top-color:#FFD54F;
+    border-right-color:#F9A825;
+    border-bottom-color:rgba(255,193,7,.15);
+    border-left-color:rgba(255,193,7,.15);
+
+    animation:haloRotate 30s linear infinite;
+
+    z-index:0;
+}
+
+/* Soft glow */
+
+.mission-logo::after{
+    content:"";
+    position:absolute;
+
+    width:110%;
+    height:110%;
+
+    border-radius:50%;
+
+    background:radial-gradient(
+        rgba(255,193,7,.18),
+        transparent 70%
+    );
+
+    animation:haloGlow 3.5s ease-in-out infinite;
+
+    z-index:0;
+}
+
+.mission-logo img{
+
+    position:relative;
+
+    width:100%;
+    max-width:340px;
+
+    border-radius:50%;
+
+    z-index:2;
+
+    animation:
+        logoFloat 5s ease-in-out infinite,
+        logoGlow 3.5s ease-in-out infinite;
+
+    transition:transform .4s ease;
+}
+
+.mission-logo:hover img{
+
+    transform:scale(1.03);
+
+}
+@keyframes haloRotate{
+
+    from{
+        transform:rotate(0deg);
+    }
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
+@keyframes haloGlow{
+
+    0%,100%{
+
+        opacity:.45;
+
+        transform:scale(.98);
+
+    }
+
+    50%{
+
+        opacity:.95;
+
+        transform:scale(1.04);
+
+    }
+
+}
+
+@keyframes logoFloat{
+
+    0%,100%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-6px);
+
+    }
+
+}
+
+@keyframes logoGlow{
+
+    0%,100%{
+
+        filter:
+            drop-shadow(0 0 10px rgba(255,193,7,.35))
+            drop-shadow(0 0 20px rgba(255,193,7,.18));
+
+    }
+
+    50%{
+
+        filter:
+            drop-shadow(0 0 18px rgba(255,193,7,.70))
+            drop-shadow(0 0 38px rgba(255,193,7,.35));
 
     }
 

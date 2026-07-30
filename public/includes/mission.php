@@ -5,14 +5,10 @@
         <div class="row align-items-center gy-5">
 
             <!-- Mission Image -->
-            <div class="col-lg-6 text-center">
-
-                <img
-                    src="assets/images/logo/logo.png"
-                    class="img-fluid mission-logo"
-                    alt="SingThyGlory Logo"
-                    loading="lazy">
-
+            
+            <div class="mission-logo">
+                <img src="assets/images/logo/logo.png"
+                    alt="SingThyGlory Mission">
             </div>
 
             <!-- Mission Content -->
