@@ -121,10 +121,11 @@ if (empty($cards)) {
                         <?php if (!empty($card['button']) && !empty($card['url'])): ?>
 
                             <a
-                                href="<?= htmlspecialchars($card['url']) ?>"
-                                class="btn btn-warning mt-auto">
+                                href="#"
+                                class="btn btn-primary support-btn"
+                                data-type="<?= htmlspecialchars($card['type'], ENT_QUOTES, 'UTF-8') ?>">
 
-                                <?= htmlspecialchars($card['button']) ?>
+                                <?= htmlspecialchars($card['button'], ENT_QUOTES, 'UTF-8') ?>
 
                             </a>
 
@@ -141,3 +142,6 @@ if (empty($cards)) {
     </div>
 
 </section>
+
+<?php require_once __DIR__ . '/support-modal.php'; ?>
+<?php require __DIR__ . '/support-modal.php'; ?>

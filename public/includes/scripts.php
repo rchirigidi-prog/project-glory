@@ -4,7 +4,8 @@
 <script src="assets/js/modules/youtube.js"></script>
 <script src="assets/js/modules/bible.js"></script>
 <script src="assets/js/modules/prayer.js"></script>
-<script src="assets/js/modules/player.js"></script>
+<script src="assets/js/modules/support-ministry.js"></script>
+
 </body>
 
 </html>
