@@ -4,15 +4,18 @@ use App\Core\ModuleLoader;
 
 $loader = new ModuleLoader();
 
-function navLink(
-    ModuleLoader $loader,
-    string $module,
-    string $icon,
-    string $label
-): void {
-    $active = $loader->isActive($module) ? ' active' : '';
+if (!function_exists('navLink')) {
 
-    echo <<<HTML
+    function navLink(
+        ModuleLoader $loader,
+        string $module,
+        string $icon,
+        string $label
+    ): void {
+
+        $active = $loader->isActive($module) ? ' active' : '';
+
+        echo <<<HTML
 <li class="nav-item">
     <a href="{$loader->url($module)}" class="nav-link{$active}">
         <i class="{$icon}"></i>
@@ -20,6 +23,7 @@ function navLink(
     </a>
 </li>
 HTML;
+    }
 }
 ?>
 
@@ -91,12 +95,22 @@ HTML;
         </li>
 
         <?php
-        navLink($loader, 'supporters', 'fa-solid fa-hand-holding-heart', 'Supporters');
-        navLink($loader, 'users', 'fa-solid fa-users', 'Users');
-        navLink($loader, 'roles', 'fa-solid fa-user-shield', 'Roles');
-        navLink($loader, 'settings', 'fa-solid fa-gear', 'Settings');
+        navLink($loader, 'support-requests', 'fa-solid fa-inbox', 'Support Requests');
+
+navLink(
+    $loader,
+    'donation-manager',
+    'fa-solid fa-hand-holding-dollar',
+    'Donation Manager'
+);
+
+navLink($loader, 'supporters', 'fa-solid fa-hand-holding-heart', 'Supporters');
+navLink($loader, 'users', 'fa-solid fa-users', 'Users');
+navLink($loader, 'roles', 'fa-solid fa-user-shield', 'Roles');
+navLink($loader, 'settings', 'fa-solid fa-gear', 'Settings');
         ?>
 
     </ul>
 
+   
 </div>

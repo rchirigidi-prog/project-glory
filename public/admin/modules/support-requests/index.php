@@ -2,6 +2,10 @@
 
 declare(strict_types=1);
 
+require_once __DIR__ . '/../../bootstrap.php';
+
+ob_start();
+
 use App\Models\SupportRequest;
 
 $model = new SupportRequest();
@@ -47,13 +51,15 @@ foreach ($requests as $request) {
 
             <h2 class="mb-1">
 
+                <i class="fa-solid fa-hand-holding-heart me-2 text-primary"></i>
+
                 Support Requests
 
             </h2>
 
             <p class="text-muted mb-0">
 
-                Manage prayer, financial, volunteer and sponsorship requests.
+                Manage Prayer, Financial, Volunteer and Sponsorship requests.
 
             </p>
 
@@ -63,11 +69,13 @@ foreach ($requests as $request) {
 
     <div class="row g-3 mb-4">
 
-        <div class="col-lg-3">
+        <div class="col-lg">
 
             <div class="card shadow-sm border-0">
 
-                <div class="card-body">
+                <div class="card-body text-center">
+
+                    <i class="fa-solid fa-inbox fa-2x text-primary mb-2"></i>
 
                     <h6>Total Requests</h6>
 
@@ -79,11 +87,13 @@ foreach ($requests as $request) {
 
         </div>
 
-        <div class="col-lg-3">
+        <div class="col-lg">
 
             <div class="card shadow-sm border-0">
 
-                <div class="card-body">
+                <div class="card-body text-center">
+
+                    <i class="fa-solid fa-circle-plus fa-2x text-warning mb-2"></i>
 
                     <h6>New</h6>
 
@@ -95,11 +105,31 @@ foreach ($requests as $request) {
 
         </div>
 
-        <div class="col-lg-3">
+        <div class="col-lg">
 
             <div class="card shadow-sm border-0">
 
-                <div class="card-body">
+                <div class="card-body text-center">
+
+                    <i class="fa-solid fa-phone fa-2x text-info mb-2"></i>
+
+                    <h6>Contacted</h6>
+
+                    <h2><?= $contacted ?></h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg">
+
+            <div class="card shadow-sm border-0">
+
+                <div class="card-body text-center">
+
+                    <i class="fa-solid fa-spinner fa-2x text-primary mb-2"></i>
 
                     <h6>In Progress</h6>
 
@@ -111,15 +141,67 @@ foreach ($requests as $request) {
 
         </div>
 
-        <div class="col-lg-3">
+        <div class="col-lg">
 
             <div class="card shadow-sm border-0">
 
-                <div class="card-body">
+                <div class="card-body text-center">
+
+                    <i class="fa-solid fa-circle-check fa-2x text-success mb-2"></i>
 
                     <h6>Completed</h6>
 
                     <h2><?= $completed ?></h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="card shadow-sm border-0 mb-4">
+
+        <div class="card-body">
+
+            <div class="row g-3">
+
+                <div class="col-md-6">
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Search by Name, Email or Subject (Coming Soon)"
+                        disabled>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <select class="form-select" disabled>
+
+                        <option>All Types</option>
+                        <option>Prayer</option>
+                        <option>Financial</option>
+                        <option>Volunteer</option>
+                        <option>Sponsor</option>
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <select class="form-select" disabled>
+
+                        <option>All Status</option>
+                        <option>New</option>
+                        <option>Contacted</option>
+                        <option>In Progress</option>
+                        <option>Completed</option>
+
+                    </select>
 
                 </div>
 
@@ -139,7 +221,7 @@ foreach ($requests as $request) {
 
                     <tr>
 
-                        <th>ID</th>
+                        <th width="70">ID</th>
 
                         <th>Type</th>
 
@@ -169,6 +251,10 @@ foreach ($requests as $request) {
 
                         <td colspan="7" class="text-center py-5">
 
+                            <i class="fa-solid fa-inbox fa-3x text-muted mb-3"></i>
+
+                            <br>
+
                             No support requests found.
 
                         </td>
@@ -178,18 +264,55 @@ foreach ($requests as $request) {
                 <?php else: ?>
 
                     <?php foreach ($requests as $request): ?>
+                            <?php
+
+                        $type = strtolower($request['request_type']);
+
+                        $typeClass = match ($type) {
+                            'prayer'    => 'primary',
+                            'financial' => 'success',
+                            'volunteer' => 'warning',
+                            'sponsor'   => 'info',
+                            default     => 'secondary',
+                        };
+
+                        $typeIcon = match ($type) {
+                            'prayer'    => '🙏',
+                            'financial' => '❤️',
+                            'volunteer' => '🤝',
+                            'sponsor'   => '🌱',
+                            default     => '📄',
+                        };
+
+                        $status = strtolower($request['status']);
+
+                        $statusClass = match ($status) {
+                            'new'         => 'warning text-dark',
+                            'contacted'   => 'info',
+                            'in_progress' => 'primary',
+                            'completed'   => 'success',
+                            default       => 'secondary',
+                        };
+
+                        ?>
 
                         <tr>
 
                             <td>
 
-                                #<?= (int) $request['id'] ?>
+                                #<?= (int)$request['id'] ?>
 
                             </td>
 
                             <td>
 
-                                <?= htmlspecialchars($request['request_type']) ?>
+                                <span class="badge bg-<?= $typeClass ?>">
+
+                                    <?= $typeIcon ?>
+
+                                    <?= ucfirst($type) ?>
+
+                                </span>
 
                             </td>
 
@@ -201,15 +324,19 @@ foreach ($requests as $request) {
 
                             <td>
 
-                                <?= htmlspecialchars($request['email']) ?>
+                                <a href="mailto:<?= htmlspecialchars($request['email']) ?>">
+
+                                    <?= htmlspecialchars($request['email']) ?>
+
+                                </a>
 
                             </td>
 
                             <td>
 
-                                <span class="badge bg-primary">
+                                <span class="badge bg-<?= $statusClass ?>">
 
-                                    <?= htmlspecialchars($request['status']) ?>
+                                    <?= ucwords(str_replace('_', ' ', $status)) ?>
 
                                 </span>
 
@@ -217,27 +344,51 @@ foreach ($requests as $request) {
 
                             <td>
 
-                                <?= htmlspecialchars($request['created_at']) ?>
+                                <?= date('d M Y', strtotime($request['created_at'])) ?>
+
+                                <br>
+
+                                <small class="text-muted">
+
+                                    <?= date('h:i A', strtotime($request['created_at'])) ?>
+
+                                </small>
 
                             </td>
 
                             <td>
 
-                                <a
-                                    href="?module=support-requests&action=view&id=<?= (int) $request['id'] ?>"
-                                    class="btn btn-sm btn-primary">
+                                <div class="btn-group btn-group-sm">
 
-                                    View
+                                    <a
+                                        href="?module=support-requests&action=view&id=<?= (int)$request['id'] ?>"
+                                        class="btn btn-primary"
+                                        title="View">
 
-                                </a>
+                                        <i class="fa-solid fa-eye"></i>
 
-                                <a
-                                    href="?module=support-requests&action=delete&id=<?= (int) $request['id'] ?>"
-                                    class="btn btn-sm btn-danger">
+                                    </a>
 
-                                    Delete
+                                    <a
+                                        href="?module=support-requests&action=edit&id=<?= (int)$request['id'] ?>"
+                                        class="btn btn-warning"
+                                        title="Edit">
 
-                                </a>
+                                        <i class="fa-solid fa-pen"></i>
+
+                                    </a>
+
+                                    <a
+                                        href="?module=support-requests&action=delete&id=<?= (int)$request['id'] ?>"
+                                        class="btn btn-danger"
+                                        onclick="return confirm('Are you sure you want to delete this request?');"
+                                        title="Delete">
+
+                                        <i class="fa-solid fa-trash"></i>
+
+                                    </a>
+
+                                </div>
 
                             </td>
 
@@ -256,3 +407,10 @@ foreach ($requests as $request) {
     </div>
 
 </div>
+
+<?php
+
+$content = ob_get_clean();
+
+require ADMIN_LAYOUTS . '/app.php';
+                    

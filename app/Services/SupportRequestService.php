@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Services;
 
 use App\Models\SupportRequest;
@@ -38,7 +40,7 @@ class SupportRequestService
             'prayer',
             'financial',
             'volunteer',
-            'sponsor'
+            'sponsor',
         ];
 
         $requestType = strtolower(trim($data['request_type'] ?? ''));
@@ -51,7 +53,7 @@ class SupportRequestService
         $email = trim($data['email'] ?? '');
         $message = trim(strip_tags($data['message'] ?? ''));
 
-        if ($fullName === '') {
+        if ($fullName === '' || $message === '') {
             return false;
         }
 
@@ -59,19 +61,15 @@ class SupportRequestService
             return false;
         }
 
-        if ($message === '') {
-            return false;
-        }
-
         return $this->supportRequest->create([
-            'request_type' => $requestType,
-            'full_name'    => $fullName,
-            'email'        => $email,
-            'phone'        => trim($data['phone'] ?? ''),
-            'country'      => trim($data['country'] ?? ''),
-            'subject'      => trim(strip_tags($data['subject'] ?? '')),
-            'message'      => $message,
-            'ministry_area'=> trim(strip_tags($data['ministry_area'] ?? '')),
+            'request_type'  => $requestType,
+            'full_name'     => $fullName,
+            'email'         => $email,
+            'phone'         => trim($data['phone'] ?? ''),
+            'country'       => trim($data['country'] ?? ''),
+            'subject'       => trim(strip_tags($data['subject'] ?? '')),
+            'message'       => $message,
+            'ministry_area' => trim(strip_tags($data['ministry_area'] ?? '')),
         ]);
     }
 
@@ -80,20 +78,53 @@ class SupportRequestService
      */
     public function updateStatus(int $id, string $status): bool
     {
-        $allowed = [
+        $allowedStatuses = [
             'new',
             'contacted',
             'in_progress',
-            'completed'
+            'completed',
         ];
 
-        if (!in_array($status, $allowed, true)) {
+        if (!in_array($status, $allowedStatuses, true)) {
             return false;
         }
 
-        return $this->supportRequest->update($id, [
-            'status' => $status
-        ]);
+        return $this->supportRequest->updateStatus($id, $status);
+    }
+
+    /**
+     * Update admin notes.
+     */
+    public function updateNotes(int $id, string $notes): bool
+    {
+        return $this->supportRequest->updateNotes($id, $notes);
+    }
+
+    /**
+     * Update status and admin notes.
+     */
+    public function updateRequest(
+        int $id,
+        string $status,
+        string $notes
+    ): bool {
+
+        $allowedStatuses = [
+            'new',
+            'contacted',
+            'in_progress',
+            'completed',
+        ];
+
+        if (!in_array($status, $allowedStatuses, true)) {
+            return false;
+        }
+
+        return $this->supportRequest->updateRequest(
+            $id,
+            $status,
+            $notes
+        );
     }
 
     /**
@@ -110,8 +141,11 @@ class SupportRequestService
     public function dashboardStats(): array
     {
         return [
-            'total_requests' => $this->supportRequest->countAll(),
-            'new_requests'   => $this->supportRequest->countNew(),
+            'total_requests'     => $this->supportRequest->countAll(),
+            'new_requests'       => $this->supportRequest->countNew(),
+            'contacted_requests' => $this->supportRequest->countContacted(),
+            'progress_requests'  => $this->supportRequest->countInProgress(),
+            'completed_requests' => $this->supportRequest->countCompleted(),
         ];
     }
 }

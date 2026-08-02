@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controllers;
 
 use App\Core\Controller;
@@ -24,65 +26,35 @@ class SupportRequestController extends Controller
     }
 
     /**
-     * Display a single request.
+     * Display a single support request.
      */
     public function show(int $id): ?array
     {
         return $this->service->find($id);
     }
+/**
+ * Store a new support request.
+ */
+public function store(?array $data = null): array
+{
+    $data ??= $_POST;
 
-    /**
-     * Store a new support request.
-     */
-    public function store(array $data): bool
-    {
-        $saved = $this->service->create($data);
+    $saved = $this->service->create($data);
 
-        if (!$saved) {
-
-            Flash::set(
-                'error',
-                'Unable to submit your request. Please check the required fields.'
-            );
-
-            return false;
-        }
-
-        Flash::set(
-            'success',
-            'Thank you! Your request has been received. We will contact you soon.'
-        );
-
-        return true;
+    if (!$saved) {
+        return [
+            'success' => false,
+            'message' => 'Unable to submit your request. Please check all required fields.'
+        ];
     }
 
+    return [
+        'success' => true,
+        'message' => 'Thank you! Your request has been received successfully.'
+    ];
+}
     /**
-     * Update request status.
-     */
-    public function updateStatus(int $id, string $status): bool
-    {
-        $updated = $this->service->updateStatus($id, $status);
-
-        if (!$updated) {
-
-            Flash::set(
-                'error',
-                'Unable to update request status.'
-            );
-
-            return false;
-        }
-
-        Flash::set(
-            'success',
-            'Request status updated successfully.'
-        );
-
-        return true;
-    }
-
-    /**
-     * Delete a support request.
+     * Delete support request.
      */
     public function destroy(int $id): bool
     {

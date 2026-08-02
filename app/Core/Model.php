@@ -33,23 +33,47 @@ abstract class Model
         return $stmt->fetch(PDO::FETCH_ASSOC) ?: null;
     }
 
-    public function create(array $data): bool
-    {
-        $columns = array_keys($data);
+   public function create(array $data): bool
+{
+    $columns = array_keys($data);
 
-        $placeholders = implode(',', array_fill(0, count($columns), '?'));
+    $placeholders = implode(',', array_fill(0, count($columns), '?'));
 
-        $sql = sprintf(
-            "INSERT INTO %s (%s) VALUES (%s)",
-            $this->table,
-            implode(',', $columns),
-            $placeholders
-        );
+    $sql = sprintf(
+        "INSERT INTO %s (%s) VALUES (%s)",
+        $this->table,
+        implode(',', $columns),
+        $placeholders
+    );
+
+    try {
 
         $stmt = $this->db->prepare($sql);
 
-        return $stmt->execute(array_values($data));
+        $result = $stmt->execute(array_values($data));
+
+        if (!$result) {
+            return false;
+        }
+
+        return true;
+
+    } catch (\PDOException $e) {
+
+        header('Content-Type: text/plain');
+
+        echo "SQL ERROR\n\n";
+        echo $e->getMessage() . "\n\n";
+
+        echo "SQL:\n";
+        echo $sql . "\n\n";
+
+        echo "DATA:\n";
+        print_r($data);
+
+        exit;
     }
+}
 
     public function update(int $id, array $data): bool
     {

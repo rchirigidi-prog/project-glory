@@ -2,13 +2,14 @@
 
 declare(strict_types=1);
 
-use App\Controllers\SupportRequestController;
-
 require_once __DIR__ . '/../../vendor/autoload.php';
+
+use App\Controllers\SupportRequestController;
 
 header('Content-Type: application/json');
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+
     http_response_code(405);
 
     echo json_encode([
@@ -34,6 +35,8 @@ try {
     echo json_encode([
         'success' => false,
         'message' => 'Internal Server Error',
-        'error'   => $e->getMessage()
-    ]);
+        'error'   => $e->getMessage(),
+        'file'    => $e->getFile(),
+        'line'    => $e->getLine()
+    ], JSON_PRETTY_PRINT);
 }

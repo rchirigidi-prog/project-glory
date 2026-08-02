@@ -1,17 +1,26 @@
-<?php require ADMIN_INCLUDES.'/header.php'; ?>
+<?php
 
-<?php require ADMIN_INCLUDES.'/sidebar.php'; ?>
+declare(strict_types=1);
 
-<div class="main-wrapper">
+require ADMIN_INCLUDES . '/header.php';
+?>
 
-<?php require ADMIN_INCLUDES.'/navbar.php'; ?>
+<div class="admin-wrapper">
 
-<div class="dashboard">
+    <?php require ADMIN_INCLUDES . '/sidebar.php'; ?>
 
-<?= $content ?>
+    <div class="main-wrapper">
+
+        <?php require ADMIN_INCLUDES . '/navbar.php'; ?>
+
+        <main class="dashboard container-fluid py-4">
+
+            <?= $content ?>
+
+        </main>
+
+    </div>
 
 </div>
 
-</div>
-
-<?php require ADMIN_INCLUDES.'/footer.php'; ?>
+<?php require ADMIN_INCLUDES . '/footer.php'; ?>

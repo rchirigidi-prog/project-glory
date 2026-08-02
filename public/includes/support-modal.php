@@ -1,7 +1,7 @@
 <?php
 /**
- * Support Ministry Modal
- * M-009 – Support Ministry Module
+ * M-009 Support Ministry Modal
+ * Part 1 of 2
  */
 ?>
 
@@ -9,26 +9,36 @@
     class="modal fade"
     id="supportModal"
     tabindex="-1"
-    aria-labelledby="supportModalLabel"
+    aria-labelledby="supportModalTitle"
     aria-hidden="true">
 
     <div class="modal-dialog modal-lg modal-dialog-centered">
 
-        <div class="modal-content">
+        <div class="modal-content border-0 shadow-lg">
 
-            <form
-                id="supportRequestForm"
-                autocomplete="off">
+            <form id="supportRequestForm" novalidate>
 
-                <div class="modal-header">
+                <div class="modal-header bg-warning-subtle">
 
-                    <h5
-                        class="modal-title"
-                        id="supportModalLabel">
+                    <div>
 
-                        Support Ministry
+                        <h4
+                            class="modal-title mb-1"
+                            id="supportModalTitle">
 
-                    </h5>
+                            Support Ministry
+
+                        </h4>
+
+                        <small
+                            class="text-muted"
+                            id="supportModalSubtitle">
+
+                            Please complete the form below.
+
+                        </small>
+
+                    </div>
 
                     <button
                         type="button"
@@ -59,15 +69,17 @@
                                 for="full_name"
                                 class="form-label">
 
-                                Full Name <span class="text-danger">*</span>
+                                Full Name
+                                <span class="text-danger">*</span>
 
                             </label>
 
                             <input
                                 type="text"
-                                class="form-control"
                                 id="full_name"
                                 name="full_name"
+                                class="form-control"
+                                placeholder="Enter your full name"
                                 required>
 
                         </div>
@@ -78,15 +90,17 @@
                                 for="email"
                                 class="form-label">
 
-                                Email Address <span class="text-danger">*</span>
+                                Email Address
+                                <span class="text-danger">*</span>
 
                             </label>
 
                             <input
                                 type="email"
-                                class="form-control"
                                 id="email"
                                 name="email"
+                                class="form-control"
+                                placeholder="Enter your email"
                                 required>
 
                         </div>
@@ -101,15 +115,16 @@
                                 for="phone"
                                 class="form-label">
 
-                                Phone
+                                Phone Number
 
                             </label>
 
                             <input
                                 type="text"
-                                class="form-control"
                                 id="phone"
-                                name="phone">
+                                name="phone"
+                                class="form-control"
+                                placeholder="+91 XXXXX XXXXX">
 
                         </div>
 
@@ -125,9 +140,10 @@
 
                             <input
                                 type="text"
-                                class="form-control"
                                 id="country"
-                                name="country">
+                                name="country"
+                                class="form-control"
+                                placeholder="Country">
 
                         </div>
 
@@ -136,6 +152,7 @@
                     <div class="mb-3">
 
                         <label
+                            id="subjectLabel"
                             for="subject"
                             class="form-label">
 
@@ -145,15 +162,25 @@
 
                         <input
                             type="text"
-                            class="form-control"
                             id="subject"
-                            name="subject">
+                            name="subject"
+                            class="form-control"
+                            placeholder="Enter subject">
+
+                        <small
+                            id="subjectHelp"
+                            class="text-muted">
+
+                            This field changes depending on the request type.
+
+                        </small>
 
                     </div>
 
                     <div class="mb-3">
 
                         <label
+                            id="ministryLabel"
                             for="ministry_area"
                             class="form-label">
 
@@ -163,52 +190,93 @@
 
                         <input
                             type="text"
-                            class="form-control"
                             id="ministry_area"
-                            name="ministry_area">
+                            name="ministry_area"
+                            class="form-control"
+                            placeholder="Enter ministry area">
+
+                        <small
+                            id="ministryHelp"
+                            class="text-muted">
+
+                            This field changes depending on the request type.
+
+                        </small>
 
                     </div>
 
                     <div class="mb-3">
 
                         <label
+                            id="messageLabel"
                             for="message"
                             class="form-label">
 
-                            Message <span class="text-danger">*</span>
+                            Message
+                            <span class="text-danger">*</span>
 
                         </label>
 
                         <textarea
-                            class="form-control"
                             id="message"
                             name="message"
-                            rows="5"
+                            rows="6"
+                            class="form-control"
+                            placeholder="Write your message..."
                             required></textarea>
 
+                        <small
+                            id="messageHelp"
+                            class="text-muted">
+
+                            Please provide as much information as possible.
+
+                        </small>
+
+                    </div>
+                     <div
+                        id="dynamicFields"
+                        class="row">
+                        <!-- Dynamic fields can be inserted here later by JavaScript -->
                     </div>
 
                 </div>
 
-                <div class="modal-footer">
+                <div class="modal-footer justify-content-between">
 
-                    <button
-                        type="button"
-                        class="btn btn-secondary"
-                        data-bs-dismiss="modal">
+                    <div class="text-muted small">
 
-                        Close
+                        <i class="fa-solid fa-shield-heart me-1"></i>
 
-                    </button>
+                        Your information will be used only to respond to your request.
 
-                    <button
-                        type="submit"
-                        id="submitSupportRequest"
-                        class="btn btn-warning">
+                    </div>
 
-                        Submit Request
+                    <div>
 
-                    </button>
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            data-bs-dismiss="modal">
+
+                            <i class="fa-solid fa-xmark me-2"></i>
+
+                            Close
+
+                        </button>
+
+                        <button
+                            type="submit"
+                            id="supportSubmitButton"
+                            class="btn btn-warning">
+
+                            <i class="fa-solid fa-paper-plane me-2"></i>
+
+                            Submit Request
+
+                        </button>
+
+                    </div>
 
                 </div>
 
@@ -219,3 +287,36 @@
     </div>
 
 </div>
+
+<script type="text/template" id="support-success-template">
+
+<div class="text-center py-4">
+
+    <div class="mb-3">
+
+        <i class="fa-solid fa-circle-check text-success fa-4x"></i>
+
+    </div>
+
+    <h4 class="mb-3">
+
+        Thank You!
+
+    </h4>
+
+    <p class="text-muted mb-0">
+
+        Your request has been received successfully.
+
+    </p>
+
+    <p class="text-muted">
+
+        Our ministry team will review your request and contact you as soon as possible.
+
+    </p>
+
+</div>
+
+</script>
+                   
